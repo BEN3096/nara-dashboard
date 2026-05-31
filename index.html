@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교수법인 수행가능 나라장터 용역 대시보드</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #dce3ed;
+    --text: #2b3038;
+    --muted: #697386;
+    --blue: #4b82f0;
+    --green: #48ad7d;
+    --orange: #f7a13b;
+    --red: #e74c3c;
+    --purple: #9B59B6;
+    --navy: #1d2a44;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .header .date {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .chip-blue { background: var(--blue); }
+  .chip-purple { background: var(--purple); }
+  .chip-red { background: var(--red); }
+  .chip-navy { background: var(--navy); }
+
+  /* KPI */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px solid var(--border);
+    text-align: center;
+  }
+  .kpi-card .value {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .kpi-card .label {
+    font-size: 12px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .kpi-card.accent-blue { border-color: var(--blue); }
+  .kpi-card.accent-purple { border-color: var(--purple); }
+  .kpi-card.accent-green { border-color: var(--green); }
+  .kpi-card.accent-red { border-color: var(--red); }
+  .kpi-card.accent-orange { border-color: var(--orange); }
+  .value-blue { color: var(--blue); }
+  .value-purple { color: var(--purple); }
+  .value-green { color: var(--green); }
+  .value-red { color: var(--red); }
+  .value-orange { color: var(--orange); }
+
+  /* Main Card */
+  .main-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* Bar Chart */
+  .chart-area {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .chart-left {
+    flex: 2;
+    min-width: 300px;
+  }
+  .chart-right {
+    flex: 1;
+    min-width: 200px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .bar-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .bar-label {
+    width: 130px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 18px;
+    background: #eff2f6;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s ease;
+  }
+  .bar-count {
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 24px;
+    text-align: right;
+  }
+  .bar-academic {
+    font-size: 11px;
+    color: var(--purple);
+    width: 60px;
+    text-align: left;
+    margin-left: 4px;
+  }
+
+  /* Pie */
+  .pie-section {
+    text-align: center;
+  }
+  .pie-section h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  .pie-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 12px;
+  }
+  .pie-canvas {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+  }
+  .pie-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--purple);
+    background: #f8fafc;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pie-legend {
+    text-align: left;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .pie-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* Detail Table */
+  .detail-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .detail-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 10px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 12px;
+  }
+  .detail-table th:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+  .detail-table th:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+  .detail-table td {
+    padding: 6px 10px;
+    background: #fbfdff;
+    border: 1px solid #eef2f7;
+    text-align: center;
+    font-size: 12px;
+  }
+  .detail-table tr:nth-child(even) td {
+    background: #f7f9fc;
+  }
+  .detail-table .dept-header td {
+    background: #e3f2fd;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+  .detail-table .dept-header.green td { background: #e8f5e9; }
+  .detail-table .dept-header.purple td { background: #f3e5f5; }
+  .detail-table .subtotal td {
+    background: #f0f4fa;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .text-left { text-align: left !important; }
+  .text-right { text-align: right !important; }
+  .urgent-badge { color: var(--red); font-weight: 700; }
+  .price { white-space: nowrap; }
+
+  /* Urgent Section */
+  .urgent-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px;
+    border: 2px solid var(--red);
+    margin-bottom: 16px;
+  }
+  .urgent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .urgent-header h2 { color: var(--red); }
+  .urgent-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .urgent-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .urgent-chip.red { background: var(--red); }
+  .urgent-chip.orange { background: var(--orange); }
+
+  .urgent-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .urgent-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 10px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+  }
+  .urgent-table th:first-child { border-radius: 6px 0 0 6px; }
+  .urgent-table th:last-child { border-radius: 0 6px 6px 0; }
+  .urgent-table td {
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .urgent-table tr:nth-child(odd) td {
+    background: #fff9f9;
+    border: 1px solid #fde8e8;
+  }
+  .urgent-table tr:nth-child(even) td {
+    background: #fbfdff;
+    border: 1px solid #eef2f7;
+  }
+  .d-day-0 { color: var(--red); font-weight: 700; }
+  .d-day-1 { color: var(--orange); font-weight: 700; }
+  .d-day-3 { color: var(--orange); }
+  .name-cell { text-align: left !important; }
+
+  .empty-msg {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px 0 8px;
+  }
+
+  @media (max-width: 768px) {
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .bar-label { width: 100px; font-size: 12px; }
+    .header h1 { font-size: 22px; }
+  }
+  @media (max-width: 480px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>📊 교수법인 수행가능 나라장터 용역 현황</h1>
+      <div class="date" id="dateDisplay"></div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-row" id="kpiRow"></div>
+
+  <!-- Main Chart -->
+  <div class="main-card">
+    <div class="section-title">
+      사업유형별 용역 건수
+      <span class="section-sub">(파란색 = 학술연구용역 포함)</span>
+    </div>
+    <div class="chart-area">
+      <div class="chart-left" id="barChart"></div>
+      <div class="chart-right" id="pieChart"></div>
+    </div>
+  </div>
+
+  <!-- Detail Table -->
+  <div class="main-card">
+    <div class="section-title">📋 사업유형별 상세 현황</div>
+    <table class="detail-table" id="detailTable"></table>
+  </div>
+
+  <!-- Urgent -->
+  <div class="urgent-card" id="urgentCard">
+    <div class="urgent-header">
+      <h2>⏰ 마감임박 용역</h2>
+      <div class="urgent-chips" id="urgentChips"></div>
+    </div>
+    <div class="section-sub" style="margin-bottom:8px;" id="urgentSub"></div>
+    <div id="urgentTableArea"></div>
+  </div>
+
+  <div class="footer">
+    데이터 출처: 나라장터 공공데이터 API &middot; 기준일 <span id="footerDate"></span>
+  </div>
+</div>
+
+<script>
+// ========== 데이터 ==========
+const API_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
+const SHEET_ID = '1bG6GW-Edm4MhkyGCeO9YyM9LsOhRws8Mj4crJ2SiRVQ';
+// 공개 시트이므로 API 키 없이 pubhtml or JSON feed 사용
+
+// 대안: 시트를 JSONP로 불러오기
+async function loadSheetData() {
+  try {
+    // Google Sheets public JSON feed (no API key needed for published sheets)
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq=&sheet=참여가능용역`;
+    const resp = await fetch(url);
+    const text = await resp.text();
+    // Google returns: google.visualization.Query.setResponse(...)
+    const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
+    if (!jsonStr) return [];
+    const data = JSON.parse(jsonStr[1]);
+    const rows = [];
+    const cols = data.table.cols.map(c => c.label);
+    for (const r of data.table.rows) {
+      const item = {};
+      r.c.forEach((cell, i) => {
+        item[cols[i]] = cell ? cell.v ?? cell.f ?? '' : '';
+      });
+      rows.push(item);
+    }
+    return { rows, cols };
+  } catch(e) {
+    console.warn('JSON feed failed, trying CSV fallback:', e);
+    return await loadCSVFallback();
+  }
+}
+
+async function loadCSVFallback() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=참여가능용역`;
+  const resp = await fetch(url);
+  const text = await resp.text();
+  const lines = text.split('\n').filter(l => l.trim());
+  if (lines.length < 1) return { rows: [], cols: [] };
+  const cols = lines[0].split(',').map(c => c.replace(/^"|"$/g, ''));
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const vals = lines[i].split(',').map(c => c.replace(/^"|"$/g, ''));
+    if (vals.length < cols.length) continue;
+    const item = {};
+    cols.forEach((c, j) => { item[c] = vals[j] || ''; });
+    rows.push(item);
+  }
+  return { rows, cols };
+}
+
+function parsePrice(p) {
+  const n = String(p || '').replace(/[^0-9]/g, '');
+  return parseInt(n) || 0;
+}
+
+function parseDate(s) {
+  if (!s || s === '미기재' || s === '-') return null;
+  const d = new Date(s.slice(0, 10));
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function fmtPrice(p) {
+  const n = parsePrice(p);
+  if (n >= 100000000) return (n / 100000000).toFixed(1) + '억';
+  return (n / 10000).toFixed(0) + '만원';
+}
+
+function classifyMid(name) {
+  name = name || '';
+  if (name.includes('도시재생')) return '도시재생';
+  else if (name.includes('취약지역') || name.includes('농어촌취약')) return '취약지역생활여건개조';
+  else if (name.includes('어촌뉴딜')) return '어촌뉴딜';
+  else if (name.includes('농촌공간')) return name.includes('역량강화') ? '역량강화' : '농촌계획';
+  else if (name.includes('농촌중심지')) return name.includes('역량강화') ? '역량강화' : '농촌중심지활성화';
+  else if (name.includes('인구감소')) return '인구감소대응';
+  else if (name.includes('기초생활거점')) return name.includes('역량강화') ? '역량강화' : '기초생활거점육성';
+  else if (name.includes('섬')) return '기타(섬종합발전)';
+  else if (name.includes('중장기')) return '기타(중장기발전)';
+  return '기타';
+}
+
+function classifyDept(name) {
+  name = name || '';
+  if (name.includes('도시재생') || name.includes('취약지역') || name.includes('어촌뉴딜') ||
+      (name.includes('농촌공간') && !name.includes('역량강화'))) return '공모지원';
+  else if (name.includes('농촌중심지') || name.includes('인구감소') || name.includes('기초생활거점') ||
+           name.includes('섬') || name.includes('중장기')) return '계획수립';
+  else if (name.includes('역량강화')) return '역량강화';
+  return '기타';
+}
+
+// ========== 렌더링 ==========
+function render(data) {
+  const today = new Date();
+  document.getElementById('dateDisplay').textContent = `기준일: ${today.toISOString().slice(0, 10)}`;
+  document.getElementById('footerDate').textContent = today.toISOString().slice(0, 10);
+
+  const rows = data.rows;
+  const total = rows.length;
+  let totalPrice = 0;
+  let academic = 0;
+  for (const r of rows) {
+    totalPrice += parsePrice(r['예산']);
+    if ((r['참여가능여부'] || '').includes('✅')) academic++;
+  }
+  const normal = total - academic;
+
+  // Urgent
+  const now = new Date();
+  const urgentAll = [];
+  for (const r of rows) {
+    const dl = parseDate(r['마감일시']);
+    if (dl && dl >= now) {
+      const days = Math.floor((dl - now) / (1000*60*60*24));
+      urgentAll.push({
+        dl, days, name: r['공고명'] || '', price: r['예산'] || '',
+        org: r['발주처'] || '', mid: classifyMid(r['공고명'] || ''),
+        dept: classifyDept(r['공고명'] || '')
+      });
+    }
+  }
+  urgentAll.sort((a, b) => a.dl - b.dl);
+  const urgent7 = urgentAll.filter(u => u.days <= 7);
+  const urgentCount = urgent7.length;
+
+  // Chips
+  const chips = document.getElementById('chips');
+  chips.innerHTML = `
+    <span class="chip chip-blue">전체 ${total}건</span>
+    <span class="chip chip-purple">학술연구 ${academic}건</span>
+    <span class="chip chip-red">마감임박 ${urgentCount}건</span>
+    <span class="chip chip-navy">총 ${Math.floor(totalPrice/100000000)}억</span>
+  `;
+
+  // KPI
+  const kpis = [
+    { val: `${total}건`, label: '전체 용역', cls: 'accent-blue', vcls: 'value-blue' },
+    { val: `${academic}건`, label: '학술연구용역', cls: 'accent-purple', vcls: 'value-purple' },
+    { val: `${normal}건`, label: '일반용역', cls: 'accent-green', vcls: 'value-green' },
+    { val: `${urgentCount}건`, label: '마감임박 (7일)', cls: 'accent-red', vcls: 'value-red' },
+    { val: `${Math.floor(totalPrice/100000000)}억`, label: '총 예산', cls: 'accent-orange', vcls: 'value-orange' },
+  ];
+  document.getElementById('kpiRow').innerHTML = kpis.map(k =>
+    `<div class="kpi-card ${k.cls}"><div class="value ${k.vcls}">${k.val}</div><div class="label">${k.label}</div></div>`
+  ).join('');
+
+  // Mid classification
+  const midOrder = ['도시재생', '취약지역생활여건개조', '어촌뉴딜', '농촌계획',
+                    '농촌중심지활성화', '인구감소대응', '기초생활거점육성',
+                    '역량강화', '기타(섬종합발전)', '기타(중장기발전)', '기타'];
+  const midCounts = {}, midAcademic = {}, midPrices = {};
+  for (const r of rows) {
+    const mid = classifyMid(r['공고명'] || '');
+    midCounts[mid] = (midCounts[mid] || 0) + 1;
+    midPrices[mid] = (midPrices[mid] || 0) + parsePrice(r['예산']);
+    if ((r['참여가능여부'] || '').includes('✅')) midAcademic[mid] = (midAcademic[mid] || 0) + 1;
+  }
+
+  const midLabels = midOrder.filter(m => m in midCounts);
+  const midVals = midLabels.map(m => midCounts[m]);
+  const midAca = midLabels.map(m => midAcademic[m] || 0);
+  const maxMid = Math.max(...midVals, 1);
+
+  // Bar chart
+  const barHtml = midLabels.map((lb, i) => {
+    const pct = (midVals[i] / maxMid * 100).toFixed(0);
+    const aca = midAca[i];
+    const color = aca > 0 ? '#4b82f0' : '#b0bec5';
+    return `
+      <div class="bar-item">
+        <div class="bar-label">${lb}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:${color};"></div>
+        </div>
+        <div class="bar-count">${midVals[i]}</div>
+        ${aca > 0 ? `<div class="bar-academic">(학술${aca})</div>` : '<div class="bar-academic"></div>'}
+      </div>
+    `;
+  }).join('');
+  document.getElementById('barChart').innerHTML = barHtml;
+
+  // Pie
+  const acaRatio = total > 0 ? academic / total : 0;
+  const acaDeg = acaRatio * 360;
+  const pieConic = `conic-gradient(${acaDeg > 0 ? '#9B59B6 0deg ' + acaDeg + 'deg' : ''}${acaDeg < 360 ? ', #e0e6ed ' + acaDeg + 'deg 360deg' : ''})`;
+  document.getElementById('pieChart').innerHTML = `
+    <h4>용역 유형 비율</h4>
+    <div class="pie-container">
+      <div class="pie-canvas" style="background:${pieConic};"></div>
+      <div class="pie-center">${(acaRatio*100).toFixed(0)}%</div>
+    </div>
+    <div class="pie-legend">
+      <div class="pie-legend-item"><div class="pie-dot" style="background:#9B59B6;"></div> 학술연구 ${academic}건</div>
+      <div class="pie-legend-item"><div class="pie-dot" style="background:#e0e6ed;"></div> 일반용역 ${normal}건</div>
+    </div>
+  `;
+
+  // Detail table
+  const deptData = [
+    { name: '공모지원', mids: ['도시재생', '취약지역생활여건개조', '어촌뉴딜', '농촌계획'], cls: '' },
+    { name: '계획수립', mids: ['인구감소대응', '기초생활거점육성', '농촌중심지활성화', '기타(섬종합발전)', '기타(중장기발전)'], cls: 'green' },
+    { name: '역량강화', mids: ['역량강화'], cls: 'purple' },
+  ];
+
+  let tableHtml = `<tr><th>사업유형</th><th>건수</th><th>학술</th><th>예산</th><th>마감임박</th></tr>`;
+
+  for (const dd of deptData) {
+    // dept header
+    tableHtml += `<tr class="dept-header ${dd.cls}"><td colspan="5" style="text-align:left;">${dd.name}</td></tr>`;
+
+    let dCnt = 0, dAca = 0, dPrice = 0, dUrg = 0;
+    for (const mid of dd.mids) {
+      if (!(mid in midCounts)) continue;
+      const cnt = midCounts[mid];
+      const aca = midAcademic[mid] || 0;
+      const price = midPrices[mid] || 0;
+      const urg = urgent7.filter(u => u.mid === mid).length;
+      dCnt += cnt; dAca += aca; dPrice += price; dUrg += urg;
+      tableHtml += `<tr><td class="text-left">${mid}</td><td>${cnt}</td><td>${aca || '-'}</td><td class="price">${Math.floor(price/10000)}만원</td><td>${urg ? `<span class="urgent-badge">${urg}</span>` : '-'}</td></tr>`;
+    }
+    // subtotal
+    tableHtml += `<tr class="subtotal"><td class="text-left">소계</td><td>${dCnt}</td><td>${dAca || '-'}</td><td class="price">${Math.floor(dPrice/10000)}만원</td><td>${dUrg ? `<span class="urgent-badge">${dUrg}</span>` : '-'}</td></tr>`;
+  }
+  document.getElementById('detailTable').innerHTML = tableHtml;
+
+  // Urgent section
+  const urgentSub = document.getElementById('urgentSub');
+  urgentSub.textContent = `7일 이내 마감 예정 — ${urgentCount}건`;
+
+  const uChips = document.getElementById('urgentChips');
+  uChips.innerHTML = urgent7.slice(0, 5).map(u => {
+    const label = u.days === 0 ? '오늘마감' : `D-${u.days}`;
+    const cls = u.days <= 1 ? 'urgent-chip red' : 'urgent-chip orange';
+    return `<span class="${cls}">${label}</span>`;
+  }).join('');
+
+  const uArea = document.getElementById('urgentTableArea');
+  if (urgent7.length === 0) {
+    uArea.innerHTML = '<div class="empty-msg">현재 7일 이내 마감 임박 공고가 없습니다.</div>';
+  } else {
+    let uHtml = `<table class="urgent-table"><tr><th>마감일</th><th>공고명</th><th>발주처</th><th>예산</th><th>사업유형</th><th>D-day</th></tr>`;
+    for (const u of urgent7) {
+      const dlStr = `${u.dl.getMonth()+1}/${u.dl.getDate()}`;
+      const dayClass = u.days <= 0 ? 'd-day-0' : (u.days <= 1 ? 'd-day-1' : (u.days <= 3 ? 'd-day-3' : ''));
+      const dayLabel = u.days === 0 ? '오늘' : `D-${u.days}`;
+      uHtml += `<tr><td>${dlStr}</td><td class="name-cell">${u.name.slice(0, 36)}</td><td>${(u.org||'').slice(0, 14)}</td><td class="price">${fmtPrice(u.price)}</td><td>${u.mid.slice(0, 12)}</td><td class="${dayClass}">${dayLabel}</td></tr>`;
+    }
+    uHtml += '</table>';
+    uArea.innerHTML = uHtml;
+  }
+}
+
+// ========== 실행 ==========
+(async function() {
+  const data = await loadSheetData();
+  render(data);
+})();
+</script>
+</body>
+</html>
