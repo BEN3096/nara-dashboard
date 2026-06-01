@@ -468,7 +468,7 @@ function parsePrice(p) {
 function fmtPrice(p) {
   const n = parsePrice(p);
   if (n >= 100000000) return (n / 100000000).toFixed(1) + '억';
-  return (n / 10000).toFixed(0) + '만원';
+  return (n / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '만원';
 }
 
 // ---------- render ----------
