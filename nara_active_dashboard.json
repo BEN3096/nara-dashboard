@@ -1,0 +1,440 @@
+{
+  "collected_at": "2026-06-01 17:10:12 KST",
+  "collector": "windows-pc",
+  "api_health": [
+    {
+      "name": "입찰공고",
+      "ok": true,
+      "status": "정상",
+      "result_code": "00",
+      "result_msg": "정상",
+      "total_count": 10562
+    },
+    {
+      "name": "발주계획",
+      "ok": true,
+      "status": "정상",
+      "result_code": "00",
+      "result_msg": "정상",
+      "total_count": 360
+    }
+  ],
+  "scan": {
+    "scanned": 500,
+    "total_count": 10562,
+    "pages_read": 5
+  },
+  "active_bids": [
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01544776",
+      "order": "000",
+      "name": "2027학년도 \t인권·성평등센터 인권과 성평등 교육 온라인 콘텐츠 제작 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "고려대학교",
+      "demand_agency": "고려대학교",
+      "notice_date": "2026-05-27",
+      "deadline": "2026-06-04T10:00:00+09:00",
+      "deadline_text": "2026-06-04 10:00",
+      "budget": "54545455",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01544776&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01541658",
+      "order": "000",
+      "name": "2026년 충주국토 관내 비탈면 모니터링 시스템 구축 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "모니터링"
+      ],
+      "agency": "국토교통부 대전지방국토관리청 충주국토관리사무소",
+      "demand_agency": "국토교통부 대전지방국토관리청 충주국토관리사무소",
+      "notice_date": "2026-05-26",
+      "deadline": "2026-06-08T10:00:00+09:00",
+      "deadline_text": "2026-06-08 10:00",
+      "budget": "1545454545",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "정보통신공사업,건설엔지니어링업(설계,사업관리-건설사업관리),건설엔지니어링업(설계,사업관리-설계등용역-일반),건설엔지니어링업(설계,사업관리-일반),건설엔지니어링업(종합),엔지니어링사업(토질, 지질),정보통신공사업,정보통신공사업,정보통신공사업,정보통신공사업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01541658&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01554025",
+      "order": "000",
+      "name": "반송마을 농어촌취약지역생활여건개조사업 세부설계 용역",
+      "category": "취약지역/주거",
+      "matched_terms": [
+        "생활여건",
+        "취약지역"
+      ],
+      "agency": "한국농어촌공사 전남지역본부 곡성지사",
+      "demand_agency": "한국농어촌공사 전남지역본부 곡성지사",
+      "notice_date": "2026-06-01",
+      "deadline": "2026-06-09T10:00:00+09:00",
+      "deadline_text": "2026-06-09 10:00",
+      "budget": "60024545",
+      "method": "제한경쟁",
+      "region_limit": "전라남도",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554025&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01550782",
+      "order": "000",
+      "name": "수상구조사 교육 표준교재 개발 연구용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "해양경찰청",
+      "demand_agency": "해양경찰청",
+      "notice_date": "2026-05-29",
+      "deadline": "2026-06-09T10:00:00+09:00",
+      "deadline_text": "2026-06-09 10:00",
+      "budget": "27272727",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01550782&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01546211",
+      "order": "000",
+      "name": "완주군 운주면 장선지구 농촌공간정비사업 기본계획 수립 용역(협상에 의한 계약)",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "농촌공간"
+      ],
+      "agency": "전북특별자치도 완주군",
+      "demand_agency": "전북특별자치도 완주군",
+      "notice_date": "2026-05-27",
+      "deadline": "2026-06-09T18:00:00+09:00",
+      "deadline_text": "",
+      "budget": "166014545",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546211&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01545178",
+      "order": "000",
+      "name": "2026년 공공 특허기술 기후테크 성장지원 사업 IP사업화 컨설팅(7과제)",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "컨설팅"
+      ],
+      "agency": "한국발명진흥회",
+      "demand_agency": "한국발명진흥회",
+      "notice_date": "2026-05-28",
+      "deadline": "2026-06-11T10:00:00+09:00",
+      "deadline_text": "2026-06-11 10:00",
+      "budget": "73818182",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545178&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01554790",
+      "order": "000",
+      "name": "도시재생사업 성과관리 모니터링 및 기록화 용역(협상에 의한 계약)",
+      "category": "도시재생",
+      "matched_terms": [
+        "도시재생",
+        "도시재생사업",
+        "모니터링",
+        "성과관리"
+      ],
+      "agency": "경기도 가평군",
+      "demand_agency": "경기도 가평군",
+      "notice_date": "2026-06-01",
+      "deadline": "2026-06-15T16:00:00+09:00",
+      "deadline_text": "",
+      "budget": "135410000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역,엔지니어링사업(도시계획),기술사사무소(도시계획)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554790&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01543050",
+      "order": "001",
+      "name": "2026년 상반기 3차 글로벌 SW 교육 프로그램(중국) 운영 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "선문대학교 산학협력단",
+      "demand_agency": "선문대학교 산학협력단",
+      "notice_date": "2026-05-28",
+      "deadline": "2026-06-16T14:00:00+09:00",
+      "deadline_text": "",
+      "budget": "42727273",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "종합여행업,국내여행업,국내외여행업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543050&bidPbancOrd=001",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01543495",
+      "order": "000",
+      "name": "초록우산 LG이노텍 주니어소나무교실 과학교육 콘텐츠 기획 및 운영 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "사회복지법인어린이재단",
+      "demand_agency": "사회복지법인어린이재단",
+      "notice_date": "2026-05-26",
+      "deadline": "2026-06-16T15:00:00+09:00",
+      "deadline_text": "2026-06-16 15:00",
+      "budget": "454545454",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543495&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    },
+    {
+      "source": "입찰공고",
+      "bid_no": "R26BK01543510",
+      "order": "000",
+      "name": "나주시 다도면 기초생활거점조성사업 기본계획수립 용역",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점"
+      ],
+      "agency": "한국농어촌공사 전남지역본부",
+      "demand_agency": "한국농어촌공사 전남지역본부",
+      "notice_date": "2026-05-26",
+      "deadline": "2026-06-16T15:00:00+09:00",
+      "deadline_text": "2026-06-16 15:00",
+      "budget": "190000000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543510&bidPbancOrd=000",
+      "eligibility": "조건부 검토",
+      "reason": "공고명 기준 교수법인 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
+    }
+  ],
+  "order_plans": [
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776351",
+      "name": "(재공고)2026-2027년 KISA 온라인 교육(스마트러닝) 위탁 운영",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "한국인터넷진흥원",
+      "planned_month": "2026-06",
+      "budget": "55000000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776390",
+      "name": "2026년 K-로컬창업스쿨 예비창업가 창업교육 운영 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "재단법인 경상북도경제진흥원",
+      "planned_month": "2026-06",
+      "budget": "30000000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776638",
+      "name": "2026년 강원 정보보호 서비스 지원 및 전문교육 수행 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "재단법인강원테크노파크",
+      "planned_month": "2026-06",
+      "budget": "110557426",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776431",
+      "name": "2026년 서울RISE 사업비 집행 모니터링 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "모니터링"
+      ],
+      "agency": "재단법인 서울연구원",
+      "planned_month": "2026-06",
+      "budget": "22000000",
+      "method": "수의계약",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776495",
+      "name": "2026년 하반기 EPIK 사전연수 교육운영지원 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "교육부 국립국제교육원",
+      "planned_month": "2026-06",
+      "budget": "258301000",
+      "method": "일반경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776461",
+      "name": "2026학년도 동국대학교사범대학부속중학교 2학년 소규모테마형교육여행  위탁용역 입찰공고",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "서울특별시동부교육청 동국대학교사범대학부속중학교",
+      "planned_month": "2026-06",
+      "budget": "118300000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776682",
+      "name": "[해외 시장조사 및 마케팅전략 수립] 컨설팅_2026년 녹색산업 수출선도화 지원사업 위탁사업",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "컨설팅"
+      ],
+      "agency": "주식회사 앱스필",
+      "planned_month": "2026-06",
+      "budget": "41800000",
+      "method": "일반경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776489",
+      "name": "도시재생사업 성과관리 모니터링 및 기록화 용역",
+      "category": "도시재생",
+      "matched_terms": [
+        "도시재생",
+        "도시재생사업",
+        "모니터링",
+        "성과관리"
+      ],
+      "agency": "경기도 가평군",
+      "planned_month": "2026-06",
+      "budget": "148951000",
+      "method": "일반경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776670",
+      "name": "세종 정보보호 인재양성 종합 교육 운영 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "재단법인 세종테크노파크",
+      "planned_month": "2026-06",
+      "budget": "98989000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776318",
+      "name": "용당1지구 취약지역 생활여건 개조사업 휴먼케어 및 역량강화 용역",
+      "category": "취약지역/주거",
+      "matched_terms": [
+        "생활여건",
+        "역량강화",
+        "취약지역"
+      ],
+      "agency": "전라남도 목포시",
+      "planned_month": "2026-06",
+      "budget": "137460000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776668",
+      "name": "지방의회 전문성 및 역량 제고를 위한 교육과정 개발",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "행정안전부 지방자치인재개발원",
+      "planned_month": "2026-06",
+      "budget": "50000000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    },
+    {
+      "source": "발주계획",
+      "plan_id": "R26DD20776446",
+      "name": "충청남도논산계룡교육지원청 중요 비전자기록물 이관 사업",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "agency": "충청남도교육청 충청남도논산계룡교육지원청",
+      "planned_month": "2026-06",
+      "budget": "140000000",
+      "method": "제한경쟁",
+      "eligibility": "예정 검토",
+      "reason": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
+    }
+  ]
+}
