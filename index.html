@@ -175,13 +175,6 @@
     width: 24px;
     text-align: right;
   }
-  .bar-academic {
-    font-size: 11px;
-    color: var(--purple);
-    width: 60px;
-    text-align: left;
-    margin-left: 4px;
-  }
 
   /* Pie */
   .pie-section {
@@ -269,14 +262,15 @@
   .detail-table tr:nth-child(even) td {
     background: #f7f9fc;
   }
-  .detail-table .dept-header td {
+  .detail-table .cat-header td {
     background: #e3f2fd;
     font-weight: 700;
     border-radius: 4px;
     padding: 6px 10px;
   }
-  .detail-table .dept-header.green td { background: #e8f5e9; }
-  .detail-table .dept-header.purple td { background: #f3e5f5; }
+  .detail-table .cat-header.green td { background: #e8f5e9; }
+  .detail-table .cat-header.purple td { background: #f3e5f5; }
+  .detail-table .cat-header.orange td { background: #fff3e0; }
   .detail-table .subtotal td {
     background: #f0f4fa;
     font-weight: 700;
@@ -358,6 +352,22 @@
     font-size: 15px;
   }
 
+  /* Remark */
+  .remark-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 24px;
+    border: 1px solid #e0e7f0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .remark-card .icon { font-size: 24px; }
+  .remark-card .text { font-size: 13px; color: var(--muted); }
+  .remark-card .highlight { color: var(--red); font-weight: 600; }
+
   /* Footer */
   .footer {
     text-align: center;
@@ -394,7 +404,7 @@
   <div class="main-card">
     <div class="section-title">
       사업유형별 용역 건수
-      <span class="section-sub">(파란색 = 학술연구용역 포함)</span>
+      <span class="section-sub">(기준: 2026-06-01, 교수법인 수행 가능 용역)</span>
     </div>
     <div class="chart-area">
       <div class="chart-left" id="barChart"></div>
@@ -418,269 +428,217 @@
     <div id="urgentTableArea"></div>
   </div>
 
+  <script src="data.js"></script>
   <div class="footer">
     데이터 출처: 나라장터 공공데이터 API &middot; 기준일 <span id="footerDate"></span>
   </div>
 </div>
 
 <script>
-// ========== 데이터 ==========
-const API_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
-const SHEET_ID = '1bG6GW-Edm4MhkyGCeO9YyM9LsOhRws8Mj4crJ2SiRVQ';
-// 공개 시트이므로 API 키 없이 pubhtml or JSON feed 사용
+// ========== 정적 데이터 (BID_DATA from data.js) ==========
+// 분류별 색상
+const CAT_COLORS = {
+  '도시재생': { bg: '#e3f2fd', bar: '#4b82f0', pie: '#4b82f0' },
+  '활성화계획': { bg: '#e3f2fd', bar: '#4b82f0', pie: '#4b82f0' },
+  '기초생활거점': { bg: '#e8f5e9', bar: '#48ad7d', pie: '#48ad7d' },
+  '농촌': { bg: '#e8f5e9', bar: '#48ad7d', pie: '#48ad7d' },
+  '취약지역': { bg: '#fff3e0', bar: '#f7a13b', pie: '#f7a13b' },
+  '인구감소': { bg: '#f3e5f5', bar: '#9B59B6', pie: '#9B59B6' },
+  '역량강화': { bg: '#fce4ec', bar: '#e74c3c', pie: '#e74c3c' },
+};
+const CAT_ORDER = ['도시재생', '활성화계획', '기초생활거점', '농촌', '취약지역', '인구감소', '역량강화'];
+const CAT_LABELS = {
+  '도시재생': '도시재생', '활성화계획': '활성화계획', '기초생활거점': '기초생활거점',
+  '농촌': '농촌계획', '취약지역': '취약지역생활여건', '인구감소': '인구감소대응', '역량강화': '역량강화(교육)'
+};
 
-// 대안: 시트를 JSONP로 불러오기
-async function loadSheetData() {
-  try {
-    // Google Sheets public JSON feed (no API key needed for published sheets)
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq=&sheet=참여가능용역`;
-    const resp = await fetch(url);
-    const text = await resp.text();
-    // Google returns: google.visualization.Query.setResponse(...)
-    const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
-    if (!jsonStr) return [];
-    const data = JSON.parse(jsonStr[1]);
-    const rows = [];
-    const cols = data.table.cols.map(c => c.label);
-    for (const r of data.table.rows) {
-      const item = {};
-      r.c.forEach((cell, i) => {
-        item[cols[i]] = cell ? cell.v ?? cell.f ?? '' : '';
-      });
-      rows.push(item);
-    }
-    return { rows, cols };
-  } catch(e) {
-    console.warn('JSON feed failed, trying CSV fallback:', e);
-    return await loadCSVFallback();
-  }
+function fmtDate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
-
-async function loadCSVFallback() {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=참여가능용역`;
-  const resp = await fetch(url);
-  const text = await resp.text();
-  const lines = text.split('\n').filter(l => l.trim());
-  if (lines.length < 1) return { rows: [], cols: [] };
-  const cols = lines[0].split(',').map(c => c.replace(/^"|"$/g, ''));
-  const rows = [];
-  for (let i = 1; i < lines.length; i++) {
-    const vals = lines[i].split(',').map(c => c.replace(/^"|"$/g, ''));
-    if (vals.length < cols.length) continue;
-    const item = {};
-    cols.forEach((c, j) => { item[c] = vals[j] || ''; });
-    rows.push(item);
-  }
-  return { rows, cols };
+function todayStr() { return fmtDate(new Date()); }
+function parseDate(s) {
+  if (!s) return null;
+  const d = new Date(s.slice(0, 10));
+  return isNaN(d.getTime()) ? null : d;
 }
-
 function parsePrice(p) {
   const n = String(p || '').replace(/[^0-9]/g, '');
   return parseInt(n) || 0;
 }
-
-function parseDate(s) {
-  if (!s || s === '미기재' || s === '-') return null;
-  const d = new Date(s.slice(0, 10));
-  return isNaN(d.getTime()) ? null : d;
-}
-
 function fmtPrice(p) {
   const n = parsePrice(p);
   if (n >= 100000000) return (n / 100000000).toFixed(1) + '억';
   return (n / 10000).toFixed(0) + '만원';
 }
 
-function classifyMid(name) {
-  name = name || '';
-  if (name.includes('도시재생')) return '도시재생';
-  else if (name.includes('취약지역') || name.includes('농어촌취약')) return '취약지역생활여건개조';
-  else if (name.includes('어촌뉴딜')) return '어촌뉴딜';
-  else if (name.includes('농촌공간')) return name.includes('역량강화') ? '역량강화' : '농촌계획';
-  else if (name.includes('농촌중심지')) return name.includes('역량강화') ? '역량강화' : '농촌중심지활성화';
-  else if (name.includes('인구감소')) return '인구감소대응';
-  else if (name.includes('기초생활거점')) return name.includes('역량강화') ? '역량강화' : '기초생활거점육성';
-  else if (name.includes('섬')) return '기타(섬종합발전)';
-  else if (name.includes('중장기')) return '기타(중장기발전)';
-  return '기타';
-}
-
-function classifyDept(name) {
-  name = name || '';
-  if (name.includes('도시재생') || name.includes('취약지역') || name.includes('어촌뉴딜') ||
-      (name.includes('농촌공간') && !name.includes('역량강화'))) return '공모지원';
-  else if (name.includes('농촌중심지') || name.includes('인구감소') || name.includes('기초생활거점') ||
-           name.includes('섬') || name.includes('중장기')) return '계획수립';
-  else if (name.includes('역량강화')) return '역량강화';
-  return '기타';
-}
-
-// ========== 렌더링 ==========
-function render(data) {
-  const today = new Date();
-  document.getElementById('dateDisplay').textContent = `기준일: ${today.toISOString().slice(0, 10)}`;
-  document.getElementById('footerDate').textContent = today.toISOString().slice(0, 10);
-
-  const rows = data.rows;
-  const total = rows.length;
-  let totalPrice = 0;
-  let academic = 0;
-  for (const r of rows) {
-    totalPrice += parsePrice(r['예산']);
-    if ((r['참여가능여부'] || '').includes('✅')) academic++;
-  }
-  const normal = total - academic;
-
-  // Urgent
+// ---------- render ----------
+function render() {
+  const rows = BID_DATA || [];
   const now = new Date();
-  const urgentAll = [];
-  for (const r of rows) {
-    const dl = parseDate(r['마감일시']);
-    if (dl && dl >= now) {
-      const days = Math.floor((dl - now) / (1000*60*60*24));
-      urgentAll.push({
-        dl, days, name: r['공고명'] || '', price: r['예산'] || '',
-        org: r['발주처'] || '', mid: classifyMid(r['공고명'] || ''),
-        dept: classifyDept(r['공고명'] || '')
-      });
-    }
-  }
-  urgentAll.sort((a, b) => a.dl - b.dl);
-  const urgent7 = urgentAll.filter(u => u.days <= 7);
-  const urgentCount = urgent7.length;
+  const nowStr = fmtDate(now);
 
-  // Chips
-  const chips = document.getElementById('chips');
-  chips.innerHTML = `
-    <span class="chip chip-blue">전체 ${total}건</span>
-    <span class="chip chip-purple">학술연구 ${academic}건</span>
-    <span class="chip chip-red">마감임박 ${urgentCount}건</span>
-    <span class="chip chip-navy">총 ${Math.floor(totalPrice/100000000)}억</span>
+  // 1. Header date
+  document.getElementById('dateDisplay').textContent = '기준일: ' + nowStr;
+  document.getElementById('footerDate').textContent = nowStr;
+
+  // 2. Chips
+  const chipsHtml = `
+    <span class="chip chip-blue">${rows.length}건 전체</span>
+    <span class="chip chip-red">${rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / (86400000) <= 4).length}건 마감임박</span>
+    <span class="chip chip-navy">${rows.filter(r => !r[6]).length}건 마감일 미기재</span>
+  `;
+  document.getElementById('chips').innerHTML = chipsHtml;
+
+  // 3. KPI
+  const totalBudget = rows.reduce((s, r) => s + parsePrice(r[5]), 0);
+  const budgetStr = totalBudget >= 100000000 ? (totalBudget / 100000000).toFixed(1) + '억' : (totalBudget / 10000).toFixed(0) + '만원';
+  const catH = {};
+  rows.forEach(r => { catH[r[3]] = (catH[r[3]] || 0) + 1; });
+  const topCat = Object.entries(catH).sort((a,b) => b[1]-a[1])[0];
+  const deadlineRows = rows.filter(r => r[6] && parseDate(r[6]));
+
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi-card accent-blue"><div class="value value-blue">${rows.length}건</div><div class="label">전체 용역</div></div>
+    <div class="kpi-card accent-purple"><div class="value value-purple">${budgetStr}</div><div class="label">총 예산 규모</div></div>
+    <div class="kpi-card accent-green"><div class="value value-green">${Object.keys(catH).length}개</div><div class="label">사업유형</div></div>
+    <div class="kpi-card accent-orange"><div class="value value-orange">${deadlineRows.length}건</div><div class="label">마감일 기재</div></div>
+    <div class="kpi-card accent-red"><div class="value value-red">${topCat ? topCat[1] + '건' : '0건'}</div><div class="label">최다: ${CAT_LABELS[topCat[0]] || topCat[0]}</div></div>
   `;
 
-  // KPI
-  const kpis = [
-    { val: `${total}건`, label: '전체 용역', cls: 'accent-blue', vcls: 'value-blue' },
-    { val: `${academic}건`, label: '학술연구용역', cls: 'accent-purple', vcls: 'value-purple' },
-    { val: `${normal}건`, label: '일반용역', cls: 'accent-green', vcls: 'value-green' },
-    { val: `${urgentCount}건`, label: '마감임박 (7일)', cls: 'accent-red', vcls: 'value-red' },
-    { val: `${Math.floor(totalPrice/100000000)}억`, label: '총 예산', cls: 'accent-orange', vcls: 'value-orange' },
-  ];
-  document.getElementById('kpiRow').innerHTML = kpis.map(k =>
-    `<div class="kpi-card ${k.cls}"><div class="value ${k.vcls}">${k.val}</div><div class="label">${k.label}</div></div>`
-  ).join('');
+  // 4. Bar Chart
+  const catCounts = {};
+  rows.forEach(r => {
+    const c = r[3];
+    if (!catCounts[c]) catCounts[c] = 0;
+    catCounts[c]++;
+  });
+  const maxCount = Math.max(...Object.values(catCounts), 1);
 
-  // Mid classification
-  const midOrder = ['도시재생', '취약지역생활여건개조', '어촌뉴딜', '농촌계획',
-                    '농촌중심지활성화', '인구감소대응', '기초생활거점육성',
-                    '역량강화', '기타(섬종합발전)', '기타(중장기발전)', '기타'];
-  const midCounts = {}, midAcademic = {}, midPrices = {};
-  for (const r of rows) {
-    const mid = classifyMid(r['공고명'] || '');
-    midCounts[mid] = (midCounts[mid] || 0) + 1;
-    midPrices[mid] = (midPrices[mid] || 0) + parsePrice(r['예산']);
-    if ((r['참여가능여부'] || '').includes('✅')) midAcademic[mid] = (midAcademic[mid] || 0) + 1;
-  }
-
-  const midLabels = midOrder.filter(m => m in midCounts);
-  const midVals = midLabels.map(m => midCounts[m]);
-  const midAca = midLabels.map(m => midAcademic[m] || 0);
-  const maxMid = Math.max(...midVals, 1);
-
-  // Bar chart
-  const barHtml = midLabels.map((lb, i) => {
-    const pct = (midVals[i] / maxMid * 100).toFixed(0);
-    const aca = midAca[i];
-    const color = aca > 0 ? '#4b82f0' : '#b0bec5';
-    return `
+  let barHtml = '';
+  CAT_ORDER.forEach(c => {
+    if (!catCounts[c]) return;
+    const cnt = catCounts[c];
+    const pct = (cnt / maxCount * 100).toFixed(0);
+    const col = CAT_COLORS[c] || { bar: '#4b82f0' };
+    barHtml += `
       <div class="bar-item">
-        <div class="bar-label">${lb}</div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${pct}%;background:${color};"></div>
-        </div>
-        <div class="bar-count">${midVals[i]}</div>
-        ${aca > 0 ? `<div class="bar-academic">(학술${aca})</div>` : '<div class="bar-academic"></div>'}
-      </div>
-    `;
-  }).join('');
+        <span class="bar-label">${CAT_LABELS[c] || c}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${col.bar}"></div></div>
+        <span class="bar-count">${cnt}</span>
+      </div>`;
+  });
   document.getElementById('barChart').innerHTML = barHtml;
 
-  // Pie
-  const acaRatio = total > 0 ? academic / total : 0;
-  const acaDeg = acaRatio * 360;
-  const pieConic = `conic-gradient(${acaDeg > 0 ? '#9B59B6 0deg ' + acaDeg + 'deg' : ''}${acaDeg < 360 ? ', #e0e6ed ' + acaDeg + 'deg 360deg' : ''})`;
-  document.getElementById('pieChart').innerHTML = `
-    <h4>용역 유형 비율</h4>
+  // 5. Pie Chart
+  const pieData = CAT_ORDER.filter(c => catCounts[c]).map((c, i) => ({
+    label: CAT_LABELS[c] || c,
+    value: catCounts[c],
+    color: (CAT_COLORS[c] || {}).pie || '#ccc'
+  }));
+  const totalPie = rows.length;
+  const pieColors = pieData.map(d => d.color).join(',');
+  const piePcts = pieData.map(d => (d.value / totalPie * 100).toFixed(1)).join('% ') + '%';
+
+  // conic-gradient pie
+  let conicParts = [];
+  let acc = 0;
+  pieData.forEach(d => {
+    const pct = d.value / totalPie * 100;
+    const start = acc;
+    const end = acc + pct;
+    conicParts.push(`${d.color} ${start}% ${end}%`);
+    acc = end;
+  });
+  const conicStr = conicParts.join(', ');
+
+  let pieHtml = `<div class="pie-section"><h4>사업유형 비율</h4>
     <div class="pie-container">
-      <div class="pie-canvas" style="background:${pieConic};"></div>
-      <div class="pie-center">${(acaRatio*100).toFixed(0)}%</div>
+      <div class="pie-canvas" style="background: conic-gradient(${conicStr})"></div>
+      <div class="pie-center">${totalPie}</div>
     </div>
-    <div class="pie-legend">
-      <div class="pie-legend-item"><div class="pie-dot" style="background:#9B59B6;"></div> 학술연구 ${academic}건</div>
-      <div class="pie-legend-item"><div class="pie-dot" style="background:#e0e6ed;"></div> 일반용역 ${normal}건</div>
-    </div>
-  `;
+    <div class="pie-legend">`;
+  pieData.forEach(d => {
+    pieHtml += `<div class="pie-legend-item"><span class="pie-dot" style="background:${d.color}"></span>${d.label} (${d.value})</div>`;
+  });
+  pieHtml += '</div></div>';
+  document.getElementById('pieChart').innerHTML = pieHtml;
 
-  // Detail table
-  const deptData = [
-    { name: '공모지원', mids: ['도시재생', '취약지역생활여건개조', '어촌뉴딜', '농촌계획'], cls: '' },
-    { name: '계획수립', mids: ['인구감소대응', '기초생활거점육성', '농촌중심지활성화', '기타(섬종합발전)', '기타(중장기발전)'], cls: 'green' },
-    { name: '역량강화', mids: ['역량강화'], cls: 'purple' },
-  ];
+  // 6. Detail Table
+  const CAT_RENDER_ORDER = ['도시재생', '활성화계획', '기초생활거점', '농촌', '취약지역', '인구감소', '역량강화'];
+  const CAT_RENDER_LABEL = {
+    '도시재생': '도시재생', '활성화계획': '활성화계획',
+    '기초생활거점': '기초생활거점', '농촌': '농촌계획',
+    '취약지역': '취약지역생활여건', '인구감소': '인구감소대응',
+    '역량강화': '역량강화(교육)'
+  };
+  const CAT_ROW_BG = {
+    '도시재생': '', '활성화계획': '',
+    '기초생활거점': 'green', '농촌': 'green',
+    '취약지역': 'orange', '인구감소': 'purple',
+    '역량강화': ''
+  };
 
-  let tableHtml = `<tr><th>사업유형</th><th>건수</th><th>학술</th><th>예산</th><th>마감임박</th></tr>`;
+  let tblHtml = `<tr><th>순번</th><th>공고번호</th><th>공고명</th><th>예산</th><th>마감일</th><th>비고</th></tr>`;
+  CAT_RENDER_ORDER.forEach(cat => {
+    const items = rows.filter(r => r[3] === cat);
+    if (items.length === 0) return;
+    const bgClass = CAT_ROW_BG[cat] || '';
+    const catSum = items.reduce((s, r) => s + parsePrice(r[5]), 0);
+    const catSumStr = catSum >= 100000000 ? (catSum / 100000000).toFixed(1) + '억' : (catSum / 10000).toFixed(0) + '만원';
+    tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="6">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
+    items.forEach(r => {
+      const deadlineStyle = r[6] && parseDate(r[6]) ? `D-${Math.ceil((parseDate(r[6]) - now) / 86400000)}` : '-';
+      const styleHtml = r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 3 ? ' class="urgent-badge"' : '';
+      tblHtml += `<tr>
+        <td>${r[0]}</td>
+        <td>${r[1]}</td>
+        <td class="text-left">${r[2]}</td>
+        <td class="price">${fmtPrice(r[5])}</td>
+        <td${styleHtml}>${r[6] || '-'}</td>
+        <td>${r[7] || ''}</td>
+      </tr>`;
+    });
+    tblHtml += `<tr class="subtotal"><td colspan="3" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${catSumStr}</td><td></td><td>${items.length}건</td></tr>`;
+  });
 
-  for (const dd of deptData) {
-    // dept header
-    tableHtml += `<tr class="dept-header ${dd.cls}"><td colspan="5" style="text-align:left;">${dd.name}</td></tr>`;
+  document.getElementById('detailTable').innerHTML = tblHtml;
 
-    let dCnt = 0, dAca = 0, dPrice = 0, dUrg = 0;
-    for (const mid of dd.mids) {
-      if (!(mid in midCounts)) continue;
-      const cnt = midCounts[mid];
-      const aca = midAcademic[mid] || 0;
-      const price = midPrices[mid] || 0;
-      const urg = urgent7.filter(u => u.mid === mid).length;
-      dCnt += cnt; dAca += aca; dPrice += price; dUrg += urg;
-      tableHtml += `<tr><td class="text-left">${mid}</td><td>${cnt}</td><td>${aca || '-'}</td><td class="price">${Math.floor(price/10000)}만원</td><td>${urg ? `<span class="urgent-badge">${urg}</span>` : '-'}</td></tr>`;
-    }
-    // subtotal
-    tableHtml += `<tr class="subtotal"><td class="text-left">소계</td><td>${dCnt}</td><td>${dAca || '-'}</td><td class="price">${Math.floor(dPrice/10000)}만원</td><td>${dUrg ? `<span class="urgent-badge">${dUrg}</span>` : '-'}</td></tr>`;
-  }
-  document.getElementById('detailTable').innerHTML = tableHtml;
+  // 7. Urgent section
+  const urgent = rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 6)
+    .sort((a, b) => (parseDate(a[6]) || new Date()) - (parseDate(b[6]) || new Date()));
 
-  // Urgent section
-  const urgentSub = document.getElementById('urgentSub');
-  urgentSub.textContent = `7일 이내 마감 예정 — ${urgentCount}건`;
+  if (urgent.length > 0) {
+    document.getElementById('urgentSub').textContent = `${urgent.length}건의 용역이 7일 이내 마감 예정입니다.`;
+    document.getElementById('urgentChips').innerHTML = `
+      <span class="urgent-chip red">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 1).length}건 D-0</span>
+      <span class="urgent-chip orange">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 > 1).length}건 D-${Math.min(6, ...urgent.filter(r => !r[6] || isNaN(parseDate(r[6])) ? 99 : (parseDate(r[6]) - now) / 86400000).filter(d => !isNaN(d)).map(d => Math.ceil(d)))}</span>
+    `;
 
-  const uChips = document.getElementById('urgentChips');
-  uChips.innerHTML = urgent7.slice(0, 5).map(u => {
-    const label = u.days === 0 ? '오늘마감' : `D-${u.days}`;
-    const cls = u.days <= 1 ? 'urgent-chip red' : 'urgent-chip orange';
-    return `<span class="${cls}">${label}</span>`;
-  }).join('');
-
-  const uArea = document.getElementById('urgentTableArea');
-  if (urgent7.length === 0) {
-    uArea.innerHTML = '<div class="empty-msg">현재 7일 이내 마감 임박 공고가 없습니다.</div>';
+    let urgHtml = `<table class="urgent-table">
+      <tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>D-Day</th><th>비고</th></tr>`;
+    urgent.forEach(r => {
+      const d = parseDate(r[6]);
+      const dDay = Math.ceil((d - now) / 86400000);
+      const dClass = dDay <= 0 ? 'd-day-0' : dDay <= 1 ? 'd-day-1' : dDay <= 3 ? 'd-day-3' : '';
+      urgHtml += `<tr>
+        <td>${r[0]}</td>
+        <td class="name-cell">${r[2]}</td>
+        <td class="price">${fmtPrice(r[5])}</td>
+        <td>${r[6]}</td>
+        <td class="${dClass}">D-${dDay}</td>
+        <td>${r[7] || ''}</td>
+      </tr>`;
+    });
+    urgHtml += '</table>';
+    document.getElementById('urgentTableArea').innerHTML = urgHtml;
   } else {
-    let uHtml = `<table class="urgent-table"><tr><th>마감일</th><th>공고명</th><th>발주처</th><th>예산</th><th>사업유형</th><th>D-day</th></tr>`;
-    for (const u of urgent7) {
-      const dlStr = `${u.dl.getMonth()+1}/${u.dl.getDate()}`;
-      const dayClass = u.days <= 0 ? 'd-day-0' : (u.days <= 1 ? 'd-day-1' : (u.days <= 3 ? 'd-day-3' : ''));
-      const dayLabel = u.days === 0 ? '오늘' : `D-${u.days}`;
-      uHtml += `<tr><td>${dlStr}</td><td class="name-cell">${u.name.slice(0, 36)}</td><td>${(u.org||'').slice(0, 14)}</td><td class="price">${fmtPrice(u.price)}</td><td>${u.mid.slice(0, 12)}</td><td class="${dayClass}">${dayLabel}</td></tr>`;
-    }
-    uHtml += '</table>';
-    uArea.innerHTML = uHtml;
+    document.getElementById('urgentSub').textContent = '7일 이내 마감 예정 용역이 없습니다.';
+    document.getElementById('urgentChips').innerHTML = '';
+    document.getElementById('urgentTableArea').innerHTML = '<div class="empty-msg">✅ 마감임박 용역 없음</div>';
   }
 }
 
-// ========== 실행 ==========
-(async function() {
-  const data = await loadSheetData();
-  render(data);
-})();
+render();
 </script>
 </body>
 </html>
