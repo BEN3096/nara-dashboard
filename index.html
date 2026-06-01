@@ -393,6 +393,7 @@
     <div>
       <h1>📊 교수법인 수행가능 나라장터 용역 현황</h1>
       <div class="date" id="dateDisplay"></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:2px;">⏱️ 실시간 업데이트 | <span id="countData"></span></div>
     </div>
     <div class="chips" id="chips"></div>
   </div>
@@ -480,6 +481,7 @@ function render() {
   // 1. Header date
   document.getElementById('dateDisplay').textContent = '기준일: ' + nowStr;
   document.getElementById('footerDate').textContent = nowStr;
+  document.getElementById('countData').textContent = rows.length + '건 (' + now.toLocaleTimeString('ko-KR') + ' 갱신)';
 
   // 2. Chips
   const chipsHtml = `
