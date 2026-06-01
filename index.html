@@ -377,12 +377,33 @@
   }
 
   @media (max-width: 768px) {
+    .container { padding: 16px 10px; }
     .kpi-row { grid-template-columns: repeat(3, 1fr); }
-    .bar-label { width: 100px; font-size: 12px; }
-    .header h1 { font-size: 22px; }
+    .kpi-card { padding: 10px 6px; }
+    .kpi-card .value { font-size: 18px; }
+    .bar-label { width: 90px; font-size: 11px; }
+    .header h1 { font-size: 20px; }
+    .main-card { padding: 14px 10px; }
+    .chart-left { min-width: 100%; }
+    .chart-right { min-width: 100%; }
+    .detail-table, .urgent-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    .detail-table td.name-cell, .urgent-table td.name-cell { white-space: normal; word-break: break-word; min-width: 180px; }
+    .name-cell { max-width: 200px; }
   }
   @media (max-width: 480px) {
+    .container { padding: 12px 8px; }
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .kpi-card { padding: 8px 4px; }
+    .kpi-card .value { font-size: 16px; }
+    .kpi-card .label { font-size: 10px; }
+    .header h1 { font-size: 17px; }
+    .main-card { padding: 10px 8px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .detail-table, .urgent-table { font-size: 11px; }
+    .detail-table td, .urgent-table td { padding: 4px 6px; font-size: 11px; }
+    .detail-table th, .urgent-table th { padding: 6px 4px; font-size: 10px; }
+    .detail-table td.name-cell, .urgent-table td.name-cell { min-width: 160px; font-size: 11px; }
+    .section-title { font-size: 15px; }
   }
 </style>
 </head>
@@ -613,27 +634,26 @@ function render() {
     '역량강화': ''
   };
 
-  let tblHtml = `<tr><th>순번</th><th>공고번호</th><th>공고명</th><th>예산</th><th>마감일</th><th>비고</th></tr>`;
+  let tblHtml = `<tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>비고</th></tr>`;
   CAT_RENDER_ORDER.forEach(cat => {
     const items = rows.filter(r => r[3] === cat);
     if (items.length === 0) return;
     const bgClass = CAT_ROW_BG[cat] || '';
     const catSum = items.reduce((s, r) => s + parsePrice(r[5]), 0);
     const catSumStr = fmtPrice(catSum);
-    tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="6">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
+    tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="5">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
     items.forEach(r => {
       const deadlineStyle = r[6] && parseDate(r[6]) ? `D-${Math.ceil((parseDate(r[6]) - now) / 86400000)}` : '-';
       const styleHtml = r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 3 ? ' class="urgent-badge"' : '';
       tblHtml += `<tr>
         <td>${r[0]}</td>
-        <td>${r[1]}</td>
-        <td class="text-left">${r[2]}</td>
+        <td class="name-cell">${r[2]}</td>
         <td class="price">${fmtPrice(r[5])}</td>
         <td${styleHtml}>${r[6] || '-'}</td>
         <td>${r[7] || ''}</td>
       </tr>`;
     });
-    tblHtml += `<tr class="subtotal"><td colspan="3" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${fmtPrice(catSum)}</td><td></td><td>${items.length}건</td></tr>`;
+    tblHtml += `<tr class="subtotal"><td colspan="2" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${fmtPrice(catSum)}</td><td></td><td>${items.length}건</td></tr>`;
   });
 
   document.getElementById('detailTable').innerHTML = tblHtml;
