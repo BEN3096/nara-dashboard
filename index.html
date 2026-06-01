@@ -1,34 +1,699 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>나라장터 교수법인 용역 대시보드</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도시재생 사업 용역 현황표</title>
 <style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#f4f6f8;color:#1f2937}
-main{max-width:1180px;margin:0 auto;padding:28px}
-h1{font-size:26px;margin:0 0 4px} .muted{color:#6b7280;font-size:13px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
-.card{background:white;border:1px solid #e5e7eb;border-radius:8px;padding:16px}
-.label{font-size:13px;color:#6b7280} .value{font-size:24px;font-weight:800;margin-top:6px;color:#0f766e}
-table{width:100%;border-collapse:collapse;background:white;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}
-th,td{padding:10px;border-bottom:1px solid #eef2f7;text-align:left;font-size:13px;vertical-align:top}
-th{background:#111827;color:white;font-weight:700} td span{color:#6b7280;font-size:12px}
-section{margin:22px 0} ul{background:white;border:1px solid #e5e7eb;border-radius:8px;padding:14px 20px}
-.ok{color:#047857} .warn{color:#b45309} a{color:#2563eb;text-decoration:none}
-@media(max-width:800px){.kpis{grid-template-columns:1fr 1fr} main{padding:16px} table{font-size:12px}}
+  :root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #dce3ed;
+    --text: #2b3038;
+    --muted: #697386;
+    --blue: #4b82f0;
+    --green: #48ad7d;
+    --orange: #f7a13b;
+    --red: #e74c3c;
+    --purple: #9B59B6;
+    --navy: #1d2a44;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .header .date {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .chip-blue { background: var(--blue); }
+  .chip-purple { background: var(--purple); }
+  .chip-red { background: var(--red); }
+  .chip-navy { background: var(--navy); }
+
+  /* KPI */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px solid var(--border);
+    text-align: center;
+  }
+  .kpi-card .value {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .kpi-card .label {
+    font-size: 12px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .kpi-card.accent-blue { border-color: var(--blue); }
+  .kpi-card.accent-purple { border-color: var(--purple); }
+  .kpi-card.accent-green { border-color: var(--green); }
+  .kpi-card.accent-red { border-color: var(--red); }
+  .kpi-card.accent-orange { border-color: var(--orange); }
+  .value-blue { color: var(--blue); }
+  .value-purple { color: var(--purple); }
+  .value-green { color: var(--green); }
+  .value-red { color: var(--red); }
+  .value-orange { color: var(--orange); }
+
+  /* Main Card */
+  .main-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* Bar Chart */
+  .chart-area {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .chart-left {
+    flex: 2;
+    min-width: 300px;
+  }
+  .chart-right {
+    flex: 1;
+    min-width: 200px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .bar-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .bar-label {
+    width: 130px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 18px;
+    background: #eff2f6;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s ease;
+  }
+  .bar-count {
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 24px;
+    text-align: right;
+  }
+
+  /* Pie */
+  .pie-section {
+    text-align: center;
+  }
+  .pie-section h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  .pie-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 12px;
+  }
+  .pie-canvas {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+  }
+  .pie-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--purple);
+    background: #f8fafc;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pie-legend {
+    text-align: left;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .pie-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* Detail Table */
+  .detail-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .detail-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 10px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 12px;
+  }
+  .detail-table th:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+  .detail-table th:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+  .detail-table td {
+    padding: 6px 10px;
+    background: #fbfdff;
+    border: 1px solid #eef2f7;
+    text-align: center;
+    font-size: 12px;
+  }
+  .detail-table tr:nth-child(even) td {
+    background: #f7f9fc;
+  }
+  .detail-table .cat-header td {
+    background: #e3f2fd;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+  .detail-table .cat-header.green td { background: #e8f5e9; }
+  .detail-table .cat-header.purple td { background: #f3e5f5; }
+  .detail-table .cat-header.orange td { background: #fff3e0; }
+  .detail-table .subtotal td {
+    background: #f0f4fa;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .text-left { text-align: left !important; }
+  .text-right { text-align: right !important; }
+  .urgent-badge { color: var(--red); font-weight: 700; }
+  .price { white-space: nowrap; }
+
+  /* Urgent Section */
+  .urgent-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px;
+    border: 2px solid var(--red);
+    margin-bottom: 16px;
+  }
+  .urgent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .urgent-header h2 { color: var(--red); }
+  .urgent-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .urgent-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .urgent-chip.red { background: var(--red); }
+  .urgent-chip.orange { background: var(--orange); }
+
+  .urgent-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .urgent-table th {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 10px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+  }
+  .urgent-table th:first-child { border-radius: 6px 0 0 6px; }
+  .urgent-table th:last-child { border-radius: 0 6px 6px 0; }
+  .urgent-table td {
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .urgent-table tr:nth-child(odd) td {
+    background: #fff9f9;
+    border: 1px solid #fde8e8;
+  }
+  .urgent-table tr:nth-child(even) td {
+    background: #fbfdff;
+    border: 1px solid #eef2f7;
+  }
+  .d-day-0 { color: var(--red); font-weight: 700; }
+  .d-day-1 { color: var(--orange); font-weight: 700; }
+  .d-day-3 { color: var(--orange); }
+  .name-cell { text-align: left !important; word-break: break-word; line-height: 1.4; }
+
+  .empty-msg {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* Remark */
+  .remark-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 24px;
+    border: 1px solid #e0e7f0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .remark-card .icon { font-size: 24px; }
+  .remark-card .text { font-size: 13px; color: var(--muted); }
+  .remark-card .highlight { color: var(--red); font-weight: 600; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 24px 0 8px;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px 10px; }
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .kpi-card { padding: 10px 6px; }
+    .kpi-card .value { font-size: 18px; }
+    .bar-label { width: 90px; font-size: 11px; }
+    .header h1 { font-size: 20px; }
+    .main-card { padding: 14px 10px; }
+    .chart-left { min-width: 100%; }
+    .chart-right { min-width: 100%; }
+    .detail-table, .urgent-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    .detail-table td.name-cell, .urgent-table td.name-cell { white-space: normal; word-break: break-word; min-width: 180px; }
+    .name-cell { max-width: 200px; }
+  }
+  @media (max-width: 480px) {
+    .container { padding: 12px 8px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .kpi-card { padding: 8px 4px; }
+    .kpi-card .value { font-size: 16px; }
+    .kpi-card .label { font-size: 10px; }
+    .header h1 { font-size: 17px; }
+    .main-card { padding: 10px 8px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .detail-table, .urgent-table { font-size: 11px; }
+    .detail-table td, .urgent-table td { padding: 4px 6px; font-size: 11px; }
+    .detail-table th, .urgent-table th { padding: 6px 4px; font-size: 10px; }
+    .detail-table td.name-cell, .urgent-table td.name-cell { min-width: 160px; font-size: 11px; }
+    .section-title { font-size: 15px; }
+  }
 </style>
 </head>
-<body><main>
-<h1>나라장터 교수법인 용역 대시보드</h1>
-<div class="muted">기준: 2026-06-01 16:15:34 KST · 현시점 마감 전 공고만 표시</div>
-<div class="kpis">
-<div class="card"><div class="label">진행중 가능 후보</div><div class="value">61건</div></div>
-<div class="card"><div class="label">예정 발주계획</div><div class="value">12건</div></div>
-<div class="card"><div class="label">검토 예산</div><div class="value">100.0억</div></div>
-<div class="card"><div class="label">스캔 공고</div><div class="value">2,000건</div></div>
+<body>
+<div class="container" id="app">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>📊 도시재생 사업 용역 현황표</h1>
+      <div class="date" id="dateDisplay"></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:2px;">⏱️ 실시간 업데이트 | <span id="countData"></span></div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-row" id="kpiRow"></div>
+
+  <!-- Main Chart -->
+  <div class="main-card">
+    <div class="section-title">
+      사업유형별 용역 건수
+      <span class="section-sub">(기준: 2026-06-01, 교수법인 수행 가능 용역)</span>
+    </div>
+    <div class="chart-area">
+      <div class="chart-left" id="barChart"></div>
+      <div class="chart-right" id="pieChart"></div>
+    </div>
+  </div>
+
+  <!-- Detail Table -->
+  <div class="main-card">
+    <div class="section-title">📋 사업유형별 상세 현황</div>
+    <table class="detail-table" id="detailTable"></table>
+  </div>
+
+  <!-- Urgent -->
+  <div class="urgent-card" id="urgentCard">
+    <div class="urgent-header">
+      <h2>⏰ 마감임박 용역</h2>
+      <div class="urgent-chips" id="urgentChips"></div>
+    </div>
+    <div class="section-sub" style="margin-bottom:8px;" id="urgentSub"></div>
+    <div id="urgentTableArea"></div>
+  </div>
+
+  <script>
+// 나라장터 도시재생 용역 대시보드 - 자동 생성 (2026-06-01 14:49 KST)
+const BID_DATA = [
+    [1, "R26BK01552420", "구미시 도시재생전략계획(2026~2035년) 수립 용역", "도시재생", "", "90,909,091원", "", "[교수법인가능]", "진행중"],
+    [2, "R26BK01553325", "도시재생사업 성과관리 모니터링 및 기록화 용역", "도시재생", "", "135,410,000원", "", "[교수법인가능]", "진행중"],
+    [3, "R26BK01545655", "신풍지구 도시재생 경관협정 실시설계 용역", "도시재생", "", "29,480,000원", "2026-06-02 15:00", "[교수법인가능]", "진행중"],
+    [4, "R26BK01535516", "북부지구 도시재생 같이가치 프로그램 운영 용역", "도시재생", "", "90,000,000원", "2026-06-11 11:00", "[교수법인가능]", "진행중"],
+    [5, "R26BK01552329", "원평지역 도시재생사업 여름축제 운영 용역", "도시재생", "", "45,455,000원", "2026-06-02 15:00", "[교수법인가능]", "진행중"],
+    [6, "R26BK01541515", "경주시 자전거 이용 활성화계획 수립 용역", "활성화계획", "", "130,000,000원", "2026-06-04 10:00", "[교수법인가능]", "진행중"],
+    [7, "R26BK01546211", "완주군 운주면 장선지구 농촌공간정비사업 기본계획 수립 용역", "농촌계획", "", "165,000,000원", "2026-06-22", "[교수법인가능]", "진행중"],
+    [8, "R26BK01543510", "나주시 다도면 기초생활거점조성사업 기본계획수립 용역", "기초생활거점", "", "185,000,000원", "2026-06-16 15:00", "[교수법인가능]", "진행중"],
+    [9, "R26BK01545744", "부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고)", "농촌계획", "", "300,000,000원", "2026-06-08 10:00", "[교수법인가능]", "진행중"],
+    [10, "R26BK01549710", "양산시 동면 농촌중심지활성화사업 기본계획수립 용역", "농촌계획", "", "285,000,000원", "2026-07-08 10:00", "[교수법인가능]", "진행중"],
+    [11, "R26BK01544606", "곡성군 구원지구 농촌공간정비사업 시행계획 수립 용역", "농촌계획", "", "70,640,000원", "2026-06-02 14:00", "[교수법인가능]", "진행중"],
+    [12, "R26BK01550263", "옥천군 청산면 기초생활거점조성사업 세부설계용역", "기초생활거점", "", "120,000,000원", "2026-06-05 10:00", "[교수법인가능]", "진행중"],
+    [13, "R26BK01541737", "양감면 기초생활거점조성사업 기본계획 수립 용역", "기초생활거점", "", "200,000,000원", "2026-06-16 10:00", "[교수법인가능]", "진행중"],
+    [14, "R26BK01546801", "반송마을 농어촌취약지역생활여건개조사업 세부설계 용역", "취약지역생활여건", "", "60,020,000원", "2026-06-05 10:00", "[교수법인가능]", "진행중"],
+    [15, "R26BK01549836", "수여지구 취약지역생활여건개조사업 세부설계 용역", "취약지역생활여건", "", "57,380,000원", "2026-06-04 17:00", "[교수법인가능]", "진행중"],
+    [16, "R26BK01546653", "경상북도 인구감소지역 대응 기본계획 수립 연구용역", "인구감소대응", "", "45,455,000원", "2026-05-26 18:00", "[교수법인가능]", "진행중"],
+    [17, "R26BK01552429", "내서읍 농촌중심지활성화사업 지역역량강화용역", "역량강화(교육)", "", "2,232,000,000원", "2026-06-04 14:00", "[교수법인가능]", "진행중"],
+    [18, "R26BK01550194", "정선군 화암면 기초생활거점조성사업 지역역량강화 용역", "역량강화(교육)", "", "414,000,000원", "2026-06-08 17:00", "[교수법인가능]", "진행중"],
+    [19, "R26BK01539424", "한서대학교 지역성장 인재양성체계(앵커) 2026 글로벌 창업 역량강화프로그램 운영 위탁용역", "역량강화(교육)", "", "227,400,000원", "2026-06-26 10:00", "[교수법인가능]", "진행중"],
+    [20, "R26BK01547994", "2026년 AI·디지털 기반 교육혁신 역량강화 연수 용역", "역량강화(교육)", "", "430,000,000원", "2026-06-18 10:00", "[교수법인가능]", "진행중"],
+    [21, "R26BK01543226", "초·중등 진로연계교육 역량강화 연수 운영 외부 시설 임차 및 숙식 운영 용역", "역량강화(교육)", "", "105,450,000원", "", "[교수법인가능]", "진행중"],
+    [22, "R26BK01543699", "2026 유·초등 교(원)장 AI·디지털 역량강화 직무연수(4~5기) 원외 연수시설 임차 용역", "역량강화(교육)", "", "57,224,000원", "2026-06-09 17:00", "[교수법인가능]", "진행중"],
+    [23, "R26BK01547804", "영화인 역량강화 교육·연수 프로그램 운영 용역", "역량강화(교육)", "", "0", "", "[교수법인가능]", "진행중"],
+    [24, "R26BK01548851", "주왕산면 기초생활거점조성사업 지역역량강화 용역", "역량강화(교육)", "", "165,000,000원", "2026-06-04 15:00", "[교수법인가능]", "진행중"],
+    [25, "R26BK01549303", "성주군 농촌중심지활성화사업 지역역량강화 용역", "역량강화(교육)", "", "126,000,000원", "2026-06-13 10:00", "[교수법인가능]", "진행중"],
+    [26, "R26BK01541066", "예산군 농촌중심지활성화사업 지역역량강화 용역", "역량강화(교육)", "", "190,000,000원", "2026-06-04 15:00", "[교수법인가능]", "진행중"],
+    [27, "R26BK01552563", "용동면 기초생활거점조성사업 지역역량강화 용역(취소통보)", "역량강화(교육)", "", "125,000,000원", "2026-06-16 10:00", "[교수법인가능]", "진행중"],
+    [28, "R26BK01552255", "농어촌 취약지역 생활여건 개조사업 지역역량강화 용역", "역량강화(교육)", "", "167,000,000원", "2026-06-08 17:00", "[교수법인가능]", "진행중"],
+    [29, "R26BK01553318", "논산시 성동면 기초생활거점조성사업 지역역량강화 용역", "역량강화(교육)", "", "135,000,000원", "2026-06-08 17:00", "[교수법인가능]", "진행중"]
+];
+</script>
+  <div class="footer">
+    데이터 출처: 나라장터 공공데이터 API &middot; 기준일 <span id="footerDate"></span>
+  </div>
 </div>
-<section><h2>API 상태</h2><ul><li class="ok">입찰공고: 정상 정상</li><li class="ok">발주계획: 정상 정상</li><li class="ok">사전규격상세: 정상 정상</li><li class="warn">사전규격검색: 응답 없음 </li></ul></section>
-<section><h2>진행중 공고</h2><table><thead><tr><th>#</th><th>공고명</th><th>분류</th><th>마감</th><th>추정가격</th><th>판정</th><th>링크</th></tr></thead><tbody><tr><td>1</td><td><strong>2026학년도 AI.디지털 활용 연구.선도학교 성과공유 워크숍 위탁 용역</strong><br><span>울산광역시교육청</span></td><td>역량강화/교육</td><td>2026-06-02 10:00</td><td>24,907,509</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543933&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>2</td><td><strong>2026년 충청남도교육청 제3종시설물 실태조사 용역(4권역)</strong><br><span>충청남도교육청</span></td><td>역량강화/교육</td><td>2026-06-02 10:00</td><td>31,090,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01547055&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>3</td><td><strong>2026년 충청남도교육청 제3종시설물 실태조사 용역(1권역)</strong><br><span>충청남도교육청</span></td><td>역량강화/교육</td><td>2026-06-02 10:00</td><td>37,994,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545019&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>4</td><td><strong>2026년 충청남도교육청 제3종시설물 실태조사 용역(2권역)</strong><br><span>충청남도교육청</span></td><td>역량강화/교육</td><td>2026-06-02 10:00</td><td>37,922,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546972&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>5</td><td><strong>2026년 충청남도교육청 제3종시설물 실태조사 용역(3권역)</strong><br><span>충청남도교육청</span></td><td>역량강화/교육</td><td>2026-06-02 10:00</td><td>35,377,273</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01547032&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>6</td><td><strong>NRC 국가 망 보안체계(N2SF) 도입을 위한 ISP(컨설팅) 사업</strong><br><span>경제인문사회연구회</span></td><td>역량강화/교육</td><td>2026-06-02 14:00</td><td>70,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01552855&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>7</td><td><strong>2027학년도 	인권·성평등센터 인권과 성평등 교육 온라인 콘텐츠 제작 용역</strong><br><span>고려대학교</span></td><td>역량강화/교육</td><td>2026-06-04 10:00</td><td>54,545,455</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01544776&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>8</td><td><strong>경주시 자전거 이용 활성화계획 수립 용역</strong><br><span>경상북도 경주시</span></td><td>도시재생</td><td>2026-06-04 10:00</td><td>134,726,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01541515&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>9</td><td><strong>옥천군 청산면 기초생활거점조성사업 세부설계용역</strong><br><span>한국농어촌공사 충북지역본부</span></td><td>농촌/생활거점</td><td>2026-06-04 10:00</td><td>117,488,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545723&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>10</td><td><strong>옥천군 청산면 기초생활거점조성사업 세부설계용역</strong><br><span>한국농어촌공사 충북지역본부</span></td><td>농촌/생활거점</td><td>2026-06-05 10:00</td><td>117,488,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01550263&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>11</td><td><strong>전자금융기반시설 취약점 분석·평가 컨설팅</strong><br><span>한국자산관리공사</span></td><td>역량강화/교육</td><td>2026-06-05 10:00</td><td>148,614,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546071&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>12</td><td><strong>반송마을 농어촌취약지역생활여건개조사업 세부설계 용역</strong><br><span>한국농어촌공사 전남지역본부 곡성지사</span></td><td>취약지역/주거</td><td>2026-06-05 10:00</td><td>60,024,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546801&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>13</td><td><strong>[제2026-국제산학03호] 2026학년도 창업교육프로그램 운영 용역업체 선정</strong><br><span>경희대학교산학협력단</span></td><td>역량강화/교육</td><td>2026-06-05 11:00</td><td>61,363,636</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01539526&amp;bidPbancOrd=001">공고</a></td></tr><tr><td>14</td><td><strong>2026학년도 서울영일고등학교 2학년 소규모테마형교육여행 위탁 용역</strong><br><span>서울특별시교육청 영일고등학교</span></td><td>역량강화/교육</td><td>2026-06-05 16:00</td><td>64,145,455</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546952&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>15</td><td><strong>2026년 건설기술인 원격교육 개발 용역</strong><br><span>재단법인 한국건설인정책연구원</span></td><td>역량강화/교육</td><td></td><td>45,454,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542862&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>16</td><td><strong>[글로컬대학사업] 2026년 지자체연계 우주항공방산 혁신창업기업육성 프로그램   CES 2027 혁신트랙 컨설팅 용역(긴급)</strong><br><span>경상국립대학교</span></td><td>역량강화/교육</td><td>2026-06-05 17:00</td><td>53,760,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01551617&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>17</td><td><strong>2026년 충주국토 관내 비탈면 모니터링 시스템 구축 용역</strong><br><span>국토교통부 대전지방국토관리청 충주국토관리사무소</span></td><td>역량강화/교육</td><td>2026-06-08 10:00</td><td>1,545,454,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01541658&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>18</td><td><strong>2026년 축산관련종사자 교육 콘텐츠 개발</strong><br><span>농협경제지주 주식회사(축산경제)</span></td><td>역량강화/교육</td><td>2026-06-08 10:00</td><td>89,818,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543588&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>19</td><td><strong>첨단재생의료 특화 VR 교육 콘텐츠 개발</strong><br><span>재단법인 재생의료진흥재단</span></td><td>역량강화/교육</td><td>2026-06-08 10:00</td><td>86,363,636</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545701&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>20</td><td><strong>부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고)</strong><br><span>한국농어촌공사 경기지역본부</span></td><td>농촌/생활거점</td><td>2026-06-08 10:00</td><td>300,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545744&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>21</td><td><strong>2026 교육복지지원사업 한화토탈에너지스 연계 해외문화탐방활동 위탁용역</strong><br><span>충청남도교육청 충청남도서산교육지원청</span></td><td>역량강화/교육</td><td>2026-06-08 10:00</td><td>52,971,818</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542420&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>22</td><td><strong>지역단위 경축순환 활성화 계획 수립 용역</strong><br><span>재단법인축산환경관리원</span></td><td>도시재생</td><td>2026-06-08 10:00</td><td>45,454,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542130&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>23</td><td><strong>[RISE사업] 네이버클라우드 기반 생성형 AI 실무·프로젝트 교육 프로그램 운영 용역</strong><br><span>연세대학교 미래캠퍼스</span></td><td>역량강화/교육</td><td>2026-06-08 10:00</td><td>75,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546551&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>24</td><td><strong>특별사법경찰 교육체계 설계 및 신임양성과정 개발 용역</strong><br><span>국민건강보험공단</span></td><td>역량강화/교육</td><td>2026-06-08 11:00</td><td>136,363,636</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542726&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>25</td><td><strong>2026년 모빌리티 규제샌드박스 컨설팅 및 사후관리 지원 용역</strong><br><span>한국교통안전공단</span></td><td>역량강화/교육</td><td>2026-06-08 12:00</td><td>179,628,014</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01544068&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>26</td><td><strong>한서대학교 지역성장 인재양성체계(앵커) 2026 글로벌 창업 역량강화프로그램 운영 위탁용역</strong><br><span>한서대학교 산학협력단</span></td><td>역량강화/교육</td><td></td><td>227,272,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01539424&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>27</td><td><strong>2026년 특수외국어교육진흥사업 K-MOOC개발 입찰</strong><br><span>한국외국어대학교 서울캠퍼스</span></td><td>역량강화/교육</td><td>2026-06-08 15:00</td><td>30,909,091</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546124&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>28</td><td><strong>2026. 청주 거점형 특화 방과후·돌봄교실(교육발전특구) 위탁운영 용역</strong><br><span>충청북도교육청 충청북도청주교육지원청</span></td><td>역량강화/교육</td><td>2026-06-08 15:00</td><td>90,909,091</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546522&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>29</td><td><strong>경상북도 인구감소지역 대응 기본계획 수립 연구용역</strong><br><span>경상북도</span></td><td>인구/지역계획</td><td>2026-06-08 17:00</td><td>45,454,550</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546653&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>30</td><td><strong>반송마을 농어촌취약지역생활여건개조사업 세부설계 용역</strong><br><span>한국농어촌공사 전남지역본부 곡성지사</span></td><td>취약지역/주거</td><td>2026-06-09 10:00</td><td>60,024,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554025&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>31</td><td><strong>수상구조사 교육 표준교재 개발 연구용역</strong><br><span>해양경찰청</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>27,272,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01550782&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>32</td><td><strong>[긴급]2026 성동광진 초등 AI·디지털 기반 교육혁신 교원 역량 강화 연수 용역</strong><br><span>서울특별시교육청 서울특별시성동광진교육지원청</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>91,773,636</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01549420&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>33</td><td><strong>2026년 희망리턴패키지 사업정리컨설팅 사업 분석 연구용역</strong><br><span>조달청 대전지방조달청</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>136,363,636</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01548343&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>34</td><td><strong>2026년 녹색산업 수출선도화 지원사업 수행기업 전략컨설팅(10)</strong><br><span>사단법인 한국환경산업협회</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543260&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>35</td><td><strong>「첨단로봇산업 전문인력양성사업」취업역량강화 지원프로그램 운영 용역</strong><br><span>한국로봇산업진흥원</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>45,436,361</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545189&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>36</td><td><strong>2026년 녹색산업 수출선도화 지원사업 수행기업 전략컨설팅(2)</strong><br><span>사단법인 한국환경산업협회</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543030&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>37</td><td><strong>명주남문동 자율상권 성과지표 개발 및 모니터링 운영 용역</strong><br><span>명주남문동 자율상권조합</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>50,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554591&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>38</td><td><strong>2026년 녹색산업 수출선도화 지원사업 수행기업 전략컨설팅(6)</strong><br><span>사단법인 한국환경산업협회</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543179&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>39</td><td><strong>바이오의약품인재양성부트캠프사업 몰입형 교육 위탁 용역</strong><br><span>조달청 대전지방조달청</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>227,272,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01548340&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>40</td><td><strong>2026년 녹색산업 수출선도화 지원사업 수행기업 전략컨설팅(13)</strong><br><span>사단법인 한국환경산업협회</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543310&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>41</td><td><strong>2026년 메디컬코리아 아카데미 온라인 연수(MKA e-class) 치과 교육 콘텐츠 개발</strong><br><span>한국보건산업진흥원</span></td><td>역량강화/교육</td><td>2026-06-09 10:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545076&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>42</td><td><strong>(재공고)2026년도 동아 AI·SW 여름부트캠프 교육과정 운영 용역</strong><br><span>동아대학교</span></td><td>역량강화/교육</td><td></td><td>27,272,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542015&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>43</td><td><strong>산림교육전문가 자격등급화 도입 및 체계구축 연구</strong><br><span>산림청</span></td><td>역량강화/교육</td><td>2026-06-09 11:00</td><td>63,636,364</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01544137&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>44</td><td><strong>송광덕동 농어촌 취약지역 생활여건 개조사업 휴먼케어 및 주민역량강화 용역</strong><br><span>전라남도 순천시</span></td><td>취약지역/주거</td><td>2026-06-09 12:00</td><td>110,875,455</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554654&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>45</td><td><strong>완주군 운주면 장선지구 농촌공간정비사업 기본계획 수립 용역(협상에 의한 계약)</strong><br><span>전북특별자치도 완주군</span></td><td>농촌/생활거점</td><td></td><td>166,014,545</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546211&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>46</td><td><strong>AI 및 디지털 체험활동을 통한 청소년 역량강화 방안</strong><br><span>성평등가족부</span></td><td>역량강화/교육</td><td>2026-06-10 10:00</td><td>31,818,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01549760&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>47</td><td><strong>모빌리티 및 로봇 교육캠프 운영 대행 용역</strong><br><span>선문대학교 산학협력단</span></td><td>역량강화/교육</td><td></td><td>75,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01542735&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>48</td><td><strong>2026년 공공 특허기술 기후테크 성장지원 사업 IP사업화 컨설팅(7과제)</strong><br><span>한국발명진흥회</span></td><td>역량강화/교육</td><td>2026-06-11 10:00</td><td>73,818,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545178&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>49</td><td><strong>2026년 공공 특허기술 기후테크 성장지원 사업 IP사업화 컨설팅(3과제)</strong><br><span>한국발명진흥회</span></td><td>역량강화/교육</td><td>2026-06-11 10:00</td><td>73,818,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545067&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>50</td><td><strong>2026년 교육자료 및 전통문화용품 해외배송 용역</strong><br><span>조달청 인천지방조달청</span></td><td>역량강화/교육</td><td>2026-06-11 10:00</td><td>312,727,273</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01544029&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>51</td><td><strong>국제 원자력 및 방사선 안전석사과정 현장실습 교육</strong><br><span>한국원자력안전기술원</span></td><td>역량강화/교육</td><td>2026-06-11 10:00</td><td>27,272,727</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01546670&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>52</td><td><strong>교육시설 BF 인증 실태조사 및 제도 개선 연구</strong><br><span>한국교육시설안전원</span></td><td>역량강화/교육</td><td>2026-06-11 14:00</td><td>31,279,091</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01553176&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>53</td><td><strong>도시재생사업 성과관리 모니터링 및 기록화 용역(협상에 의한 계약)</strong><br><span>경기도 가평군</span></td><td>도시재생</td><td></td><td>135,410,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554790&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>54</td><td><strong>2026년 충청남도교육청기록원 전시 행사 기획 및 운영</strong><br><span>조달청 대전지방조달청</span></td><td>역량강화/교육</td><td>2026-06-16 10:00</td><td>181,818,182</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01541466&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>55</td><td><strong>2026년 상반기 3차 글로벌 SW 교육 프로그램(중국) 운영 용역</strong><br><span>선문대학교 산학협력단</span></td><td>역량강화/교육</td><td></td><td>42,727,273</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543050&amp;bidPbancOrd=001">공고</a></td></tr><tr><td>56</td><td><strong>초록우산 LG이노텍 주니어소나무교실 과학교육 콘텐츠 기획 및 운영 용역</strong><br><span>사회복지법인어린이재단</span></td><td>역량강화/교육</td><td>2026-06-16 15:00</td><td>454,545,454</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543495&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>57</td><td><strong>나주시 다도면 기초생활거점조성사업 기본계획수립 용역</strong><br><span>한국농어촌공사 전남지역본부</span></td><td>농촌/생활거점</td><td>2026-06-16 15:00</td><td>190,000,000</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543510&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>58</td><td><strong>초록우산 LG이노텍 주니어소나무교실 과학교육 콘텐츠 기획 및 운영 용역</strong><br><span>사회복지법인어린이재단</span></td><td>역량강화/교육</td><td>2026-06-16 15:00</td><td>454,545,454</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01543375&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>59</td><td><strong>2026 문화예술교육 지원연계 플랫폼 유지보수 및 기능개선</strong><br><span>한국문화예술교육진흥원</span></td><td>역량강화/교육</td><td>2026-06-16 15:00</td><td>190,909,091</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01549779&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>60</td><td><strong>내서읍 농촌중심지활성화사업 지역역량강화용역</strong><br><span>한국농어촌공사 경남지역본부 창원지사</span></td><td>농촌/생활거점</td><td>2026-06-26 10:00</td><td>2,228,909,091</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01552429&amp;bidPbancOrd=000">공고</a></td></tr><tr><td>61</td><td><strong>2026년 제로에너지건축물 인증기관 교육 기획 및 운영</strong><br><span>조달청 부산지방조달청</span></td><td>역량강화/교육</td><td>2026-07-09 10:00</td><td>259,090,909</td><td>조건부 검토</td><td><a href="https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01547940&amp;bidPbancOrd=000">공고</a></td></tr></tbody></table></section>
-<section><h2>발주계획 추적 후보</h2><table><thead><tr><th>#</th><th>사업명</th><th>분류</th><th>발주월</th><th>기관</th></tr></thead><tbody><tr><td>1</td><td>(재공고)2026-2027년 KISA 온라인 교육(스마트러닝) 위탁 운영</td><td>역량강화/교육</td><td>2026-06</td><td>한국인터넷진흥원</td></tr><tr><td>2</td><td>2026년 K-로컬창업스쿨 예비창업가 창업교육 운영 용역</td><td>역량강화/교육</td><td>2026-06</td><td>재단법인 경상북도경제진흥원</td></tr><tr><td>3</td><td>2026년 강원 정보보호 서비스 지원 및 전문교육 수행 용역</td><td>역량강화/교육</td><td>2026-06</td><td>재단법인강원테크노파크</td></tr><tr><td>4</td><td>2026년 서울RISE 사업비 집행 모니터링 용역</td><td>역량강화/교육</td><td>2026-06</td><td>재단법인 서울연구원</td></tr><tr><td>5</td><td>2026년 하반기 EPIK 사전연수 교육운영지원 용역</td><td>역량강화/교육</td><td>2026-06</td><td>교육부 국립국제교육원</td></tr><tr><td>6</td><td>2026학년도 동국대학교사범대학부속중학교 2학년 소규모테마형교육여행  위탁용역 입찰공고</td><td>역량강화/교육</td><td>2026-06</td><td>서울특별시동부교육청 동국대학교사범대학부속중학교</td></tr><tr><td>7</td><td>[해외 시장조사 및 마케팅전략 수립] 컨설팅_2026년 녹색산업 수출선도화 지원사업 위탁사업</td><td>역량강화/교육</td><td>2026-06</td><td>주식회사 앱스필</td></tr><tr><td>8</td><td>도시재생사업 성과관리 모니터링 및 기록화 용역</td><td>도시재생</td><td>2026-06</td><td>경기도 가평군</td></tr><tr><td>9</td><td>세종 정보보호 인재양성 종합 교육 운영 용역</td><td>역량강화/교육</td><td>2026-06</td><td>재단법인 세종테크노파크</td></tr><tr><td>10</td><td>용당1지구 취약지역 생활여건 개조사업 휴먼케어 및 역량강화 용역</td><td>취약지역/주거</td><td>2026-06</td><td>전라남도 목포시</td></tr><tr><td>11</td><td>지방의회 전문성 및 역량 제고를 위한 교육과정 개발</td><td>역량강화/교육</td><td>2026-06</td><td>행정안전부 지방자치인재개발원</td></tr><tr><td>12</td><td>충청남도논산계룡교육지원청 중요 비전자기록물 이관 사업</td><td>역량강화/교육</td><td>2026-06</td><td>충청남도교육청 충청남도논산계룡교육지원청</td></tr></tbody></table></section>
-</main></body></html>
+
+<script>
+// ========== 정적 데이터 (BID_DATA from data.js) ==========
+// 분류별 색상
+const CAT_COLORS = {
+  '도시재생': { bg: '#e3f2fd', bar: '#4b82f0', pie: '#4b82f0' },
+  '활성화계획': { bg: '#e3f2fd', bar: '#4b82f0', pie: '#4b82f0' },
+  '기초생활거점': { bg: '#e8f5e9', bar: '#48ad7d', pie: '#48ad7d' },
+  '농촌': { bg: '#e8f5e9', bar: '#48ad7d', pie: '#48ad7d' },
+  '취약지역': { bg: '#fff3e0', bar: '#f7a13b', pie: '#f7a13b' },
+  '인구감소': { bg: '#f3e5f5', bar: '#9B59B6', pie: '#9B59B6' },
+  '역량강화': { bg: '#fce4ec', bar: '#e74c3c', pie: '#e74c3c' },
+};
+const CAT_ORDER = ['도시재생', '활성화계획', '기초생활거점', '농촌', '취약지역', '인구감소', '역량강화'];
+const CAT_LABELS = {
+  '도시재생': '도시재생', '활성화계획': '활성화계획', '기초생활거점': '기초생활거점',
+  '농촌': '농촌계획', '취약지역': '취약지역생활여건', '인구감소': '인구감소대응', '역량강화': '역량강화(교육)'
+};
+
+function fmtDate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function todayStr() { return fmtDate(new Date()); }
+function parseDate(s) {
+  if (!s) return null;
+  const d = new Date(s.slice(0, 10));
+  return isNaN(d.getTime()) ? null : d;
+}
+function parsePrice(p) {
+  const n = String(p || '').replace(/[^0-9]/g, '');
+  return parseInt(n) || 0;
+}
+function fmtPrice(p) {
+  const n = parsePrice(p);
+  if (n >= 100000000) return (n / 100000000).toFixed(1) + '억';
+  return (n / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '만원';
+}
+
+// ---------- render ----------
+function render() {
+  const rows = BID_DATA || [];
+  const now = new Date();
+  const nowStr = fmtDate(now);
+
+  // 1. Header date
+  document.getElementById('dateDisplay').textContent = '기준일: ' + nowStr;
+  document.getElementById('footerDate').textContent = nowStr;
+  document.getElementById('countData').textContent = rows.length + '건 (' + now.toLocaleTimeString('ko-KR') + ' 갱신)';
+
+  // 2. Chips
+  const chipsHtml = `
+    <span class="chip chip-blue">${rows.length}건 전체</span>
+    <span class="chip chip-red">${rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / (86400000) <= 4).length}건 마감임박</span>
+    <span class="chip chip-navy">${rows.filter(r => !r[6]).length}건 마감일 미기재</span>
+  `;
+  document.getElementById('chips').innerHTML = chipsHtml;
+
+  // 3. KPI
+  const totalBudget = rows.reduce((s, r) => s + parsePrice(r[5]), 0);
+  const budgetStr = fmtPrice(totalBudget);
+  const catH = {};
+  rows.forEach(r => { catH[r[3]] = (catH[r[3]] || 0) + 1; });
+  const topCat = Object.entries(catH).sort((a,b) => b[1]-a[1])[0];
+  const deadlineRows = rows.filter(r => r[6] && parseDate(r[6]));
+
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi-card accent-blue"><div class="value value-blue">${rows.length}건</div><div class="label">전체 용역</div></div>
+    <div class="kpi-card accent-purple"><div class="value value-purple">${budgetStr}</div><div class="label">총 예산 규모</div></div>
+    <div class="kpi-card accent-green"><div class="value value-green">${Object.keys(catH).length}개</div><div class="label">사업유형</div></div>
+    <div class="kpi-card accent-orange"><div class="value value-orange">${deadlineRows.length}건</div><div class="label">마감일 기재</div></div>
+    <div class="kpi-card accent-red"><div class="value value-red">${topCat ? topCat[1] + '건' : '0건'}</div><div class="label">최다: ${CAT_LABELS[topCat[0]] || topCat[0]}</div></div>
+  `;
+
+  // 4. Bar Chart
+  const catCounts = {};
+  rows.forEach(r => {
+    const c = r[3];
+    if (!catCounts[c]) catCounts[c] = 0;
+    catCounts[c]++;
+  });
+  const maxCount = Math.max(...Object.values(catCounts), 1);
+
+  let barHtml = '';
+  CAT_ORDER.forEach(c => {
+    if (!catCounts[c]) return;
+    const cnt = catCounts[c];
+    const pct = (cnt / maxCount * 100).toFixed(0);
+    const col = CAT_COLORS[c] || { bar: '#4b82f0' };
+    barHtml += `
+      <div class="bar-item">
+        <span class="bar-label">${CAT_LABELS[c] || c}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${col.bar}"></div></div>
+        <span class="bar-count">${cnt}</span>
+      </div>`;
+  });
+  document.getElementById('barChart').innerHTML = barHtml;
+
+  // 5. Pie Chart
+  const pieData = CAT_ORDER.filter(c => catCounts[c]).map((c, i) => ({
+    label: CAT_LABELS[c] || c,
+    value: catCounts[c],
+    color: (CAT_COLORS[c] || {}).pie || '#ccc'
+  }));
+  const totalPie = rows.length;
+  const pieColors = pieData.map(d => d.color).join(',');
+  const piePcts = pieData.map(d => (d.value / totalPie * 100).toFixed(1)).join('% ') + '%';
+
+  // conic-gradient pie
+  let conicParts = [];
+  let acc = 0;
+  pieData.forEach(d => {
+    const pct = d.value / totalPie * 100;
+    const start = acc;
+    const end = acc + pct;
+    conicParts.push(`${d.color} ${start}% ${end}%`);
+    acc = end;
+  });
+  const conicStr = conicParts.join(', ');
+
+  let pieHtml = `<div class="pie-section"><h4>사업유형 비율</h4>
+    <div class="pie-container">
+      <div class="pie-canvas" style="background: conic-gradient(${conicStr})"></div>
+      <div class="pie-center">${totalPie}</div>
+    </div>
+    <div class="pie-legend">`;
+  pieData.forEach(d => {
+    pieHtml += `<div class="pie-legend-item"><span class="pie-dot" style="background:${d.color}"></span>${d.label} (${d.value})</div>`;
+  });
+  pieHtml += '</div></div>';
+  document.getElementById('pieChart').innerHTML = pieHtml;
+
+  // 6. Detail Table
+  const CAT_RENDER_ORDER = ['도시재생', '활성화계획', '기초생활거점', '농촌', '취약지역', '인구감소', '역량강화'];
+  const CAT_RENDER_LABEL = {
+    '도시재생': '도시재생', '활성화계획': '활성화계획',
+    '기초생활거점': '기초생활거점', '농촌': '농촌계획',
+    '취약지역': '취약지역생활여건', '인구감소': '인구감소대응',
+    '역량강화': '역량강화(교육)'
+  };
+  const CAT_ROW_BG = {
+    '도시재생': '', '활성화계획': '',
+    '기초생활거점': 'green', '농촌': 'green',
+    '취약지역': 'orange', '인구감소': 'purple',
+    '역량강화': ''
+  };
+
+  let tblHtml = `<tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>비고</th></tr>`;
+  CAT_RENDER_ORDER.forEach(cat => {
+    const items = rows.filter(r => r[3] === cat);
+    if (items.length === 0) return;
+    const bgClass = CAT_ROW_BG[cat] || '';
+    const catSum = items.reduce((s, r) => s + parsePrice(r[5]), 0);
+    const catSumStr = fmtPrice(catSum);
+    tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="5">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
+    items.forEach(r => {
+      const deadlineStyle = r[6] && parseDate(r[6]) ? `D-${Math.ceil((parseDate(r[6]) - now) / 86400000)}` : '-';
+      const styleHtml = r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 3 ? ' class="urgent-badge"' : '';
+      tblHtml += `<tr>
+        <td>${r[0]}</td>
+        <td class="name-cell">${r[2]}</td>
+        <td class="price">${fmtPrice(r[5])}</td>
+        <td${styleHtml}>${r[6] || '-'}</td>
+        <td>${r[7] || ''}</td>
+      </tr>`;
+    });
+    tblHtml += `<tr class="subtotal"><td colspan="2" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${fmtPrice(catSum)}</td><td></td><td>${items.length}건</td></tr>`;
+  });
+
+  document.getElementById('detailTable').innerHTML = tblHtml;
+
+  // 7. Urgent section
+  const urgent = rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 6)
+    .sort((a, b) => (parseDate(a[6]) || new Date()) - (parseDate(b[6]) || new Date()));
+
+  if (urgent.length > 0) {
+    document.getElementById('urgentSub').textContent = `${urgent.length}건의 용역이 7일 이내 마감 예정입니다.`;
+    document.getElementById('urgentChips').innerHTML = `
+      <span class="urgent-chip red">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 1).length}건 D-0</span>
+      <span class="urgent-chip orange">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 > 1).length}건 D-${Math.min(6, ...urgent.filter(r => !r[6] || isNaN(parseDate(r[6])) ? 99 : (parseDate(r[6]) - now) / 86400000).filter(d => !isNaN(d)).map(d => Math.ceil(d)))}</span>
+    `;
+
+    let urgHtml = `<table class="urgent-table">
+      <tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>D-Day</th><th>비고</th></tr>`;
+    urgent.forEach(r => {
+      const d = parseDate(r[6]);
+      const dDay = Math.ceil((d - now) / 86400000);
+      const dClass = dDay <= 0 ? 'd-day-0' : dDay <= 1 ? 'd-day-1' : dDay <= 3 ? 'd-day-3' : '';
+      urgHtml += `<tr>
+        <td>${r[0]}</td>
+        <td class="name-cell">${r[2]}</td>
+        <td class="price">${fmtPrice(r[5])}</td>
+        <td>${r[6]}</td>
+        <td class="${dClass}">D-${dDay}</td>
+        <td>${r[7] || ''}</td>
+      </tr>`;
+    });
+    urgHtml += '</table>';
+    document.getElementById('urgentTableArea').innerHTML = urgHtml;
+  } else {
+    document.getElementById('urgentSub').textContent = '7일 이내 마감 예정 용역이 없습니다.';
+    document.getElementById('urgentChips').innerHTML = '';
+    document.getElementById('urgentTableArea').innerHTML = '<div class="empty-msg">✅ 마감임박 용역 없음</div>';
+  }
+}
+
+render();
+</script>
+</body>
+</html>
