@@ -491,7 +491,7 @@ function render() {
 
   // 3. KPI
   const totalBudget = rows.reduce((s, r) => s + parsePrice(r[5]), 0);
-  const budgetStr = totalBudget >= 100000000 ? (totalBudget / 100000000).toFixed(1) + '억' : (totalBudget / 10000).toFixed(0) + '만원';
+  const budgetStr = fmtPrice(totalBudget);
   const catH = {};
   rows.forEach(r => { catH[r[3]] = (catH[r[3]] || 0) + 1; });
   const topCat = Object.entries(catH).sort((a,b) => b[1]-a[1])[0];
@@ -584,7 +584,7 @@ function render() {
     if (items.length === 0) return;
     const bgClass = CAT_ROW_BG[cat] || '';
     const catSum = items.reduce((s, r) => s + parsePrice(r[5]), 0);
-    const catSumStr = catSum >= 100000000 ? (catSum / 100000000).toFixed(1) + '억' : (catSum / 10000).toFixed(0) + '만원';
+    const catSumStr = fmtPrice(catSum);
     tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="6">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
     items.forEach(r => {
       const deadlineStyle = r[6] && parseDate(r[6]) ? `D-${Math.ceil((parseDate(r[6]) - now) / 86400000)}` : '-';
@@ -598,7 +598,7 @@ function render() {
         <td>${r[7] || ''}</td>
       </tr>`;
     });
-    tblHtml += `<tr class="subtotal"><td colspan="3" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${catSumStr}</td><td></td><td>${items.length}건</td></tr>`;
+    tblHtml += `<tr class="subtotal"><td colspan="3" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${fmtPrice(catSum)}</td><td></td><td>${items.length}건</td></tr>`;
   });
 
   document.getElementById('detailTable').innerHTML = tblHtml;
