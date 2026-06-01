@@ -69,36 +69,33 @@
   .chip-navy { background: var(--navy); }
 
   /* KPI */
-  /* Tabs */
+  /* Tabs — 동글동글 디자인 v2 */
   .tab-bar {
     display: flex;
-    gap: 0;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--border);
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
   .tab-btn {
-    padding: 10px 18px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--muted);
-    background: none;
+    background: #eef2f7;
     border: none;
+    border-radius: 30px;
     cursor: pointer;
-    position: relative;
-    transition: color 0.2s;
+    transition: all 0.25s ease;
+    letter-spacing: -0.3px;
   }
-  .tab-btn:hover { color: var(--text); }
+  .tab-btn:hover {
+    color: var(--text);
+    background: #e0e5ed;
+  }
   .tab-btn.active {
-    color: var(--blue);
-  }
-  .tab-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
+    color: #fff;
     background: var(--blue);
+    box-shadow: 0 4px 14px rgba(75,130,240,0.35);
   }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
@@ -379,7 +376,7 @@
 
   @media (max-width: 768px) {
     .container { padding: 16px 10px; }
-    .tab-btn { font-size: 12px; padding: 8px 10px; }
+    .tab-btn { font-size: 14px; padding: 10px 20px; }
     .bar-label { width: 90px; font-size: 11px; }
     .header h1 { font-size: 20px; }
     .main-card { padding: 14px 10px; }
@@ -391,7 +388,7 @@
   }
   @media (max-width: 480px) {
     .container { padding: 12px 8px; }
-    .tab-btn { font-size: 10px; padding: 6px 8px; }
+    .tab-btn { font-size: 12px; padding: 8px 16px; }
     .header h1 { font-size: 17px; }
     .main-card { padding: 10px 8px; }
     .chip { font-size: 11px; padding: 4px 10px; }
