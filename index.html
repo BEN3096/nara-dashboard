@@ -69,38 +69,39 @@
   .chip-navy { background: var(--navy); }
 
   /* KPI */
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
+  /* Tabs */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border);
   }
-  .kpi-card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 16px;
-    border: 2px solid var(--border);
-    text-align: center;
+  .tab-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
   }
-  .kpi-card .value {
-    font-size: 22px;
-    font-weight: 700;
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--blue);
   }
-  .kpi-card .label {
-    font-size: 12px;
-    color: #555;
-    margin-top: 4px;
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--blue);
   }
-  .kpi-card.accent-blue { border-color: var(--blue); }
-  .kpi-card.accent-purple { border-color: var(--purple); }
-  .kpi-card.accent-green { border-color: var(--green); }
-  .kpi-card.accent-red { border-color: var(--red); }
-  .kpi-card.accent-orange { border-color: var(--orange); }
-  .value-blue { color: var(--blue); }
-  .value-purple { color: var(--purple); }
-  .value-green { color: var(--green); }
-  .value-red { color: var(--red); }
-  .value-orange { color: var(--orange); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
 
   /* Main Card */
   .main-card {
@@ -378,9 +379,7 @@
 
   @media (max-width: 768px) {
     .container { padding: 16px 10px; }
-    .kpi-row { grid-template-columns: repeat(3, 1fr); }
-    .kpi-card { padding: 10px 6px; }
-    .kpi-card .value { font-size: 18px; }
+    .tab-btn { font-size: 12px; padding: 8px 10px; }
     .bar-label { width: 90px; font-size: 11px; }
     .header h1 { font-size: 20px; }
     .main-card { padding: 14px 10px; }
@@ -392,10 +391,7 @@
   }
   @media (max-width: 480px) {
     .container { padding: 12px 8px; }
-    .kpi-row { grid-template-columns: repeat(2, 1fr); }
-    .kpi-card { padding: 8px 4px; }
-    .kpi-card .value { font-size: 16px; }
-    .kpi-card .label { font-size: 10px; }
+    .tab-btn { font-size: 10px; padding: 6px 8px; }
     .header h1 { font-size: 17px; }
     .main-card { padding: 10px 8px; }
     .chip { font-size: 11px; padding: 4px 10px; }
@@ -419,35 +415,47 @@
     <div class="chips" id="chips"></div>
   </div>
 
-  <!-- KPI -->
-  <div class="kpi-row" id="kpiRow"></div>
+  <!-- KPI 제거됨 → 탭 구조로 대체 -->
 
-  <!-- Main Chart -->
-  <div class="main-card">
-    <div class="section-title">
-      사업유형별 용역 건수
-      <span class="section-sub">(기준: 2026-06-01, 교수법인 수행 가능 용역)</span>
-    </div>
-    <div class="chart-area">
-      <div class="chart-left" id="barChart"></div>
-      <div class="chart-right" id="pieChart"></div>
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('chart')">📊 사업유형별 용역 건수</button>
+    <button class="tab-btn" onclick="switchTab('detail')">📋 사업유형별 상세 현황</button>
+    <button class="tab-btn" onclick="switchTab('urgent')">⏰ 마감임박</button>
+  </div>
+
+  <!-- Tab: Chart -->
+  <div class="tab-content active" id="tabChart">
+    <div class="main-card" style="margin-bottom:0;">
+      <div class="section-title">
+        사업유형별 용역 건수
+        <span class="section-sub">(기준: <span id="dateDisplayTab"></span>, 교수법인 수행 가능 용역)</span>
+      </div>
+      <div class="chart-area">
+        <div class="chart-left" id="barChart"></div>
+        <div class="chart-right" id="pieChart"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Detail Table -->
-  <div class="main-card">
-    <div class="section-title">📋 사업유형별 상세 현황</div>
-    <table class="detail-table" id="detailTable"></table>
+  <!-- Tab: Detail -->
+  <div class="tab-content" id="tabDetail">
+    <div class="main-card" style="margin-bottom:0;">
+      <div class="section-title">📋 사업유형별 상세 현황</div>
+      <table class="detail-table" id="detailTable"></table>
+    </div>
   </div>
 
-  <!-- Urgent -->
-  <div class="urgent-card" id="urgentCard">
-    <div class="urgent-header">
-      <h2>⏰ 마감임박 용역</h2>
-      <div class="urgent-chips" id="urgentChips"></div>
+  <!-- Tab: Urgent -->
+  <div class="tab-content" id="tabUrgent">
+    <div class="urgent-card" style="margin-bottom:0;">
+      <div class="urgent-header">
+        <h2>⏰ 마감임박 용역</h2>
+        <div class="urgent-chips" id="urgentChips"></div>
+      </div>
+      <div class="section-sub" style="margin-bottom:8px;" id="urgentSub"></div>
+      <div id="urgentTableArea"></div>
     </div>
-    <div class="section-sub" style="margin-bottom:8px;" id="urgentSub"></div>
-    <div id="urgentTableArea"></div>
   </div>
 
   <script>
@@ -534,6 +542,7 @@ function render() {
 
   // 1. Header date
   document.getElementById('dateDisplay').textContent = '기준일: ' + nowStr;
+  document.getElementById('dateDisplayTab').textContent = nowStr;
   document.getElementById('footerDate').textContent = nowStr;
   document.getElementById('countData').textContent = rows.length + '건 (' + now.toLocaleTimeString('ko-KR') + ' 갱신)';
 
@@ -545,21 +554,7 @@ function render() {
   `;
   document.getElementById('chips').innerHTML = chipsHtml;
 
-  // 3. KPI
-  const totalBudget = rows.reduce((s, r) => s + parsePrice(r[5]), 0);
-  const budgetStr = fmtPrice(totalBudget);
-  const catH = {};
-  rows.forEach(r => { catH[r[3]] = (catH[r[3]] || 0) + 1; });
-  const topCat = Object.entries(catH).sort((a,b) => b[1]-a[1])[0];
-  const deadlineRows = rows.filter(r => r[6] && parseDate(r[6]));
-
-  document.getElementById('kpiRow').innerHTML = `
-    <div class="kpi-card accent-blue"><div class="value value-blue">${rows.length}건</div><div class="label">전체 용역</div></div>
-    <div class="kpi-card accent-purple"><div class="value value-purple">${budgetStr}</div><div class="label">총 예산 규모</div></div>
-    <div class="kpi-card accent-green"><div class="value value-green">${Object.keys(catH).length}개</div><div class="label">사업유형</div></div>
-    <div class="kpi-card accent-orange"><div class="value value-orange">${deadlineRows.length}건</div><div class="label">마감일 기재</div></div>
-    <div class="kpi-card accent-red"><div class="value value-red">${topCat ? topCat[1] + '건' : '0건'}</div><div class="label">최다: ${CAT_LABELS[topCat[0]] || topCat[0]}</div></div>
-  `;
+  // 3. [KPI 제거됨 — 탭 구조로 대체]
 
   // 4. Bar Chart
   const catCounts = {};
@@ -694,6 +689,14 @@ function render() {
 }
 
 render();
+
+// Tab switching
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+}
 </script>
 </body>
 </html>
