@@ -700,7 +700,7 @@
       <section class="panel">
         <div class="panel-head">
           <div>
-            <h2 class="panel-title">진행중 후보</h2>
+            <h2 class="panel-title">진행중 공고</h2>
             <div class="panel-sub" id="resultCount">0건 표시</div>
           </div>
           <span class="pill good" id="topBadge">우선순위</span>
@@ -798,7 +798,7 @@
 
     function renderKpis(summary) {
       const kpis = [
-        ["진행중 후보", summary.active_candidates, "현재 마감 전 후보", "primary"]
+        ["진행중 공고", summary.active_candidates, "현재 마감 전 공고", "primary"]
       ];
 
       document.getElementById("kpis").innerHTML = kpis.map(([label, value, sub, cls]) => `
@@ -890,7 +890,7 @@
       const list = document.getElementById("itemList");
       document.getElementById("resultCount").textContent = `${number(items.length)}건 표시 · 전체 ${number(state.items.length)}건`;
       if (!items.length) {
-        list.innerHTML = `<div class="empty">조건에 맞는 후보가 없습니다.</div>`;
+        list.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.</div>`;
         return;
       }
 
@@ -1032,7 +1032,7 @@
         state.items = data.ready_items || [];
         const summary = data.summary || {};
 
-        document.getElementById("subtitle").textContent = `윈도우 수집·첨부·OCR 완료 후 맥에서 병합한 ${number(state.items.length)}건 후보`;
+        document.getElementById("subtitle").textContent = `윈도우 수집·첨부·OCR 완료 후 맥에서 병합한 ${number(state.items.length)}건 공고`;
         document.getElementById("generatedAt").textContent = data.generated_at || "-";
         document.getElementById("dashboardState").textContent = data.dashboard_updated ? "대시보드 반영됨" : "대시보드 반영 전";
         document.getElementById("dashboardState").className = data.dashboard_updated ? "pill good" : "pill warn";
