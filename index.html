@@ -1,680 +1,799 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>도시재생 사업 용역 현황표</title>
-<style>
-  :root {
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #dce3ed;
-    --text: #2b3038;
-    --muted: #697386;
-    --blue: #4b82f0;
-    --green: #48ad7d;
-    --orange: #f7a13b;
-    --red: #e74c3c;
-    --purple: #9B59B6;
-    --navy: #1d2a44;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    color: var(--text);
-    line-height: 1.5;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 32px 24px;
-  }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>도시재생 용역 대시보드</title>
+  <style>
+    :root {
+      --bg: #eef3f6;
+      --panel: #ffffff;
+      --panel-soft: #f8fbfa;
+      --line: #dfe9e7;
+      --line-strong: #c8d8d5;
+      --text: #1f2e33;
+      --muted: #6e7f86;
+      --navy: #1f3d4a;
+      --teal: #1c8a7a;
+      --mint: #dff3ee;
+      --green: #3d9a69;
+      --amber: #d58b25;
+      --red: #c95252;
+      --blue: #3f78a8;
+      --shadow: 0 14px 40px rgba(31, 61, 74, .10);
+      --radius: 18px;
+    }
 
-  /* Header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--navy);
-  }
-  .header .date {
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-  .chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .chip {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 16px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .chip-blue { background: var(--blue); }
-  .chip-purple { background: var(--purple); }
-  .chip-red { background: var(--red); }
-  .chip-navy { background: var(--navy); }
+    * { box-sizing: border-box; }
 
-  /* KPI */
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .kpi-card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 16px;
-    border: 2px solid var(--border);
-    text-align: center;
-  }
-  .kpi-card .value {
-    font-size: 22px;
-    font-weight: 700;
-  }
-  .kpi-card .label {
-    font-size: 12px;
-    color: #555;
-    margin-top: 4px;
-  }
-  .kpi-card.accent-blue { border-color: var(--blue); }
-  .kpi-card.accent-purple { border-color: var(--purple); }
-  .kpi-card.accent-green { border-color: var(--green); }
-  .kpi-card.accent-red { border-color: var(--red); }
-  .kpi-card.accent-orange { border-color: var(--orange); }
-  .value-blue { color: var(--blue); }
-  .value-purple { color: var(--purple); }
-  .value-green { color: var(--green); }
-  .value-red { color: var(--red); }
-  .value-orange { color: var(--orange); }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, #f6faf9 0%, var(--bg) 320px, #edf3f2 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
 
-  /* Main Card */
-  .main-card {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 24px;
-    border: 1px solid var(--border);
-    margin-bottom: 16px;
-  }
+    button, input, select {
+      font: inherit;
+    }
 
-  .section-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-sub {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 400;
-  }
+    .shell {
+      width: min(1440px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
 
-  /* Bar Chart */
-  .chart-area {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .chart-left {
-    flex: 2;
-    min-width: 300px;
-  }
-  .chart-right {
-    flex: 1;
-    min-width: 200px;
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid var(--border);
-  }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
 
-  .bar-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .bar-label {
-    width: 130px;
-    font-size: 14px;
-    font-weight: 500;
-    flex-shrink: 0;
-  }
-  .bar-track {
-    flex: 1;
-    height: 18px;
-    background: #eff2f6;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 6px;
-    transition: width 0.6s ease;
-  }
-  .bar-count {
-    margin-left: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    width: 24px;
-    text-align: right;
-  }
+    .title h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.16;
+    }
 
-  /* Pie */
-  .pie-section {
-    text-align: center;
-  }
-  .pie-section h4 {
-    font-size: 15px;
-    margin-bottom: 12px;
-    text-align: left;
-  }
-  .pie-container {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 12px;
-  }
-  .pie-canvas {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-  }
-  .pie-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--purple);
-    background: #f8fafc;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .pie-legend {
-    text-align: left;
-    font-size: 13px;
-    margin-top: 8px;
-  }
-  .pie-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-  .pie-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
+    .title p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-  /* Detail Table */
-  .detail-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 2px;
-    font-size: 13px;
-    margin-top: 8px;
-  }
-  .detail-table th {
-    background: var(--navy);
-    color: #fff;
-    padding: 8px 10px;
-    font-weight: 600;
-    text-align: center;
-    font-size: 12px;
-  }
-  .detail-table th:first-child {
-    border-radius: 6px 0 0 6px;
-  }
-  .detail-table th:last-child {
-    border-radius: 0 6px 6px 0;
-  }
-  .detail-table td {
-    padding: 6px 10px;
-    background: #fbfdff;
-    border: 1px solid #eef2f7;
-    text-align: center;
-    font-size: 12px;
-  }
-  .detail-table tr:nth-child(even) td {
-    background: #f7f9fc;
-  }
-  .detail-table .cat-header td {
-    background: #e3f2fd;
-    font-weight: 700;
-    border-radius: 4px;
-    padding: 6px 10px;
-  }
-  .detail-table .cat-header.green td { background: #e8f5e9; }
-  .detail-table .cat-header.purple td { background: #f3e5f5; }
-  .detail-table .cat-header.orange td { background: #fff3e0; }
-  .detail-table .subtotal td {
-    background: #f0f4fa;
-    font-weight: 700;
-    color: var(--navy);
-  }
-  .text-left { text-align: left !important; }
-  .text-right { text-align: right !important; }
-  .urgent-badge { color: var(--red); font-weight: 700; }
-  .price { white-space: nowrap; }
+    .status-strip {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-  /* Urgent Section */
-  .urgent-card {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 24px;
-    border: 2px solid var(--red);
-    margin-bottom: 16px;
-  }
-  .urgent-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .urgent-header h2 { color: var(--red); }
-  .urgent-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-  .urgent-chip {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 14px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .urgent-chip.red { background: var(--red); }
-  .urgent-chip.orange { background: var(--orange); }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .82);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-  .urgent-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 2px;
-    font-size: 13px;
-    margin-top: 12px;
-  }
-  .urgent-table th {
-    background: var(--navy);
-    color: #fff;
-    padding: 8px 10px;
-    font-weight: 600;
-    font-size: 12px;
-    text-align: center;
-  }
-  .urgent-table th:first-child { border-radius: 6px 0 0 6px; }
-  .urgent-table th:last-child { border-radius: 0 6px 6px 0; }
-  .urgent-table td {
-    padding: 6px 10px;
-    text-align: center;
-    font-size: 12px;
-  }
-  .urgent-table tr:nth-child(odd) td {
-    background: #fff9f9;
-    border: 1px solid #fde8e8;
-  }
-  .urgent-table tr:nth-child(even) td {
-    background: #fbfdff;
-    border: 1px solid #eef2f7;
-  }
-  .d-day-0 { color: var(--red); font-weight: 700; }
-  .d-day-1 { color: var(--orange); font-weight: 700; }
-  .d-day-3 { color: var(--orange); }
-  .name-cell { text-align: left !important; word-break: break-word; line-height: 1.4; }
+    .pill.good { background: var(--mint); color: #106b5d; border-color: #bfe4dc; }
+    .pill.warn { background: #fff2dd; color: #8a5715; border-color: #ecd5ac; }
+    .pill.red { background: #fdeaea; color: #9c3535; border-color: #edc4c4; }
+    .pill.blue { background: #e7f1fa; color: #2f628d; border-color: #c8dced; }
 
-  .empty-msg {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-    font-size: 15px;
-  }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
 
-  /* Remark */
-  .remark-card {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 20px 24px;
-    border: 1px solid #e0e7f0;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .remark-card .icon { font-size: 24px; }
-  .remark-card .text { font-size: 13px; color: var(--muted); }
-  .remark-card .highlight { color: var(--red); font-weight: 600; }
+    .kpi {
+      min-height: 112px;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(31, 61, 74, .06);
+    }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    padding: 24px 0 8px;
-  }
+    .kpi .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
 
-  @media (max-width: 768px) {
-    .container { padding: 16px 10px; }
-    .kpi-row { grid-template-columns: repeat(3, 1fr); }
-    .kpi-card { padding: 10px 6px; }
-    .kpi-card .value { font-size: 18px; }
-    .bar-label { width: 90px; font-size: 11px; }
-    .header h1 { font-size: 20px; }
-    .main-card { padding: 14px 10px; }
-    .chart-left { min-width: 100%; }
-    .chart-right { min-width: 100%; }
-    .detail-table, .urgent-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    .detail-table td.name-cell, .urgent-table td.name-cell { white-space: normal; word-break: break-word; min-width: 180px; }
-    .name-cell { max-width: 200px; }
-  }
-  @media (max-width: 480px) {
-    .container { padding: 12px 8px; }
-    .kpi-row { grid-template-columns: repeat(2, 1fr); }
-    .kpi-card { padding: 8px 4px; }
-    .kpi-card .value { font-size: 16px; }
-    .kpi-card .label { font-size: 10px; }
-    .header h1 { font-size: 17px; }
-    .main-card { padding: 10px 8px; }
-    .chip { font-size: 11px; padding: 4px 10px; }
-    .detail-table, .urgent-table { font-size: 11px; }
-    .detail-table td, .urgent-table td { padding: 4px 6px; font-size: 11px; }
-    .detail-table th, .urgent-table th { padding: 6px 4px; font-size: 10px; }
-    .detail-table td.name-cell, .urgent-table td.name-cell { min-width: 160px; font-size: 11px; }
-    .section-title { font-size: 15px; }
-  }
-</style>
+    .kpi .value {
+      margin-top: 8px;
+      color: var(--navy);
+      font-size: 27px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .kpi .sub {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kpi.primary {
+      background: linear-gradient(180deg, #ffffff 0%, #effaf6 100%);
+      border-color: #bfe4dc;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(4, minmax(150px, .7fr));
+      gap: 10px;
+      margin: 16px 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .76);
+      box-shadow: var(--shadow);
+    }
+
+    .control {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--text);
+      padding: 0 14px;
+      outline: none;
+    }
+
+    .control:focus {
+      border-color: #83c9bc;
+      box-shadow: 0 0 0 4px rgba(28, 138, 122, .12);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbfa 100%);
+    }
+
+    .panel-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 850;
+    }
+
+    .panel-sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .list {
+      padding: 10px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 150px 130px 110px;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid transparent;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .item + .item {
+      margin-top: 8px;
+    }
+
+    .item:hover {
+      border-color: #bfe4dc;
+      background: #fbfefd;
+    }
+
+    .item-title {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .rank {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--mint);
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .name {
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .meta {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 23px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f0f5f4;
+      color: #526970;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .cell-label {
+      display: none;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .money, .deadline, .docs {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .deadline small, .docs small, .money small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .judge {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 78px;
+      min-height: 32px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      border: 1px solid var(--line);
+    }
+
+    .judge.good { background: var(--mint); color: #106b5d; border-color: #bfe4dc; }
+    .judge.conditional { background: #fff2dd; color: #8a5715; border-color: #ecd5ac; }
+    .judge.review { background: #eef2f7; color: #55636a; }
+
+    .open-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 29px;
+      margin-top: 7px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #c8dced;
+      background: #f2f8fd;
+      color: #2f628d;
+      font-size: 12px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .open-link:hover {
+      background: #e7f1fa;
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card {
+      padding: 18px;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .side-card h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr) 40px;
+      gap: 9px;
+      align-items: center;
+      margin: 9px 0;
+      font-size: 12px;
+    }
+
+    .bar-track {
+      height: 10px;
+      border-radius: 999px;
+      background: #e9f0ef;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--teal);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .mini {
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+    }
+
+    .mini strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .mini span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .error-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .error {
+      padding: 11px 12px;
+      border: 1px solid #efd1d1;
+      border-radius: 16px;
+      background: #fff7f7;
+      color: #7d3b3b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .empty {
+      padding: 42px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 1180px) {
+      .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .toolbar { grid-template-columns: 1fr 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      .side { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100vw - 24px, 1440px);
+        padding-top: 18px;
+      }
+
+      .topbar {
+        display: block;
+      }
+
+      .status-strip {
+        justify-content: flex-start;
+        margin-top: 12px;
+      }
+
+      .title h1 { font-size: 24px; }
+      .kpis { grid-template-columns: 1fr 1fr; }
+      .toolbar { grid-template-columns: 1fr; border-radius: 18px; }
+      .side { grid-template-columns: 1fr; }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .cell-label {
+        display: block;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container" id="app">
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <h1>📊 도시재생 사업 용역 현황표</h1>
-      <div class="date" id="dateDisplay"></div>
-    <div style="font-size:12px;color:var(--muted);margin-top:2px;">⏱️ 실시간 업데이트 | <span id="countData"></span></div>
-    </div>
-    <div class="chips" id="chips"></div>
-  </div>
+  <main class="shell">
+    <header class="topbar">
+      <div class="title">
+        <h1>도시재생 용역 대시보드</h1>
+        <p id="subtitle">나라장터 v4 수집·첨부·문서 인식 결과를 불러오는 중입니다.</p>
+      </div>
+      <div class="status-strip">
+        <span class="pill good">v4 프로세스</span>
+        <span class="pill blue">윈도우 수집/OCR</span>
+        <span class="pill warn" id="dashboardState">대시보드 반영 확인중</span>
+      </div>
+    </header>
 
-  <!-- KPI -->
-  <div class="kpi-row" id="kpiRow"></div>
+    <section class="kpis" id="kpis"></section>
 
-  <!-- Main Chart -->
-  <div class="main-card">
-    <div class="section-title">
-      사업유형별 용역 건수
-      <span class="section-sub">(기준: 2026-06-01, 교수법인 수행 가능 용역)</span>
-    </div>
-    <div class="chart-area">
-      <div class="chart-left" id="barChart"></div>
-      <div class="chart-right" id="pieChart"></div>
-    </div>
-  </div>
+    <section class="toolbar" aria-label="검색 및 필터">
+      <input class="control" id="search" type="search" placeholder="공고명, 기관, 지역, 공고번호 검색">
+      <select class="control" id="judgeFilter">
+        <option value="">전체 판정</option>
+        <option value="적합">참여가능</option>
+        <option value="조건부">조건부</option>
+        <option value="검토">검토</option>
+      </select>
+      <select class="control" id="categoryFilter">
+        <option value="">전체 분류</option>
+      </select>
+      <select class="control" id="docFilter">
+        <option value="">전체 문서상태</option>
+        <option value="ok">문서 인식 완료</option>
+        <option value="review">추가 검토 있음</option>
+        <option value="error">첨부 오류</option>
+      </select>
+      <select class="control" id="sortMode">
+        <option value="priority">우선순위순</option>
+        <option value="deadline">마감 임박순</option>
+        <option value="budget">금액순</option>
+        <option value="docs">문서 많은순</option>
+      </select>
+    </section>
 
-  <!-- Detail Table -->
-  <div class="main-card">
-    <div class="section-title">📋 사업유형별 상세 현황</div>
-    <table class="detail-table" id="detailTable"></table>
-  </div>
+    <section class="layout">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2 class="panel-title">진행중 후보</h2>
+            <div class="panel-sub" id="resultCount">0건 표시</div>
+          </div>
+          <span class="pill good" id="topBadge">우선순위</span>
+        </div>
+        <div class="list" id="itemList"></div>
+      </section>
 
-  <!-- Urgent -->
-  <div class="urgent-card" id="urgentCard">
-    <div class="urgent-header">
-      <h2>⏰ 마감임박 용역</h2>
-      <div class="urgent-chips" id="urgentChips"></div>
-    </div>
-    <div class="section-sub" style="margin-bottom:8px;" id="urgentSub"></div>
-    <div id="urgentTableArea"></div>
-  </div>
+      <aside class="side">
+        <section class="side-card">
+          <h2>문서 인식</h2>
+          <div class="mini-grid" id="docStats"></div>
+        </section>
+
+        <section class="side-card">
+          <h2>분류 현황</h2>
+          <div id="categoryBars"></div>
+        </section>
+
+        <section class="side-card">
+          <h2>판정 현황</h2>
+          <div id="judgeBars"></div>
+        </section>
+
+        <section class="side-card">
+          <h2>첨부 확인 필요</h2>
+          <div class="error-list" id="errorList"></div>
+        </section>
+      </aside>
+    </section>
+
+    <p class="footer-note">데이터 기준: <span id="generatedAt">-</span> · v4 대시보드 직전 병합본 기반</p>
+  </main>
 
   <script>
-// 나라장터 도시재생 용역 대시보드 - 자동 생성 (2026-06-01 14:49 KST)
-const BID_DATA = [
-    [1, "R26BK01541515", "경주시 자전거 이용 활성화계획 수립 용역", "도시재생", "", "134,726,364원", "2026-06-04 10:00", "[교수법인가능]", "진행중"],
-    [2, "R26BK01545723", "옥천군 청산면 기초생활거점조성사업 세부설계용역", "농촌계획", "", "117,488,182원", "2026-06-04 10:00", "[교수법인가능]", "진행중"],
-    [3, "R26BK01550263", "옥천군 청산면 기초생활거점조성사업 세부설계용역", "농촌계획", "", "117,488,182원", "2026-06-05 10:00", "[교수법인가능]", "진행중"],
-    [4, "R26BK01546801", "반송마을 농어촌취약지역생활여건개조사업 세부설계 용역", "취약지역생활여건", "", "60,024,545원", "2026-06-05 10:00", "[교수법인가능]", "진행중"],
-    [5, "R26BK01545744", "부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고)", "농촌계획", "", "300,000,000원", "2026-06-08 10:00", "[교수법인가능]", "진행중"],
-    [6, "R26BK01542130", "지역단위 경축순환 활성화 계획 수립 용역", "도시재생", "", "45,454,545원", "2026-06-08 10:00", "[교수법인가능]", "진행중"],
-    [7, "R26BK01546653", "경상북도 인구감소지역 대응 기본계획 수립 연구용역", "인구감소대응", "", "45,454,550원", "2026-06-08 17:00", "[교수법인가능]", "진행중"],
-    [8, "R26BK01554025", "반송마을 농어촌취약지역생활여건개조사업 세부설계 용역", "취약지역생활여건", "", "60,024,545원", "2026-06-09 10:00", "[교수법인가능]", "진행중"],
-    [9, "R26BK01554654", "송광덕동 농어촌 취약지역 생활여건 개조사업 휴먼케어 및 주민역량강화 용역", "취약지역생활여건", "", "110,875,455원", "2026-06-09 12:00", "[교수법인가능]", "진행중"],
-    [10, "R26BK01546211", "완주군 운주면 장선지구 농촌공간정비사업 기본계획 수립 용역(협상에 의한 계약)", "농촌계획", "", "166,014,545원", "2026-06-09T18:00:00", "[교수법인가능]", "진행중"],
-    [11, "R26BK01554790", "도시재생사업 성과관리 모니터링 및 기록화 용역(협상에 의한 계약)", "도시재생", "", "135,410,000원", "2026-06-15T16:00:00", "[교수법인가능]", "진행중"],
-    [12, "R26BK01543510", "나주시 다도면 기초생활거점조성사업 기본계획수립 용역", "농촌계획", "", "190,000,000원", "2026-06-16 15:00", "[교수법인가능]", "진행중"],
-    [13, "R26BK01552429", "내서읍 농촌중심지활성화사업 지역역량강화용역", "농촌계획", "", "2,228,909,091원", "2026-06-26 10:00", "[교수법인가능]", "진행중"]
-];
-</script>
-  <div class="footer">
-    데이터 출처: 나라장터 공공데이터 API &middot; 기준일 <span id="footerDate"></span>
-  </div>
-</div>
+    const state = {
+      data: null,
+      items: [],
+      filtered: []
+    };
 
-<script>
-// ========== 정적 데이터 (BID_DATA from data.js) ==========
-// 분류별 색상
-const CAT_COLORS = {
-  '도시재생': { bg: '#e3f2fd', bar: '#4b82f0', pie: '#4b82f0' },
-  '농촌계획': { bg: '#e8f5e9', bar: '#48ad7d', pie: '#48ad7d' },
-  '취약지역생활여건': { bg: '#fff3e0', bar: '#f7a13b', pie: '#f7a13b' },
-  '인구감소대응': { bg: '#f3e5f5', bar: '#9B59B6', pie: '#9B59B6' },
-};
-const CAT_ORDER = ['도시재생', '농촌계획', '취약지역생활여건', '인구감소대응'];
-const CAT_LABELS = {
-  '도시재생': '도시재생', '농촌계획': '농촌계획',
-  '취약지역생활여건': '취약지역생활여건', '인구감소대응': '인구감소대응'
-};
+    const money = value => {
+      const n = Number(String(value || "").replace(/[^0-9.-]/g, ""));
+      if (!Number.isFinite(n) || n <= 0) return "-";
+      if (n >= 100000000) return `${(n / 100000000).toFixed(1)}억`;
+      if (n >= 10000) return `${Math.round(n / 10000).toLocaleString("ko-KR")}만`;
+      return n.toLocaleString("ko-KR");
+    };
 
-function fmtDate(d) {
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-}
-function todayStr() { return fmtDate(new Date()); }
-function parseDate(s) {
-  if (!s) return null;
-  const d = new Date(s.slice(0, 10));
-  return isNaN(d.getTime()) ? null : d;
-}
-function parsePrice(p) {
-  const n = String(p || '').replace(/[^0-9]/g, '');
-  return parseInt(n) || 0;
-}
-function fmtPrice(p) {
-  const n = parsePrice(p);
-  if (n >= 100000000) return (n / 100000000).toFixed(1) + '억';
-  return (n / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '만원';
-}
+    const number = value => Number(value || 0).toLocaleString("ko-KR");
 
-// ---------- render ----------
-function render() {
-  const rows = BID_DATA || [];
-  const now = new Date();
-  const nowStr = fmtDate(now);
+    const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#039;"
+    }[char]));
 
-  // 1. Header date
-  document.getElementById('dateDisplay').textContent = '기준일: ' + nowStr;
-  document.getElementById('footerDate').textContent = nowStr;
-  document.getElementById('countData').textContent = rows.length + '건 (' + now.toLocaleTimeString('ko-KR') + ' 갱신)';
+    const daysLeft = deadline => {
+      if (!deadline) return null;
+      const end = new Date(deadline);
+      if (Number.isNaN(end.getTime())) return null;
+      return Math.ceil((end - new Date()) / (1000 * 60 * 60 * 24));
+    };
 
-  // 2. Chips
-  const chipsHtml = `
-    <span class="chip chip-blue">${rows.length}건 전체</span>
-    <span class="chip chip-red">${rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / (86400000) <= 4).length}건 마감임박</span>
-    <span class="chip chip-navy">${rows.filter(r => !r[6]).length}건 마감일 미기재</span>
-  `;
-  document.getElementById('chips').innerHTML = chipsHtml;
+    const deadlineText = item => {
+      const d = item.deadline_text || "";
+      const left = daysLeft(item.deadline);
+      if (left === null) return { main: d || "확인 필요", sub: "마감일 확인" };
+      if (left < 0) return { main: d, sub: "마감 지남" };
+      if (left === 0) return { main: d, sub: "오늘 마감" };
+      return { main: d, sub: `${left}일 남음` };
+    };
 
-  // 3. KPI
-  const totalBudget = rows.reduce((s, r) => s + parsePrice(r[5]), 0);
-  const budgetStr = fmtPrice(totalBudget);
-  const catH = {};
-  rows.forEach(r => { catH[r[3]] = (catH[r[3]] || 0) + 1; });
-  const topCat = Object.entries(catH).sort((a,b) => b[1]-a[1])[0];
-  const deadlineRows = rows.filter(r => r[6] && parseDate(r[6]));
+    const judgeClass = judgment => {
+      const text = String(judgment || "");
+      if (text.includes("적합") && !text.includes("조건부")) return "good";
+      if (text.includes("조건부")) return "conditional";
+      return "review";
+    };
 
-  document.getElementById('kpiRow').innerHTML = `
-    <div class="kpi-card accent-blue"><div class="value value-blue">${rows.length}건</div><div class="label">전체 용역</div></div>
-    <div class="kpi-card accent-purple"><div class="value value-purple">${budgetStr}</div><div class="label">총 예산 규모</div></div>
-    <div class="kpi-card accent-green"><div class="value value-green">${Object.keys(catH).length}개</div><div class="label">사업유형</div></div>
-    <div class="kpi-card accent-orange"><div class="value value-orange">${deadlineRows.length}건</div><div class="label">마감일 기재</div></div>
-    <div class="kpi-card accent-red"><div class="value value-red">${topCat ? topCat[1] + '건' : '0건'}</div><div class="label">최다: ${CAT_LABELS[topCat[0]] || topCat[0]}</div></div>
-  `;
+    const displayJudge = judgment => {
+      const text = String(judgment || "검토");
+      if (text === "적합") return "참여가능";
+      return text;
+    };
 
-  // 4. Bar Chart
-  const catCounts = {};
-  rows.forEach(r => {
-    const c = r[3];
-    if (!catCounts[c]) catCounts[c] = 0;
-    catCounts[c]++;
-  });
-  const maxCount = Math.max(...Object.values(catCounts), 1);
+    const docStatus = item => {
+      const st = item.attachment_status || {};
+      if (st.error) return "error";
+      if ((st.documents_needs_review || 0) > 0) return "review";
+      return "ok";
+    };
 
-  let barHtml = '';
-  CAT_ORDER.forEach(c => {
-    if (!catCounts[c]) return;
-    const cnt = catCounts[c];
-    const pct = (cnt / maxCount * 100).toFixed(0);
-    const col = CAT_COLORS[c] || { bar: '#4b82f0' };
-    barHtml += `
-      <div class="bar-item">
-        <span class="bar-label">${CAT_LABELS[c] || c}</span>
-        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${col.bar}"></div></div>
-        <span class="bar-count">${cnt}</span>
-      </div>`;
-  });
-  document.getElementById('barChart').innerHTML = barHtml;
+    function renderKpis(summary) {
+      const kpis = [
+        ["진행중 후보", summary.active_candidates, "현재 마감 전 후보", "primary"],
+        ["참여가능", summary.likely_eligible, "메타데이터 기준 적합", ""],
+        ["조건부", summary.conditional, "첨부/조건 확인 대상", ""],
+        ["첨부 처리", summary.attachment_with_downloads, `${summary.attachment_processed}건 중`, ""],
+        ["문서 인식", summary.documents_extract_ok, `${summary.documents_extracted}개 문서`, ""],
+        ["검토 예산", money(summary.review_budget), "후보 총액", ""]
+      ];
 
-  // 5. Pie Chart
-  const pieData = CAT_ORDER.filter(c => catCounts[c]).map((c, i) => ({
-    label: CAT_LABELS[c] || c,
-    value: catCounts[c],
-    color: (CAT_COLORS[c] || {}).pie || '#ccc'
-  }));
-  const totalPie = rows.length;
-  const pieColors = pieData.map(d => d.color).join(',');
-  const piePcts = pieData.map(d => (d.value / totalPie * 100).toFixed(1)).join('% ') + '%';
+      document.getElementById("kpis").innerHTML = kpis.map(([label, value, sub, cls]) => `
+        <article class="kpi ${cls}">
+          <div class="label">${label}</div>
+          <div class="value">${typeof value === "number" ? number(value) : value}</div>
+          <div class="sub">${sub}</div>
+        </article>
+      `).join("");
+    }
 
-  // conic-gradient pie
-  let conicParts = [];
-  let acc = 0;
-  pieData.forEach(d => {
-    const pct = d.value / totalPie * 100;
-    const start = acc;
-    const end = acc + pct;
-    conicParts.push(`${d.color} ${start}% ${end}%`);
-    acc = end;
-  });
-  const conicStr = conicParts.join(', ');
+    function countBy(items, fn) {
+      return items.reduce((acc, item) => {
+        const key = fn(item) || "기타";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {});
+    }
 
-  let pieHtml = `<div class="pie-section"><h4>사업유형 비율</h4>
-    <div class="pie-container">
-      <div class="pie-canvas" style="background: conic-gradient(${conicStr})"></div>
-      <div class="pie-center">${totalPie}</div>
-    </div>
-    <div class="pie-legend">`;
-  pieData.forEach(d => {
-    pieHtml += `<div class="pie-legend-item"><span class="pie-dot" style="background:${d.color}"></span>${d.label} (${d.value})</div>`;
-  });
-  pieHtml += '</div></div>';
-  document.getElementById('pieChart').innerHTML = pieHtml;
+    function renderBars(targetId, counts, color = "var(--teal)") {
+      const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const max = Math.max(1, ...entries.map(([, v]) => v));
+      document.getElementById(targetId).innerHTML = entries.map(([label, value]) => `
+        <div class="bar-row">
+          <div title="${escapeHtml(label)}">${escapeHtml(label.length > 8 ? label.slice(0, 8) + "…" : label)}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.max(8, value / max * 100)}%; background:${color}"></div></div>
+          <strong>${number(value)}</strong>
+        </div>
+      `).join("");
+    }
 
-  // 6. Detail Table
-  const CAT_RENDER_ORDER = CAT_ORDER;
-  const CAT_RENDER_LABEL = {
-    '도시재생': '도시재생',
-    '농촌계획': '농촌계획',
-    '취약지역생활여건': '취약지역생활여건',
-    '인구감소대응': '인구감소대응'
-  };
-  const CAT_ROW_BG = {
-    '도시재생': '',
-    '농촌계획': 'green',
-    '취약지역생활여건': 'orange',
-    '인구감소대응': 'purple'
-  };
+    function renderSide(data, items) {
+      const summary = data.summary || {};
+      document.getElementById("docStats").innerHTML = `
+        <div class="mini"><strong>${number(summary.documents_extracted)}</strong><span>추출 문서</span></div>
+        <div class="mini"><strong>${number(summary.documents_extract_ok)}</strong><span>인식 성공</span></div>
+        <div class="mini"><strong>${number(summary.documents_needs_review)}</strong><span>추가 검토</span></div>
+        <div class="mini"><strong>${number(summary.attachment_errors)}</strong><span>첨부 오류</span></div>
+      `;
 
-  let tblHtml = `<tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>비고</th></tr>`;
-  CAT_RENDER_ORDER.forEach(cat => {
-    const items = rows.filter(r => r[3] === cat);
-    if (items.length === 0) return;
-    const bgClass = CAT_ROW_BG[cat] || '';
-    const catSum = items.reduce((s, r) => s + parsePrice(r[5]), 0);
-    const catSumStr = fmtPrice(catSum);
-    tblHtml += `<tr class="cat-header ${bgClass}"><td colspan="5">📌 ${CAT_RENDER_LABEL[cat] || cat} (${items.length}건 / ${catSumStr})</td></tr>`;
-    items.forEach(r => {
-      const deadlineStyle = r[6] && parseDate(r[6]) ? `D-${Math.ceil((parseDate(r[6]) - now) / 86400000)}` : '-';
-      const styleHtml = r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 3 ? ' class="urgent-badge"' : '';
-      tblHtml += `<tr>
-        <td>${r[0]}</td>
-        <td class="name-cell">${r[2]}</td>
-        <td class="price">${fmtPrice(r[5])}</td>
-        <td${styleHtml}>${r[6] || '-'}</td>
-        <td>${r[7] || ''}</td>
-      </tr>`;
+      renderBars("categoryBars", countBy(items, item => item.category), "var(--teal)");
+      renderBars("judgeBars", countBy(items, item => displayJudge(item.auto_judge?.judgment)), "var(--blue)");
+
+      const errors = data.attachment_errors || [];
+      document.getElementById("errorList").innerHTML = errors.length ? errors.map(error => `
+        <div class="error">
+          <div>${escapeHtml(error.bid_no || "-")}</div>
+          <div>${escapeHtml(error.name || "-")}</div>
+        </div>
+      `).join("") : `<div class="mini"><strong>0</strong><span>첨부 오류 없음</span></div>`;
+    }
+
+    function populateFilters(items) {
+      const categorySelect = document.getElementById("categoryFilter");
+      const categories = [...new Set(items.map(item => item.category).filter(Boolean))].sort();
+      categorySelect.innerHTML = `<option value="">전체 분류</option>` + categories.map(cat => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`).join("");
+    }
+
+    function applyFilters() {
+      const search = document.getElementById("search").value.trim().toLowerCase();
+      const judge = document.getElementById("judgeFilter").value;
+      const category = document.getElementById("categoryFilter").value;
+      const doc = document.getElementById("docFilter").value;
+      const sort = document.getElementById("sortMode").value;
+
+      let items = [...state.items];
+      if (search) {
+        items = items.filter(item => [
+          item.name, item.agency, item.demand_agency, item.region_limit, item.bid_no, item.category,
+          ...(item.matched_terms || [])
+        ].join(" ").toLowerCase().includes(search));
+      }
+      if (judge) items = items.filter(item => String(item.auto_judge?.judgment || "").includes(judge));
+      if (category) items = items.filter(item => item.category === category);
+      if (doc) items = items.filter(item => docStatus(item) === doc);
+
+      items.sort((a, b) => {
+        if (sort === "deadline") return new Date(a.deadline || "2999") - new Date(b.deadline || "2999");
+        if (sort === "budget") return Number(b.budget || 0) - Number(a.budget || 0);
+        if (sort === "docs") return Number(b.attachment_status?.documents_extracted || 0) - Number(a.attachment_status?.documents_extracted || 0);
+        return Number(b.detail_priority || 0) - Number(a.detail_priority || 0);
+      });
+
+      state.filtered = items;
+      renderList(items);
+    }
+
+    function renderList(items) {
+      const list = document.getElementById("itemList");
+      document.getElementById("resultCount").textContent = `${number(items.length)}건 표시 · 전체 ${number(state.items.length)}건`;
+      if (!items.length) {
+        list.innerHTML = `<div class="empty">조건에 맞는 후보가 없습니다.</div>`;
+        return;
+      }
+
+      list.innerHTML = items.map((item, idx) => {
+        const judgment = item.auto_judge?.judgment || "검토";
+        const deadline = deadlineText(item);
+        const docs = item.attachment_status || {};
+        const terms = (item.matched_terms || []).slice(0, 4);
+        const sourceUrl = item.url ? `<a class="open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">나라장터 원문</a>` : "";
+        return `
+          <article class="item">
+            <div class="item-title">
+              <span class="rank">${idx + 1}</span>
+              <div>
+                <h3 class="name">${escapeHtml(item.name || "-")}</h3>
+                <div class="meta">${escapeHtml(item.agency || "-")} · ${escapeHtml(item.bid_no || "-")}</div>
+                <div class="tags">
+                  <span class="tag">${escapeHtml(item.category || "분류 없음")}</span>
+                  <span class="tag">${escapeHtml(item.region_limit || "지역 제한 없음")}</span>
+                  ${terms.map(term => `<span class="tag">${escapeHtml(term)}</span>`).join("")}
+                </div>
+                ${sourceUrl}
+              </div>
+            </div>
+            <div class="deadline">
+              <span class="cell-label">마감</span>
+              ${escapeHtml(deadline.main || "-")}
+              <small>${escapeHtml(deadline.sub)}</small>
+            </div>
+            <div class="money">
+              <span class="cell-label">금액</span>
+              ${money(item.budget)}
+              <small>${escapeHtml(item.method || "계약방식 확인")}</small>
+            </div>
+            <div>
+              <span class="cell-label">판정/문서</span>
+              <span class="judge ${judgeClass(judgment)}">${escapeHtml(displayJudge(judgment))}</span>
+              <div class="docs">
+                <small>${number(docs.documents_extract_ok || 0)}/${number(docs.documents_extracted || 0)} 문서 인식</small>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    async function init() {
+      try {
+        const response = await fetch("nara_dashboard_v4.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        state.data = data;
+        state.items = data.ready_items || [];
+        const summary = data.summary || {};
+
+        document.getElementById("subtitle").textContent = `윈도우 수집·첨부·OCR 완료 후 맥에서 병합한 ${number(state.items.length)}건 후보`;
+        document.getElementById("generatedAt").textContent = data.generated_at || "-";
+        document.getElementById("dashboardState").textContent = data.dashboard_updated ? "대시보드 반영됨" : "대시보드 반영 전";
+        document.getElementById("dashboardState").className = data.dashboard_updated ? "pill good" : "pill warn";
+
+        renderKpis(summary);
+        renderSide(data, state.items);
+        populateFilters(state.items);
+        applyFilters();
+      } catch (error) {
+        document.getElementById("subtitle").textContent = `데이터를 불러오지 못했습니다: ${error.message}`;
+        document.getElementById("itemList").innerHTML = `<div class="empty">데이터 파일을 확인해주세요.</div>`;
+      }
+    }
+
+    ["search", "judgeFilter", "categoryFilter", "docFilter", "sortMode"].forEach(id => {
+      document.addEventListener("input", event => {
+        if (event.target && event.target.id === id) applyFilters();
+      });
+      document.addEventListener("change", event => {
+        if (event.target && event.target.id === id) applyFilters();
+      });
     });
-    tblHtml += `<tr class="subtotal"><td colspan="2" class="text-right">${CAT_RENDER_LABEL[cat] || cat} 소계</td><td class="price">${fmtPrice(catSum)}</td><td></td><td>${items.length}건</td></tr>`;
-  });
 
-  document.getElementById('detailTable').innerHTML = tblHtml;
-
-  // 7. Urgent section
-  const urgent = rows.filter(r => r[6] && parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 6)
-    .sort((a, b) => (parseDate(a[6]) || new Date()) - (parseDate(b[6]) || new Date()));
-
-  if (urgent.length > 0) {
-    document.getElementById('urgentSub').textContent = `${urgent.length}건의 용역이 7일 이내 마감 예정입니다.`;
-    document.getElementById('urgentChips').innerHTML = `
-      <span class="urgent-chip red">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 <= 1).length}건 D-0</span>
-      <span class="urgent-chip orange">${urgent.filter(r => parseDate(r[6]) && (parseDate(r[6]) - now) / 86400000 > 1).length}건 D-${Math.min(6, ...urgent.filter(r => !r[6] || isNaN(parseDate(r[6])) ? 99 : (parseDate(r[6]) - now) / 86400000).filter(d => !isNaN(d)).map(d => Math.ceil(d)))}</span>
-    `;
-
-    let urgHtml = `<table class="urgent-table">
-      <tr><th>순번</th><th>공고명</th><th>예산</th><th>마감일</th><th>D-Day</th><th>비고</th></tr>`;
-    urgent.forEach(r => {
-      const d = parseDate(r[6]);
-      const dDay = Math.ceil((d - now) / 86400000);
-      const dClass = dDay <= 0 ? 'd-day-0' : dDay <= 1 ? 'd-day-1' : dDay <= 3 ? 'd-day-3' : '';
-      urgHtml += `<tr>
-        <td>${r[0]}</td>
-        <td class="name-cell">${r[2]}</td>
-        <td class="price">${fmtPrice(r[5])}</td>
-        <td>${r[6]}</td>
-        <td class="${dClass}">D-${dDay}</td>
-        <td>${r[7] || ''}</td>
-      </tr>`;
-    });
-    urgHtml += '</table>';
-    document.getElementById('urgentTableArea').innerHTML = urgHtml;
-  } else {
-    document.getElementById('urgentSub').textContent = '7일 이내 마감 예정 용역이 없습니다.';
-    document.getElementById('urgentChips').innerHTML = '';
-    document.getElementById('urgentTableArea').innerHTML = '<div class="empty-msg">✅ 마감임박 용역 없음</div>';
-  }
-}
-
-render();
-</script>
+    init();
+  </script>
 </body>
 </html>
