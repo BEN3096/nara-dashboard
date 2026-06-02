@@ -798,12 +798,7 @@
 
     function renderKpis(summary) {
       const kpis = [
-        ["진행중 후보", summary.active_candidates, "현재 마감 전 후보", "primary"],
-        ["참여가능", summary.likely_eligible, "메타데이터 기준 적합", ""],
-        ["조건부", summary.conditional, "첨부/조건 확인 대상", ""],
-        ["첨부 처리", summary.attachment_with_downloads, `${summary.attachment_processed}건 중`, ""],
-        ["문서 인식", summary.documents_extract_ok, `${summary.documents_extracted}개 문서`, ""],
-        ["검토 예산", money(summary.review_budget), "후보 총액", ""]
+        ["진행중 후보", summary.active_candidates, "현재 마감 전 후보", "primary"]
       ];
 
       document.getElementById("kpis").innerHTML = kpis.map(([label, value, sub, cls]) => `
