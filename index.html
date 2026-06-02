@@ -373,42 +373,77 @@
     }
 
     .summary-panel {
-      padding: 16px;
+      padding: 18px;
       border: 1px solid #cfe5e1;
       border-radius: 18px;
-      background: linear-gradient(180deg, #fbfefd 0%, #f4faf8 100%);
+      background: #fbfefd;
     }
 
     .summary-panel h4 {
-      margin: 0 0 8px;
+      margin: 0;
       color: var(--navy);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 850;
     }
 
-    .summary-copy {
-      margin: 0 0 12px;
-      color: #40575f;
-      font-size: 13px;
-      font-weight: 650;
+    .summary-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
     }
 
-    .summary-points {
+    .summary-meta {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .summary-sections {
       display: grid;
-      gap: 7px;
-      margin: 0 0 14px;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .summary-section {
+      padding-left: 12px;
+      border-left: 3px solid #bfe4dc;
+    }
+
+    .summary-section h5 {
+      margin: 0 0 7px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .summary-section ul {
+      display: grid;
+      gap: 5px;
+      margin: 0;
       padding: 0;
       list-style: none;
     }
 
-    .summary-points li {
-      padding: 9px 10px;
-      border-radius: 12px;
-      background: #fff;
-      border: 1px solid var(--line);
+    .summary-section li {
       color: #354b52;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    .summary-section li::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin: 0 7px 2px 0;
+      border-radius: 999px;
+      background: var(--teal);
     }
 
     .attachment-grid {
@@ -449,26 +484,27 @@
     .attachment-body {
       padding: 0 12px 12px;
       color: #4d6269;
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .attachment-body ul {
       margin: 0 0 10px;
       padding-left: 18px;
+      line-height: 1.55;
     }
 
     .attachment-preview {
-      max-height: 220px;
+      max-height: 360px;
       overflow: auto;
       white-space: pre-wrap;
-      padding: 10px;
+      padding: 14px;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: #f8fbfa;
-      color: #31464d;
+      background: #fcfdfc;
+      color: #2d4148;
       font-family: inherit;
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.72;
     }
 
     .summary-empty {
@@ -919,14 +955,31 @@
       }
 
       const docs = summary.documents || [];
+      const sections = summary.sections || [];
       const points = (summary.key_points || []).slice(0, 8);
-      return `
-        <div class="summary-panel">
-          <h4>첨부 전체 요약</h4>
-          <p class="summary-copy">${escapeHtml(summary.summary || "첨부파일에서 추출한 내용을 기준으로 요약했습니다.")}</p>
-          <ul class="summary-points">
+      const renderedSections = sections.length ? sections.map(section => `
+        <section class="summary-section">
+          <h5>${escapeHtml(section.title || "요약")}</h5>
+          <ul>
+            ${(section.items || []).length ? section.items.map(item => `<li>${escapeHtml(item)}</li>`).join("") : `<li>확인된 내용이 없습니다.</li>`}
+          </ul>
+        </section>
+      `).join("") : `
+        <section class="summary-section">
+          <h5>핵심 요약</h5>
+          <ul>
             ${points.length ? points.map(point => `<li>${escapeHtml(point)}</li>`).join("") : `<li>핵심 조건을 자동 추출하지 못했습니다. 아래 첨부파일 본문을 확인해주세요.</li>`}
           </ul>
+        </section>
+      `;
+
+      return `
+        <div class="summary-panel">
+          <div class="summary-head">
+            <h4>${escapeHtml(summary.summary_title || "첨부 요약")}</h4>
+            <span class="summary-meta">${escapeHtml(summary.summary_meta || `${number(summary.document_count || docs.length)}개 첨부`)}</span>
+          </div>
+          <div class="summary-sections">${renderedSections}</div>
           <h4>첨부파일</h4>
           <div class="attachment-grid">
             ${docs.length ? docs.map((doc, index) => `
