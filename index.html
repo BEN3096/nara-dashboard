@@ -336,6 +336,151 @@
       background: #e7f1fa;
     }
 
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    .summary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 29px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #bfe4dc;
+      background: var(--mint);
+      color: #106b5d;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .summary-button:hover {
+      background: #d1eee7;
+    }
+
+    .summary-slot {
+      display: none;
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .item.open .summary-slot {
+      display: block;
+    }
+
+    .summary-panel {
+      padding: 16px;
+      border: 1px solid #cfe5e1;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fbfefd 0%, #f4faf8 100%);
+    }
+
+    .summary-panel h4 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .summary-copy {
+      margin: 0 0 12px;
+      color: #40575f;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .summary-points {
+      display: grid;
+      gap: 7px;
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .summary-points li {
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: #354b52;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .attachment-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .attachment details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .attachment summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 12px;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .attachment summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .attachment-meta {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .attachment-body {
+      padding: 0 12px 12px;
+      color: #4d6269;
+      font-size: 12px;
+    }
+
+    .attachment-body ul {
+      margin: 0 0 10px;
+      padding-left: 18px;
+    }
+
+    .attachment-preview {
+      max-height: 220px;
+      overflow: auto;
+      white-space: pre-wrap;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #f8fbfa;
+      color: #31464d;
+      font-family: inherit;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .summary-empty {
+      padding: 12px;
+      border-radius: 14px;
+      background: #fff7f7;
+      border: 1px solid #efd1d1;
+      color: #7d3b3b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
     .side {
       display: grid;
       gap: 16px;
@@ -556,6 +701,7 @@
   <script>
     const state = {
       data: null,
+      summaries: {},
       items: [],
       filtered: []
     };
@@ -723,8 +869,10 @@
         const docs = item.attachment_status || {};
         const terms = (item.matched_terms || []).slice(0, 4);
         const sourceUrl = item.url ? `<a class="open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">나라장터 원문</a>` : "";
+        const hasSummary = Boolean(state.summaries[item.uid]);
+        const summaryButton = `<button class="summary-button" type="button" data-summary-uid="${escapeHtml(item.uid)}">${hasSummary ? "첨부 요약" : "요약 없음"}</button>`;
         return `
-          <article class="item">
+          <article class="item" data-item-uid="${escapeHtml(item.uid)}">
             <div class="item-title">
               <span class="rank">${idx + 1}</span>
               <div>
@@ -735,7 +883,10 @@
                   <span class="tag">${escapeHtml(item.region_limit || "지역 제한 없음")}</span>
                   ${terms.map(term => `<span class="tag">${escapeHtml(term)}</span>`).join("")}
                 </div>
-                ${sourceUrl}
+                <div class="action-row">
+                  ${sourceUrl}
+                  ${summaryButton}
+                </div>
               </div>
             </div>
             <div class="deadline">
@@ -755,16 +906,80 @@
                 <small>${number(docs.documents_extract_ok || 0)}/${number(docs.documents_extracted || 0)} 문서 인식</small>
               </div>
             </div>
+            <div class="summary-slot" data-summary-slot="${escapeHtml(item.uid)}"></div>
           </article>
         `;
       }).join("");
     }
 
+    function renderSummary(uid) {
+      const summary = state.summaries[uid];
+      if (!summary) {
+        return `<div class="summary-empty">이 공고는 첨부 요약 데이터가 아직 없습니다.</div>`;
+      }
+
+      const docs = summary.documents || [];
+      const points = (summary.key_points || []).slice(0, 8);
+      return `
+        <div class="summary-panel">
+          <h4>첨부 전체 요약</h4>
+          <p class="summary-copy">${escapeHtml(summary.summary || "첨부파일에서 추출한 내용을 기준으로 요약했습니다.")}</p>
+          <ul class="summary-points">
+            ${points.length ? points.map(point => `<li>${escapeHtml(point)}</li>`).join("") : `<li>핵심 조건을 자동 추출하지 못했습니다. 아래 첨부파일 본문을 확인해주세요.</li>`}
+          </ul>
+          <h4>첨부파일</h4>
+          <div class="attachment-grid">
+            ${docs.length ? docs.map((doc, index) => `
+              <div class="attachment">
+                <details>
+                  <summary>
+                    <span>${index + 1}. ${escapeHtml(doc.name || "첨부문서")}</span>
+                    <span class="attachment-meta">${escapeHtml(doc.kind || "첨부문서")} · ${number(doc.text_chars || 0)}자</span>
+                  </summary>
+                  <div class="attachment-body">
+                    ${(doc.summary || []).length ? `<ul>${doc.summary.map(line => `<li>${escapeHtml(line)}</li>`).join("")}</ul>` : ""}
+                    <div class="attachment-preview">${escapeHtml(doc.preview || "추출 본문이 없습니다.")}</div>
+                  </div>
+                </details>
+              </div>
+            `).join("") : `<div class="summary-empty">표시할 첨부파일이 없습니다.</div>`}
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleSummary(uid) {
+      const item = document.querySelector(`[data-item-uid="${CSS.escape(uid)}"]`);
+      const slot = document.querySelector(`[data-summary-slot="${CSS.escape(uid)}"]`);
+      if (!item || !slot) return;
+      const willOpen = !item.classList.contains("open");
+      document.querySelectorAll(".item.open").forEach(openItem => {
+        if (openItem !== item) openItem.classList.remove("open");
+      });
+      document.querySelectorAll(".summary-slot").forEach(openSlot => {
+        if (openSlot !== slot) openSlot.innerHTML = "";
+      });
+      if (willOpen) {
+        slot.innerHTML = renderSummary(uid);
+        item.classList.add("open");
+      } else {
+        item.classList.remove("open");
+        slot.innerHTML = "";
+      }
+    }
+
     async function init() {
       try {
-        const response = await fetch("nara_dashboard_v4.json", { cache: "no-store" });
+        const [response, summaryResponse] = await Promise.all([
+          fetch("nara_dashboard_v4.json", { cache: "no-store" }),
+          fetch("nara_attachment_summaries_v4.json", { cache: "no-store" })
+        ]);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
+        if (summaryResponse.ok) {
+          const summaryData = await summaryResponse.json();
+          state.summaries = summaryData.summaries || {};
+        }
         state.data = data;
         state.items = data.ready_items || [];
         const summary = data.summary || {};
@@ -791,6 +1006,12 @@
       document.addEventListener("change", event => {
         if (event.target && event.target.id === id) applyFilters();
       });
+    });
+
+    document.addEventListener("click", event => {
+      const button = event.target.closest("[data-summary-uid]");
+      if (!button) return;
+      toggleSummary(button.dataset.summaryUid);
     });
 
     init();
