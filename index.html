@@ -1089,17 +1089,6 @@
     };
 
     function renderKpis(summary) {
-      const kpis = [
-        ["진행중 공고", summary.active_candidates, "현재 마감 전 공고", "primary"]
-      ];
-
-      document.getElementById("kpis").innerHTML = kpis.map(([label, value, sub, cls]) => `
-        <article class="kpi ${cls}">
-          <div class="label">${label}</div>
-          <div class="value">${typeof value === "number" ? number(value) : value}</div>
-          <div class="sub">${sub}</div>
-        </article>
-      `).join("");
       document.getElementById("tabKpiCount").textContent = typeof summary.active_candidates === "number" ? number(summary.active_candidates) : summary.active_candidates;
     }
 
@@ -1371,8 +1360,8 @@
         renderStats(data, state.items);
         renderAllAttachments(state.summaries, state.items);
       } catch (error) {
+        console.error("Dashboard init error:", error);
         document.getElementById("subtitle").textContent = `데이터를 불러오지 못했습니다: ${error.message}`;
-        document.getElementById("itemList").innerHTML = `<div class="empty">데이터 파일을 확인해주세요.</div>`;
       }
     }
 
