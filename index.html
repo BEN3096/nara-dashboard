@@ -616,6 +616,157 @@
       text-align: center;
     }
 
+    /* ── 탭바 ── */
+    .tab-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      padding: 4px;
+      border-radius: 16px;
+      background: #e9f0ef;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 13px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .tab-btn:hover {
+      color: var(--navy);
+      background: rgba(255,255,255,.65);
+    }
+
+    .tab-btn.active {
+      background: #fff;
+      color: var(--teal);
+      box-shadow: 0 2px 8px rgba(31,61,74,.10);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── 통계 현황판 ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(31,61,74,.06);
+    }
+
+    .stat-card .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .stat-card .value {
+      margin-top: 6px;
+      color: var(--navy);
+      font-size: 24px;
+      font-weight: 850;
+    }
+
+    .stat-card .sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+    }
+
+    .stat-table th {
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-align: left;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .stat-table td {
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #fff;
+      border-radius: 12px;
+    }
+
+    .stat-table tr:hover td {
+      background: #fbfefd;
+    }
+
+    .stat-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: #e9f0ef;
+      overflow: hidden;
+      max-width: 260px;
+    }
+
+    .stat-bar .fill {
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    /* ── 첨부 전체보기 ── */
+    .all-attachments {
+      display: grid;
+      gap: 14px;
+    }
+
+    .all-attach-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(31,61,74,.06);
+    }
+
+    .all-attach-card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 850;
+      color: var(--navy);
+    }
+
+    .all-attach-card .bid-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .all-attach-preview {
+      max-height: 200px;
+      overflow: auto;
+      white-space: pre-wrap;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fcfdfc;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
     @media (max-width: 1180px) {
       .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .toolbar { grid-template-columns: 1fr 1fr; }
@@ -669,6 +820,12 @@
       </div>
     </header>
 
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="list">📋 공고 목록</button>
+      <button class="tab-btn" data-tab="stats">📊 통계 현황판</button>
+      <button class="tab-btn" data-tab="attachments">📄 첨부 전체보기</button>
+    </div>
+
     <section class="kpis" id="kpis"></section>
 
     <section class="toolbar" aria-label="검색 및 필터">
@@ -696,39 +853,66 @@
       </select>
     </section>
 
-    <section class="layout">
+    <section class="tab-panel active" id="panel-list">
+      <section class="layout">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">진행중 공고</h2>
+              <div class="panel-sub" id="resultCount">0건 표시</div>
+            </div>
+            <span class="pill good" id="topBadge">우선순위</span>
+          </div>
+          <div class="list" id="itemList"></div>
+        </section>
+
+        <aside class="side">
+          <section class="side-card">
+            <h2>문서 인식</h2>
+            <div class="mini-grid" id="docStats"></div>
+          </section>
+
+          <section class="side-card">
+            <h2>분류 현황</h2>
+            <div id="categoryBars"></div>
+          </section>
+
+          <section class="side-card">
+            <h2>판정 현황</h2>
+            <div id="judgeBars"></div>
+          </section>
+
+          <section class="side-card">
+            <h2>첨부 확인 필요</h2>
+            <div class="error-list" id="errorList"></div>
+          </section>
+        </aside>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="panel-stats">
       <section class="panel">
         <div class="panel-head">
-          <div>
-            <h2 class="panel-title">진행중 공고</h2>
-            <div class="panel-sub" id="resultCount">0건 표시</div>
-          </div>
-          <span class="pill good" id="topBadge">우선순위</span>
+          <h2 class="panel-title">📊 통계 현황판</h2>
+          <span class="pill blue" id="statsBadge">전체 통계</span>
         </div>
-        <div class="list" id="itemList"></div>
+        <div style="padding: 18px;">
+          <div class="stat-grid" id="statGrid"></div>
+          <div id="statTableArea"></div>
+        </div>
       </section>
+    </section>
 
-      <aside class="side">
-        <section class="side-card">
-          <h2>문서 인식</h2>
-          <div class="mini-grid" id="docStats"></div>
-        </section>
-
-        <section class="side-card">
-          <h2>분류 현황</h2>
-          <div id="categoryBars"></div>
-        </section>
-
-        <section class="side-card">
-          <h2>판정 현황</h2>
-          <div id="judgeBars"></div>
-        </section>
-
-        <section class="side-card">
-          <h2>첨부 확인 필요</h2>
-          <div class="error-list" id="errorList"></div>
-        </section>
-      </aside>
+    <section class="tab-panel" id="panel-attachments">
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">📄 첨부 전체보기</h2>
+          <span class="pill blue" id="attachBadge">0개 공고</span>
+        </div>
+        <div style="padding: 18px;">
+          <div class="all-attachments" id="allAttachments"></div>
+        </div>
+      </section>
     </section>
 
     <p class="footer-note">데이터 기준: <span id="generatedAt">-</span> · v4 대시보드 직전 병합본 기반</p>
@@ -982,7 +1166,7 @@
                 <details>
                   <summary>
                     <span>${index + 1}. ${escapeHtml(doc.name || "첨부문서")}</span>
-                    <span class="attachment-meta">${escapeHtml(doc.kind || "첨부문서")} · ${number(doc.text_chars || 0)}자</span>
+                    <span class="attachment-meta">${escapeHtml(doc.kind || "첨부문서")}</span>
                   </summary>
                   <div class="attachment-body">
                     ${(doc.summary || []).length ? `<ul>${doc.summary.map(line => `<li>${escapeHtml(line)}</li>`).join("")}</ul>` : ""}
@@ -1041,6 +1225,8 @@
         renderSide(data, state.items);
         populateFilters(state.items);
         applyFilters();
+        renderStats(data, state.items);
+        renderAllAttachments(state.summaries, state.items);
       } catch (error) {
         document.getElementById("subtitle").textContent = `데이터를 불러오지 못했습니다: ${error.message}`;
         document.getElementById("itemList").innerHTML = `<div class="empty">데이터 파일을 확인해주세요.</div>`;
@@ -1058,9 +1244,156 @@
 
     document.addEventListener("click", event => {
       const button = event.target.closest("[data-summary-uid]");
-      if (!button) return;
-      toggleSummary(button.dataset.summaryUid);
+      if (button) {
+        toggleSummary(button.dataset.summaryUid);
+        return;
+      }
+
+      const tabBtn = event.target.closest(".tab-btn");
+      if (tabBtn) {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        tabBtn.classList.add("active");
+        document.getElementById(`panel-${tabBtn.dataset.tab}`).classList.add("active");
+        return;
+      }
     });
+
+    function renderStats(data, items) {
+      if (!data || !items) return;
+      const summary = data.summary || {};
+      const byCategory = countBy(items, item => item.category || "기타");
+      const byJudge = countBy(items, item => displayJudge(item.auto_judge?.judgment));
+      const byRegion = countBy(items, item => {
+        const r = (item.region_limit || "").replace(/^\[|\]$/g, "").trim();
+        return r || "전국";
+      });
+      const byMethod = countBy(items, item => item.method || "기타");
+
+      const total = items.length;
+      const deadlineItems = items.filter(i => daysLeft(i.deadline) !== null);
+      const urgent = deadlineItems.filter(i => daysLeft(i.deadline) >= 0 && daysLeft(i.deadline) <= 3).length;
+      const overdue = deadlineItems.filter(i => daysLeft(i.deadline) < 0).length;
+      const errors = (data.attachment_errors || []).length;
+      const needsReview = summary.documents_needs_review || 0;
+
+      document.getElementById("statGrid").innerHTML = `
+        <div class="stat-card" style="border-left: 4px solid var(--teal);">
+          <div class="label">전체 공고</div>
+          <div class="value">${number(total)}</div>
+          <div class="sub">진행중 공고</div>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--amber);">
+          <div class="label">3일 내 마감</div>
+          <div class="value">${number(urgent)}</div>
+          <div class="sub">긴급 확인 필요</div>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--red);">
+          <div class="label">마감 지남</div>
+          <div class="value">${number(overdue)}</div>
+          <div class="sub">재확인 권장</div>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--blue);">
+          <div class="label">첨부 오류</div>
+          <div class="value">${number(errors)}</div>
+          <div class="sub">${needsReview > 0 ? `검토 필요 ${needsReview}건` : "양호"}</div>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--green);">
+          <div class="label">참여가능</div>
+          <div class="value">${number(byJudge["참여가능"] || 0)}</div>
+          <div class="sub">적격 판정</div>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--amber);">
+          <div class="label">조건부</div>
+          <div class="value">${number(byJudge["조건부"] || 0)}</div>
+          <div class="sub">세부 조건 확인</div>
+        </div>
+      `;
+
+      const maxCat = Math.max(1, ...Object.values(byCategory));
+      const catRows = Object.entries(byCategory).sort((a,b) => b[1]-a[1]).slice(0, 12);
+
+      const maxMet = Math.max(1, ...Object.values(byMethod));
+      const methodRows = Object.entries(byMethod).sort((a,b) => b[1]-a[1]);
+
+      document.getElementById("statTableArea").innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+          <div class="stat-card">
+            <div class="label" style="font-size:14px; margin-bottom:10px;">분류별 현황</div>
+            <table class="stat-table">
+              <thead><tr><th>분류</th><th>건수</th><th>비율</th></tr></thead>
+              <tbody>
+                ${catRows.map(([label, val]) => `
+                  <tr>
+                    <td>${escapeHtml(label)}</td>
+                    <td><strong>${number(val)}</strong></td>
+                    <td>
+                      <div class="stat-bar"><div class="fill" style="width:${(val/maxCat*100).toFixed(0)}%; background:var(--teal);"></div></div>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="stat-card">
+            <div class="label" style="font-size:14px; margin-bottom:10px;">계약 방식별 현황</div>
+            <table class="stat-table">
+              <thead><tr><th>계약 방식</th><th>건수</th><th>비율</th></tr></thead>
+              <tbody>
+                ${methodRows.map(([label, val]) => `
+                  <tr>
+                    <td>${escapeHtml(label)}</td>
+                    <td><strong>${number(val)}</strong></td>
+                    <td>
+                      <div class="stat-bar"><div class="fill" style="width:${(val/maxMet*100).toFixed(0)}%; background:var(--blue);"></div></div>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("statsBadge").textContent = `${number(total)}건 기준`;
+    }
+
+    function renderAllAttachments(summaries, items) {
+      const container = document.getElementById("allAttachments");
+      const badge = document.getElementById("attachBadge");
+      const summaryUids = Object.keys(summaries);
+      if (!summaryUids.length) {
+        container.innerHTML = `<div class="summary-empty">첨부 요약 데이터가 없습니다.</div>`;
+        badge.textContent = "0개 공고";
+        return;
+      }
+      badge.textContent = `${number(summaryUids.length)}개 공고`;
+
+      const sorted = summaryUids.slice().sort((a, b) => {
+        const aitem = items.find(i => i.uid === a);
+        const bitem = items.find(i => i.uid === b);
+        return (bitem?.detail_priority || 0) - (aitem?.detail_priority || 0);
+      });
+
+      container.innerHTML = sorted.slice(0, 30).map(uid => {
+        const s = summaries[uid];
+        if (!s) return "";
+        const item = items.find(i => i.uid === uid);
+        const docs = s.documents || [];
+        const docInfo = docs.length ? `${docs.length}개 문서` : "";
+        const headPreview = docs[0]?.preview ? docs[0].preview.slice(0, 200) : "";
+        return `
+          <div class="all-attach-card">
+            <h3>${escapeHtml(s.name || item?.name || uid)}</h3>
+            <div class="bid-meta">
+              ${item?.bid_no || s.bid_no || ""}${s.sections?.[0]?.items?.[0] ? ` · ${escapeHtml(s.sections[0].items[0].slice(0, 60))}` : ""}
+              ${docInfo ? ` · ${docInfo}` : ""}
+            </div>
+            ${headPreview ? `<div class="all-attach-preview">${escapeHtml(headPreview)}</div>` : ""}
+          </div>
+        `;
+      }).join("");
+    }
 
     init();
   </script>
