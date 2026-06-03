@@ -1442,8 +1442,42 @@
       const maxMet = Math.max(1, ...Object.values(byMethod));
       const methodRows = Object.entries(byMethod).sort((a,b) => b[1]-a[1]);
 
+      // ── 참여가능 / 조건부 공고 목록 ──
+      const eligibleItems = items.filter(item => String(item.auto_judge?.judgment || "").includes("적합"));
+      const conditionalItems = items.filter(item => String(item.auto_judge?.judgment || "").includes("조건부"));
+
+      const renderJudgeList = (title, list, color) => {
+        if (!list.length) return `<div class="judge-section"><h4 style="font-size:14px;font-weight:800;margin:0 0 8px;border-left:3px solid ${color};padding-left:10px;">${title} <span style="font-weight:400;color:var(--muted);font-size:13px;">0건</span></h4><div class="summary-empty" style="padding:8px 12px;">해당 공고 없음</div></div>`;
+        return `
+          <div class="judge-section">
+            <h4 style="font-size:14px;font-weight:800;margin:0 0 8px;border-left:3px solid ${color};padding-left:10px;">${title} <span style="font-weight:400;color:var(--muted);font-size:13px;">${number(list.length)}건</span></h4>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              ${list.slice(0, 10).map(item => {
+                const d = deadlineText(item);
+                return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:13px;">
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(item.name || "-")}</div>
+                    <div style="color:var(--muted);font-size:11px;">${escapeHtml(item.agency || "")} ${item.bid_no ? `· ${escapeHtml(item.bid_no)}` : ""}</div>
+                  </div>
+                  <div style="text-align:right;white-space:nowrap;">
+                    <div style="font-size:11px;font-weight:700;">${money(item.budget)}</div>
+                    <div style="font-size:10px;color:var(--muted);">${d.main ? escapeHtml(d.main) : ""} ${d.sub ? `(${escapeHtml(d.sub)})` : ""}</div>
+                  </div>
+                  ${item.url ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener" style="font-size:11px;color:var(--blue);text-decoration:none;white-space:nowrap;">🔗</a>` : ""}
+                </div>`;
+              }).join("")}
+              ${list.length > 10 ? `<div style="text-align:center;font-size:11px;color:var(--muted);padding:4px 0;">… 외 ${number(list.length - 10)}건</div>` : ""}
+            </div>
+          </div>`;
+      };
+
       document.getElementById("statTableArea").innerHTML = `
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+        <div style="display:flex;flex-direction:column;gap:16px;margin-top:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            ${renderJudgeList("✅ 참여가능", eligibleItems, "#1fab6e")}
+            ${renderJudgeList("⚖️ 조건부", conditionalItems, "#e8a838")}
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="stat-card">
             <div class="label" style="font-size:14px; margin-bottom:10px;">분류별 현황</div>
             <table class="stat-table">
@@ -1477,6 +1511,7 @@
                 `).join("")}
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       `;
