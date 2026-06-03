@@ -813,6 +813,36 @@
       margin-top: 2px;
     }
 
+    /* ── 빠른 현황 요약바 ── */
+    .quick-summary {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #f6f9fc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 0;
+      overflow: hidden;
+    }
+    .qs-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 4px 8px;
+      text-align: center;
+    }
+    .qs-icon { font-size: 18px; }
+    .qs-label { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: .3px; text-transform: uppercase; }
+    .qs-value { font-size: 16px; font-weight: 800; color: var(--navy); }
+    .qs-divider {
+      width: 1px;
+      height: 32px;
+      background: #dce3e8;
+      flex-shrink: 0;
+    }
+
     /* ── 조건부 모달 ── */
     .modal-overlay {
       display: none;
@@ -1055,7 +1085,8 @@
           <span class="pill blue" id="statsBadge">전체 통계</span>
         </div>
         <div style="padding: 18px;">
-          <div class="stat-grid" id="statGrid"></div>
+          <div id="statQuickSummary"></div>
+          <div class="stat-grid" id="statGrid" style="margin-top:18px;"></div>
           <div id="judgeBadge" style="margin-top:14px;"></div>
           <div id="statTableArea"></div>
         </div>
@@ -1470,6 +1501,37 @@
       const urgent = deadlineItems.filter(i => daysLeft(i.deadline) >= 0 && daysLeft(i.deadline) <= 3).length;
       const errors = (data.attachment_errors || []).length;
       const needsReview = summary.documents_needs_review || 0;
+
+      // ── 요약 통계 계산 ──
+      const totalBudget = items.reduce((s, i) => s + (Number(String(i.budget || "0").replace(/,/g, "")) || 0), 0);
+      const formatBudget = v => {
+        if (v >= 1e8) return `${(v / 1e8).toFixed(1)}억`;
+        if (v >= 1e4) return `${(v / 1e4).toFixed(0)}만`;
+        return `${v.toLocaleString()}원`;
+      };
+      const regionSet = new Set(items.map(i => {
+        const r = (i.region_limit || "").replace(/^\[|\]$/g, "").trim();
+        return r || "전국";
+      }));
+      const regionCount = regionSet.size;
+      const agencySet = new Set(items.map(i => i.agency || "").filter(Boolean));
+      const agencyCount = agencySet.size;
+      const elasticRanges = items.filter(i => (i.method || "").includes("협상")).length;
+      const smallRange = items.filter(i => (i.method || "").includes("수의")).length;
+
+      document.getElementById("statQuickSummary").innerHTML = `
+        <div class="quick-summary">
+          <div class="qs-item"><span class="qs-icon">💰</span><span class="qs-label">총예산</span><span class="qs-value">${formatBudget(totalBudget)}</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span class="qs-icon">📍</span><span class="qs-label">지역</span><span class="qs-value">${number(regionCount)}개</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span class="qs-icon">🏢</span><span class="qs-label">발주기관</span><span class="qs-value">${number(agencyCount)}곳</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span class="qs-icon">🤝</span><span class="qs-label">협상</span><span class="qs-value">${number(elasticRanges)}건</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span class="qs-icon">📋</span><span class="qs-label">수의계약</span><span class="qs-value">${number(smallRange)}건</span></div>
+        </div>
+      `;
 
       document.getElementById("statGrid").innerHTML = `
         <div class="stat-card" style="border-left: 4px solid var(--teal);">
