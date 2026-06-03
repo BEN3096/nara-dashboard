@@ -20,6 +20,7 @@
       --amber: #d58b25;
       --red: #c95252;
       --blue: #3f78a8;
+      --purple: #7b5ea7;
       --shadow: 0 14px 40px rgba(31, 61, 74, .10);
       --radius: 18px;
     }
@@ -909,6 +910,94 @@
       border-radius: 14px;
     }
 
+    /* ── 첨부 전체보기 카드 ── */
+    .attach-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .attach-card-header {
+      padding: 16px 18px 0;
+    }
+    .attach-card-title {
+      font-size: 16px;
+      font-weight: 850;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .attach-card-meta {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .attach-card-body {
+      padding: 10px 18px 16px;
+    }
+    .attach-summary {
+      margin-bottom: 10px;
+      background: #f1faf6;
+      border-radius: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--teal);
+    }
+    .attach-summary ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .attach-summary li {
+      margin-bottom: 4px;
+    }
+    .attach-details {
+      margin-top: 10px;
+    }
+    .attach-details summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      padding: 8px 12px;
+      background: #f0f4f7;
+      border-radius: 10px;
+      transition: .15s;
+    }
+    .attach-details summary:hover {
+      background: #e5ecf0;
+    }
+    .attach-details ul {
+      margin: 8px 0 0;
+      padding-left: 16px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #2c4858;
+    }
+    .attach-details li {
+      padding: 3px 0;
+    }
+    .attach-dl-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, #1c8a7a, #146b5e);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: .15s;
+      box-shadow: 0 2px 6px rgba(28,138,122,.25);
+    }
+    .attach-dl-btn:hover {
+      background: linear-gradient(135deg, #146b5e, #0f5a4f);
+      box-shadow: 0 4px 12px rgba(28,138,122,.35);
+    }
+
     /* ── 조건부 모달 ── */
     .modal-overlay {
       display: none;
@@ -1689,6 +1778,59 @@
         </div>
       `;
 
+      // ── 지역별 분포 ──
+      const maxReg = Math.max(1, ...Object.values(byRegion));
+      const regionRows = Object.entries(byRegion).sort((a,b) => b[1]-a[1]);
+      // ── 예산 구간별 분포 ──
+      const budgetRanges = {"1억 미만":0, "1~3억":0, "3~5억":0, "5~10억":0, "10억 이상":0};
+      items.forEach(i => {
+        const b = Number(String(i.budget || "0").replace(/,/g,"")) || 0;
+        if (b < 1e8) budgetRanges["1억 미만"]++;
+        else if (b < 3e8) budgetRanges["1~3억"]++;
+        else if (b < 5e8) budgetRanges["3~5억"]++;
+        else if (b < 10e8) budgetRanges["5~10억"]++;
+        else budgetRanges["10억 이상"]++;
+      });
+      const maxBud = Math.max(1, ...Object.values(budgetRanges));
+      document.getElementById("statCharts").innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
+          <div class="stat-card" style="grid-column:1;">
+            <div class="label" style="font-size:14px;margin-bottom:10px;">📍 지역별 분포</div>
+            <table class="stat-table">
+              <thead><tr><th>지역</th><th>건수</th><th>비율</th></tr></thead>
+              <tbody>
+                ${regionRows.map(([label, val]) => `
+                  <tr>
+                    <td>${escapeHtml(label)}</td>
+                    <td><strong>${number(val)}</strong></td>
+                    <td>
+                      <div class="stat-bar"><div class="fill" style="width:${(val/maxReg*100).toFixed(0)}%;background:var(--purple);"></div></div>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="stat-card" style="grid-column:2;">
+            <div class="label" style="font-size:14px;margin-bottom:10px;">💰 예산 구간별 분포</div>
+            <table class="stat-table">
+              <thead><tr><th>예산 구간</th><th>건수</th><th>비율</th></tr></thead>
+              <tbody>
+                ${Object.entries(budgetRanges).map(([label, val]) => `
+                  <tr>
+                    <td>${escapeHtml(label)}</td>
+                    <td><strong>${number(val)}</strong></td>
+                    <td>
+                      <div class="stat-bar"><div class="fill" style="width:${(val/maxBud*100).toFixed(0)}%;background:var(--green);"></div></div>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
       document.getElementById("statsBadge").textContent = `${number(total)}건 기준`;
 
       // ── 변동 히스토리 (로컬스토리지 기반) ──
@@ -1747,42 +1889,8 @@
         return (bitem?.detail_priority || 0) - (aitem?.detail_priority || 0);
       });
 
-      container.innerHTML = `
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;" id="attachSubTabs">
-          <button class="tab-btn active" data-attach-tab="all">전체보기</button>
-          ${sorted.slice(0, 15).map(uid => {
-            const s = summaries[uid];
-            if (!s) return "";
-            const item = items.find(i => i.uid === uid);
-            const shortName = (item?.name || s.name || uid).length > 14 ? (item?.name || s.name || uid).slice(0, 14) + "…" : (item?.name || s.name || uid);
-            return `<button class="tab-btn" data-attach-tab="${escapeHtml(uid)}">${escapeHtml(shortName)}</button>`;
-          }).join("")}
-        </div>
-        <div id="attachContent"></div>
-      `;
+      container.innerHTML = `<div id="attachContent"></div>`;
 
-      // 전체보기 기본 표시
-      renderAttachAll(sorted, summaries, items);
-
-      // 서브탭 클릭 이벤트
-      document.addEventListener("click", function attachTabHandler(e) {
-        const btn = e.target.closest("[data-attach-tab]");
-        if (!btn) return;
-        e.stopPropagation();
-        document.querySelectorAll("[data-attach-tab]").forEach(b => {
-          if (b.parentElement === btn.parentElement) b.classList.remove("active");
-        });
-        btn.classList.add("active");
-        const tab = btn.dataset.attachTab;
-        if (tab === "all") {
-          renderAttachAll(sorted, summaries, items);
-        } else {
-          renderAttachSingle(tab, summaries, items);
-        }
-      });
-    }
-
-    function renderAttachAll(sorted, summaries, items) {
       const content = document.getElementById("attachContent");
       content.innerHTML = sorted.slice(0, 30).map(uid => {
         const s = summaries[uid];
@@ -1792,7 +1900,6 @@
         const sections = s.sections || [];
         const keyPoints = (s.key_points || []).slice(0, 6);
 
-        // 깔끔한 요약: 핵심 조건 위주
         let summaryHtml = "";
         if (keyPoints.length) {
           summaryHtml = keyPoints.map(p => `<li>${escapeHtml(p)}</li>`).join("");
@@ -1803,73 +1910,24 @@
           }).join("");
         }
 
-        // 문서 목록 (파일명만 깔끔하게)
-        const docLines = docs.slice(0, 5).map((doc, i) => {
+        const docLines = docs.slice(0, 8).map((doc, i) => {
           const contentHint = (doc.summary || []).slice(0, 2).join(", ");
-          return `<li>${escapeHtml(doc.name || `문서 ${i+1}`)}${contentHint ? ` — ${escapeHtml(contentHint)}` : ""}</li>`;
+          return `<li>📄 ${escapeHtml(doc.name || `문서 ${i+1}`)}${contentHint ? ` — ${escapeHtml(contentHint)}` : ""}</li>`;
         }).join("");
 
         return `
-          <div class="all-attach-card">
-            <h3>${escapeHtml(s.name || item?.name || uid)}</h3>
-            <div class="bid-meta">${item?.bid_no || s.bid_no || ""} ${item?.agency ? `· ${escapeHtml(item.agency)}` : ""} · ${number(docs.length)}개 문서</div>
-            ${summaryHtml ? `<div style="margin-bottom:10px;"><ul style="margin:0;padding-left:16px;font-size:13px;line-height:1.6;color:var(--text);">${summaryHtml}</ul></div>` : ""}
-            ${docLines ? `<details style="margin-top:8px;"><summary style="cursor:pointer;font-size:12px;font-weight:800;color:var(--muted);padding:4px 0;">📎 첨부파일 목록 (${number(docs.length)}개)</summary><ul style="margin:6px 0 0;padding-left:16px;font-size:12px;line-height:1.65;color:var(--muted);">${docLines}</ul></details>` : ""}
-          </div>
-        `;
+          <div class="attach-card">
+            <div class="attach-card-header">
+              <div class="attach-card-title">${escapeHtml(s.name || item?.name || uid)}</div>
+              <div class="attach-card-meta">${item?.bid_no || s.bid_no || ""} ${item?.agency ? `· ${escapeHtml(item.agency)}` : ""} · ${number(docs.length)}개 첨부</div>
+            </div>
+            <div class="attach-card-body">
+              ${summaryHtml ? `<div class="attach-summary"><ul>${summaryHtml}</ul></div>` : ""}
+              ${docLines ? `<details class="attach-details"><summary>📎 첨부파일 (${number(docs.length)}개)</summary><ul>${docLines}</ul></details>` : ""}
+              <a href="${escapeHtml(s.url || item?.url || "#")}" target="_blank" class="attach-dl-btn">⬇ 전체 다운로드 (나라장터)</a>
+            </div>
+          </div>`;
       }).join("");
-    }
-
-    function renderAttachSingle(uid, summaries, items) {
-      const content = document.getElementById("attachContent");
-      const s = summaries[uid];
-      if (!s) { content.innerHTML = `<div class="summary-empty">데이터를 찾을 수 없습니다.</div>`; return; }
-      const item = items.find(i => i.uid === uid);
-      const docs = s.documents || [];
-      const sections = s.sections || [];
-      const keyPoints = (s.key_points || []).slice(0, 10);
-
-      let summaryHtml = "";
-      if (sections.length) {
-        summaryHtml = sections.map(sec => `
-          <div style="margin-bottom:12px;">
-            <h5 style="margin:0 0 6px;font-size:13px;font-weight:850;color:var(--navy);">${escapeHtml(sec.title || "요약")}</h5>
-            <ul style="margin:0;padding-left:16px;font-size:13px;line-height:1.65;">
-              ${(sec.items || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}
-            </ul>
-          </div>
-        `).join("");
-      } else if (keyPoints.length) {
-        summaryHtml = `<ul style="margin:0;padding-left:16px;font-size:13px;line-height:1.65;">${keyPoints.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
-      }
-
-      const docHtml = docs.length ? docs.map((doc, i) => {
-        const contentHint = (doc.summary || []).join(" / ");
-        return `
-          <div class="attachment" style="margin-bottom:8px;">
-            <details>
-              <summary style="display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;font-size:12px;font-weight:850;color:var(--navy);border:1px solid var(--line);border-radius:14px;background:#fff;">
-                <span>${i+1}. ${escapeHtml(doc.name || `문서 ${i+1}`)}</span>
-                <span style="margin-left:auto;color:var(--muted);font-size:11px;">${escapeHtml(doc.kind || "")}</span>
-              </summary>
-              <div style="padding:10px 12px;font-size:13px;line-height:1.6;color:#4d6269;">
-                ${contentHint ? `<div style="margin-bottom:8px;">${escapeHtml(contentHint)}</div>` : ""}
-                ${doc.preview ? `<div class="attachment-preview">${escapeHtml(doc.preview)}</div>` : ""}
-              </div>
-            </details>
-          </div>
-        `;
-      }).join("") : `<div class="summary-empty">첨부파일 정보가 없습니다.</div>`;
-
-      content.innerHTML = `
-        <div class="all-attach-card">
-          <h3>${escapeHtml(s.name || item?.name || uid)}</h3>
-          <div class="bid-meta">${item?.bid_no || s.bid_no || ""} ${item?.agency ? `· ${escapeHtml(item.agency)}` : ""} · ${number(docs.length)}개 문서</div>
-          ${summaryHtml}
-          ${docs.length ? `<h4 style="margin:14px 0 8px;font-size:14px;font-weight:850;color:var(--navy);">📎 첨부파일 상세</h4>` : ""}
-          ${docHtml}
-        </div>
-      `;
     }
 
     init();
