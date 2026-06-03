@@ -843,6 +843,72 @@
       flex-shrink: 0;
     }
 
+    /* ── 일간 변동 히스토리 ── */
+    .history-section {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 16px 14px;
+    }
+    .history-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .history-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 120px;
+    }
+    .history-bar-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .history-bar {
+      width: 100%;
+      max-width: 36px;
+      background: linear-gradient(180deg, #3d8b9e, #285e6d);
+      border-radius: 4px 4px 0 0;
+      min-height: 4px;
+      position: relative;
+      transition: .2s;
+    }
+    .history-bar:hover {
+      opacity: .8;
+    }
+    .history-val {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+    .history-label {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 6px;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .history-empty {
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      background: #f9fafb;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+    }
+
     /* ── 조건부 모달 ── */
     .modal-overlay {
       display: none;
@@ -1089,6 +1155,7 @@
           <div class="stat-grid" id="statGrid" style="margin-top:18px;"></div>
           <div id="judgeBadge" style="margin-top:14px;"></div>
           <div id="statTableArea"></div>
+          <div id="statHistory" style="margin-top:18px;"></div>
         </div>
       </section>
     </section>
@@ -1623,6 +1690,44 @@
       `;
 
       document.getElementById("statsBadge").textContent = `${number(total)}건 기준`;
+
+      // ── 변동 히스토리 (로컬스토리지 기반) ──
+      (function renderHistory() {
+        const today = new Date().toISOString().slice(0,10);
+        let history = {};
+        try { history = JSON.parse(localStorage.getItem("nara_history") || "{}"); } catch(e) {}
+        history[today] = { total, urgent, errors, eligible, conditional, ts: Date.now() };
+        // 30일 이상 지난 데이터 정리
+        for (const k in history) {
+          if (k.length !== 10 || k > today || (Date.now() - (history[k].ts||0)) > 30*86400000) delete history[k];
+        }
+        try { localStorage.setItem("nara_history", JSON.stringify(history)); } catch(e) {}
+        const dates = Object.keys(history).sort().slice(-14);
+        const el = document.getElementById("statHistory");
+        if (dates.length < 2) {
+          el.innerHTML = `<div class="history-empty">데이터가 충분히 쌓이면 일간 변동 추이가 표시됩니다.</div>`;
+          return;
+        }
+        const weekdays = ["일","월","화","수","목","금","토"];
+        el.innerHTML = `
+          <div class="history-section">
+            <div class="history-title">📈 일간 변동 추이 (최근 ${dates.length}일)</div>
+            <div class="history-chart">
+              ${dates.map(d => {
+                const h = history[d];
+                const maxVal = Math.max(...dates.map(x => history[x]?.total || 0));
+                const barH = maxVal > 0 ? ((h.total / maxVal) * 100) : 0;
+                const wd = weekdays[new Date(d + "T00:00:00").getDay()];
+                const label = d === today ? "오늘" : `${d.slice(5)} ${wd}`;
+                return `<div class="history-bar-wrap">
+                  <div class="history-bar" style="height:${Math.max(barH, 4)}%"><span class="history-val">${number(h.total)}</span></div>
+                  <div class="history-label">${label}</div>
+                </div>`;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      })();
     }
 
     function renderAllAttachments(summaries, items) {
