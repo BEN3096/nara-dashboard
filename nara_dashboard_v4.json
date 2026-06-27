@@ -1,6 +1,6 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-06-27 02:01:41 KST",
+  "generated_at": "2026-06-28 02:00:56 KST",
   "dashboard_updated": true,
   "source_files": {
     "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
@@ -9,10 +9,10 @@
     "mode": "mac_fallback_no_mj_linux"
   },
   "summary": {
-    "total_judged_bids": 106,
+    "total_judged_bids": 108,
     "active_candidates": 1,
     "attachment_queue": 1,
-    "order_plans": 7,
+    "order_plans": 0,
     "likely_eligible": 1,
     "conditional": 0,
     "review_budget": 363636364,
@@ -67,7 +67,7 @@
       "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-06-27T02:01:41+09:00",
+  "dashboard_updated_at": "2026-06-28T02:00:56+09:00",
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -79,6 +79,6 @@
     "original_ready_items": 28,
     "kept_ready_items": 1,
     "removed_ready_items": 27,
-    "previous_dashboard_generated_at": "2026-06-26 02:01:08 KST"
+    "previous_dashboard_generated_at": "2026-06-27 02:01:41 KST"
   }
 }
