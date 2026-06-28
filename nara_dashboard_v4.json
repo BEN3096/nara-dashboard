@@ -1,6 +1,6 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-06-28 02:00:56 KST",
+  "generated_at": "2026-06-29 02:01:40 KST",
   "dashboard_updated": true,
   "source_files": {
     "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
@@ -57,7 +57,7 @@
         "score": 14,
         "reasons": [
           "도시재생 핵심: ['농촌공간재구조화']",
-          "용역 유형 적합: ['계획수립', '기본계획']",
+          "용역 유형 적합: ['기본계획', '계획수립']",
           "농촌/생활거점 분류",
           "교수법인 적합 업종",
           "예산 적정 (363,636,364원)"
@@ -67,7 +67,7 @@
       "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-06-28T02:00:56+09:00",
+  "dashboard_updated_at": "2026-06-29T02:01:40+09:00",
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -79,6 +79,6 @@
     "original_ready_items": 28,
     "kept_ready_items": 1,
     "removed_ready_items": 27,
-    "previous_dashboard_generated_at": "2026-06-27 02:01:41 KST"
+    "previous_dashboard_generated_at": "2026-06-28 02:00:56 KST"
   }
 }
