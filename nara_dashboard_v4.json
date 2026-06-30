@@ -1,6 +1,6 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-06-30 02:01:47 KST",
+  "generated_at": "2026-07-01 02:01:53 KST",
   "dashboard_updated": true,
   "source_files": {
     "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
@@ -9,20 +9,20 @@
     "mode": "mac_fallback_no_mj_linux"
   },
   "summary": {
-    "total_judged_bids": 113,
-    "active_candidates": 1,
-    "attachment_queue": 1,
-    "order_plans": 11,
-    "likely_eligible": 1,
+    "total_judged_bids": 123,
+    "active_candidates": 3,
+    "attachment_queue": 3,
+    "order_plans": 0,
+    "likely_eligible": 3,
     "conditional": 0,
-    "review_budget": 363636364,
-    "attachment_processed": 1,
+    "review_budget": 1043727273,
+    "attachment_processed": 3,
     "attachment_with_downloads": 0,
     "attachment_errors": 0,
     "documents_extracted": 0,
     "documents_extract_ok": 0,
-    "documents_needs_review": 1,
-    "ready_for_dashboard": 1
+    "documents_needs_review": 3,
+    "ready_for_dashboard": 3
   },
   "attachment_errors": [],
   "ready_items": [
@@ -57,7 +57,7 @@
         "score": 14,
         "reasons": [
           "도시재생 핵심: ['농촌공간재구조화']",
-          "용역 유형 적합: ['기본계획', '계획수립']",
+          "용역 유형 적합: ['계획수립', '기본계획']",
           "농촌/생활거점 분류",
           "교수법인 적합 업종",
           "예산 적정 (363,636,364원)"
@@ -65,9 +65,94 @@
       },
       "detail_priority": 104,
       "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607482-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607482",
+      "order": "000",
+      "name": "우강면 기초생활거점조성사업(2단계) 지역역량강화 용역",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점",
+        "역량강화"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "당진도시공사",
+      "demand_agency": "당진도시공사",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-15T13:00:00+09:00",
+      "deadline_text": "",
+      "budget": "345090909",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607482&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 14,
+        "reasons": [
+          "도시재생 핵심: ['기초생활거점']",
+          "용역 유형 적합: ['역량강화']",
+          "농촌/생활거점 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (345,090,909원)"
+        ]
+      },
+      "detail_priority": 104,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607511-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607511",
+      "order": "000",
+      "name": "순성면 본2리·합덕읍 신석리 취약지역생활여건개조사업 휴먼케어 및 주민역량강화 용역",
+      "category": "취약지역/주거",
+      "matched_terms": [
+        "생활여건",
+        "역량강화",
+        "주민역량",
+        "취약지역"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "당진도시공사",
+      "demand_agency": "당진도시공사",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-16T13:00:00+09:00",
+      "deadline_text": "",
+      "budget": "335000000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607511&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 17,
+        "reasons": [
+          "도시재생 핵심: ['취약지역생활여건']",
+          "도시재생 연관: ['주민역량']",
+          "용역 유형 적합: ['역량강화']",
+          "취약지역/주거 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (335,000,000원)"
+        ]
+      },
+      "detail_priority": 107,
+      "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-06-30T02:01:47+09:00",
+  "dashboard_updated_at": "2026-07-01T02:01:53+09:00",
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -76,9 +161,9 @@
       "region limit empty/경기도/수원/전국",
       "exclude design, architect-office, asbestos, construction-management style work"
     ],
-    "original_ready_items": 27,
-    "kept_ready_items": 1,
-    "removed_ready_items": 26,
-    "previous_dashboard_generated_at": "2026-06-29 02:01:40 KST"
+    "original_ready_items": 30,
+    "kept_ready_items": 3,
+    "removed_ready_items": 27,
+    "previous_dashboard_generated_at": "2026-06-30 02:01:47 KST"
   }
 }
