@@ -1,6 +1,6 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-07-01 02:01:53 KST",
+  "generated_at": "2026-07-02 02:02:28 KST",
   "dashboard_updated": true,
   "source_files": {
     "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
@@ -9,10 +9,10 @@
     "mode": "mac_fallback_no_mj_linux"
   },
   "summary": {
-    "total_judged_bids": 123,
+    "total_judged_bids": 135,
     "active_candidates": 3,
     "attachment_queue": 3,
-    "order_plans": 0,
+    "order_plans": 6,
     "likely_eligible": 3,
     "conditional": 0,
     "review_budget": 1043727273,
@@ -57,7 +57,7 @@
         "score": 14,
         "reasons": [
           "도시재생 핵심: ['농촌공간재구조화']",
-          "용역 유형 적합: ['계획수립', '기본계획']",
+          "용역 유형 적합: ['기본계획', '계획수립']",
           "농촌/생활거점 분류",
           "교수법인 적합 업종",
           "예산 적정 (363,636,364원)"
@@ -152,7 +152,7 @@
       "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-07-01T02:01:53+09:00",
+  "dashboard_updated_at": "2026-07-02T02:02:28+09:00",
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -161,9 +161,9 @@
       "region limit empty/경기도/수원/전국",
       "exclude design, architect-office, asbestos, construction-management style work"
     ],
-    "original_ready_items": 30,
+    "original_ready_items": 34,
     "kept_ready_items": 3,
-    "removed_ready_items": 27,
-    "previous_dashboard_generated_at": "2026-06-30 02:01:47 KST"
+    "removed_ready_items": 31,
+    "previous_dashboard_generated_at": "2026-07-01 02:01:53 KST"
   }
 }
