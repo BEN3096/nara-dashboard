@@ -1,6 +1,6 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-07-03 02:01:53 KST",
+  "generated_at": "2026-07-04 02:01:31 KST",
   "dashboard_updated": true,
   "source_files": {
     "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
@@ -9,10 +9,10 @@
     "mode": "mac_fallback_no_mj_linux"
   },
   "summary": {
-    "total_judged_bids": 131,
+    "total_judged_bids": 129,
     "active_candidates": 2,
     "attachment_queue": 2,
-    "order_plans": 5,
+    "order_plans": 14,
     "likely_eligible": 2,
     "conditional": 0,
     "review_budget": 680090909,
@@ -112,7 +112,7 @@
       "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-07-03T02:01:53+09:00",
+  "dashboard_updated_at": "2026-07-04T02:01:31+09:00",
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -121,9 +121,9 @@
       "region limit empty/경기도/수원/전국",
       "exclude design, architect-office, asbestos, construction-management style work"
     ],
-    "original_ready_items": 36,
+    "original_ready_items": 33,
     "kept_ready_items": 2,
-    "removed_ready_items": 34,
-    "previous_dashboard_generated_at": "2026-07-02 02:02:28 KST"
+    "removed_ready_items": 31,
+    "previous_dashboard_generated_at": "2026-07-03 02:01:53 KST"
   }
 }
