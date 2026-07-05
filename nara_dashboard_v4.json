@@ -1,72 +1,31 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-07-06 02:01:42 KST",
+  "generated_at": "2026-07-06 08:27:33 KST",
   "dashboard_updated": true,
   "source_files": {
-    "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
-    "filtered": "/Users/dori/.hermes/profiles/jobdori/data/nara_jangteo/output/nara_filtered_v4_mac_latest.json",
+    "raw": "/storage/mj/datasets/nara/nara_raw_v4_latest.json",
+    "filtered": "/storage/mj/datasets/nara/nara_filtered_v4_latest.json",
     "attachment_summaries": "/Users/dori/nara-dashboard/nara_attachment_summaries_v4.json",
-    "mode": "mac_fallback_no_mj_linux"
+    "mode": "mj_linux_cron_20260706"
   },
   "summary": {
     "total_judged_bids": 134,
-    "active_candidates": 2,
-    "attachment_queue": 2,
+    "active_candidates": 108,
+    "attachment_queue": 108,
     "order_plans": 2,
-    "likely_eligible": 2,
+    "likely_eligible": 91,
     "conditional": 0,
-    "review_budget": 680090909,
-    "attachment_processed": 2,
+    "review_budget": 5471320754,
+    "attachment_processed": 108,
     "attachment_with_downloads": 0,
     "attachment_errors": 0,
     "documents_extracted": 0,
     "documents_extract_ok": 0,
-    "documents_needs_review": 2,
-    "ready_for_dashboard": 2
+    "documents_needs_review": 0,
+    "ready_for_dashboard": 108
   },
   "attachment_errors": [],
   "ready_items": [
-    {
-      "uid": "R26BK01607482-000",
-      "source": "입찰공고",
-      "source_system": "data.go.kr:PubDataOpnStdService",
-      "bid_no": "R26BK01607482",
-      "order": "000",
-      "name": "우강면 기초생활거점조성사업(2단계) 지역역량강화 용역",
-      "category": "농촌/생활거점",
-      "matched_terms": [
-        "기초생활거점",
-        "역량강화"
-      ],
-      "excluded_terms": [],
-      "status": "active",
-      "agency": "당진도시공사",
-      "demand_agency": "당진도시공사",
-      "notice_date": "2026-06-30",
-      "deadline": "2026-07-15T13:00:00+09:00",
-      "deadline_text": "",
-      "budget": "345090909",
-      "method": "일반경쟁",
-      "region_limit": "",
-      "industry_limit": "학술.연구용역",
-      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607482&bidPbancOrd=000",
-      "needs_detail": true,
-      "auto_judge": {
-        "level": "A",
-        "judgment": "적합",
-        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
-        "score": 14,
-        "reasons": [
-          "도시재생 핵심: ['기초생활거점']",
-          "용역 유형 적합: ['역량강화']",
-          "농촌/생활거점 분류",
-          "교수법인 적합 업종",
-          "예산 적정 (345,090,909원)"
-        ]
-      },
-      "detail_priority": 104,
-      "ai_review_status": "not_needed"
-    },
     {
       "uid": "R26BK01607511-000",
       "source": "입찰공고",
@@ -110,20 +69,3345 @@
       },
       "detail_priority": 107,
       "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608631-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608631",
+      "order": "000",
+      "name": "계화면·백산면 기초생활거점조성사업 세부설계 및 시행계획 수립 용역(제안공모)",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "한국농어촌공사 전북지역본부",
+      "demand_agency": "한국농어촌공사 전북지역본부",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-23T15:00:00+09:00",
+      "deadline_text": "",
+      "budget": "239000000",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608631&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 16,
+        "reasons": [
+          "도시재생 핵심: ['기초생활거점']",
+          "용역 유형 적합: ['계획수립']",
+          "농촌/생활거점 분류",
+          "적합 발주기관",
+          "예산 적정 (239,000,000원)",
+          "수의계약 가능"
+        ]
+      },
+      "detail_priority": 106,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607482-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607482",
+      "order": "000",
+      "name": "우강면 기초생활거점조성사업(2단계) 지역역량강화 용역",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점",
+        "역량강화"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "당진도시공사",
+      "demand_agency": "당진도시공사",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-15T13:00:00+09:00",
+      "deadline_text": "",
+      "budget": "345090909",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607482&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 14,
+        "reasons": [
+          "도시재생 핵심: ['기초생활거점']",
+          "용역 유형 적합: ['역량강화']",
+          "농촌/생활거점 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (345,090,909원)"
+        ]
+      },
+      "detail_priority": 104,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609868-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609868",
+      "order": "000",
+      "name": "금성면 기초생활거점조성사업 세부설계 용역 제안공모",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "한국농어촌공사 경북지역본부 의성.군위지사",
+      "demand_agency": "한국농어촌공사 경북지역본부 의성.군위지사",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-27T17:00:00+09:00",
+      "deadline_text": "",
+      "budget": "129803636",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609868&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 14,
+        "reasons": [
+          "도시재생 핵심: ['기초생활거점']",
+          "농촌/생활거점 분류",
+          "적합 발주기관",
+          "예산 적정 (129,803,636원)",
+          "수의계약 가능"
+        ]
+      },
+      "detail_priority": 104,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610537-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610537",
+      "order": "000",
+      "name": "옥천군 이원면 기초생활거점조성사업 세부설계용역(제안공모)",
+      "category": "농촌/생활거점",
+      "matched_terms": [
+        "기초생활거점"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "한국농어촌공사 충북지역본부",
+      "demand_agency": "한국농어촌공사 충북지역본부",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-29T16:00:00+09:00",
+      "deadline_text": "",
+      "budget": "137766364",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610537&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 14,
+        "reasons": [
+          "도시재생 핵심: ['기초생활거점']",
+          "농촌/생활거점 분류",
+          "적합 발주기관",
+          "예산 적정 (137,766,364원)",
+          "수의계약 가능"
+        ]
+      },
+      "detail_priority": 104,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01605622-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01605622",
+      "order": "000",
+      "name": "한국에너지공대 직원 직급체계 신설 및 인사·보수제도 개선 컨설팅 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "컨설팅"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "한국에너지공과대학교",
+      "demand_agency": "한국에너지공과대학교",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "72727273",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역,노무법인",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01605622&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['컨설팅']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (72,727,273원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612736-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612736",
+      "order": "000",
+      "name": "전북특별자치도교육청 조직진단 및 개편방안 연구용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "전북특별자치도교육청",
+      "demand_agency": "전북특별자치도교육청",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-13T10:00:00+09:00",
+      "deadline_text": "2026-07-13 10:00",
+      "budget": "57838182",
+      "method": "제한경쟁",
+      "region_limit": "전북특별자치도",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612736&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육', '연구']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (57,838,182원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613958-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613958",
+      "order": "000",
+      "name": "2026 아이치-나고야하계아시아경기대회 대한민국 선수단 위기관리 역량강화 연구",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "역량강화"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "대한체육회",
+      "demand_agency": "대한체육회",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-14T10:00:00+09:00",
+      "deadline_text": "2026-07-14 10:00",
+      "budget": "109090909",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613958&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['연구', '역량강화']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (109,090,909원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613813-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613813",
+      "order": "000",
+      "name": "‘26년 귀농귀촌교육 성과평가 및 보조금 회계정산",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "농림수산식품교육문화정보원",
+      "demand_agency": "농림수산식품교육문화정보원",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-14T10:00:00+09:00",
+      "deadline_text": "2026-07-14 10:00",
+      "budget": "185454545",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역,회계법인",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613813&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (185,454,545원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608941-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608941",
+      "order": "000",
+      "name": "「2026년 교원 핵심역량 강화 사업」교육과정 실행 분야(생태 교육) 연수 콘텐츠 개발 연구 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육",
+        "역량강화"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "한국영유아보육·교육진흥원",
+      "demand_agency": "한국영유아보육·교육진흥원",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-14T10:00:00+09:00",
+      "deadline_text": "2026-07-14 10:00",
+      "budget": "59090909",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608941&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육', '연구', '역량강화']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (59,090,909원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608081-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608081",
+      "order": "000",
+      "name": "현장 중심 간병인 교육 운영 및 모니터링 연구",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육",
+        "모니터링"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "조달청 대전지방조달청",
+      "demand_agency": "보건복지부",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-14T10:00:00+09:00",
+      "deadline_text": "2026-07-14 10:00",
+      "budget": "127272727",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608081&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육', '연구', '모니터링']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (127,272,727원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611463-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611463",
+      "order": "000",
+      "name": "충북바이오 식의약 규제과학 실무형 인재양성 역량기반 GxP·HACCP 교육 커리큘럼 구축 용역",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "서원대학교 산학협력단",
+      "demand_agency": "서원대학교 산학협력단",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-15T16:00:00+09:00",
+      "deadline_text": "2026-07-15 16:00",
+      "budget": "63636364",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611463&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (63,636,364원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608386-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608386",
+      "order": "000",
+      "name": "2026년 충청남도교육청기록원 전시 행사 기획 및 운영",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "조달청 대전지방조달청",
+      "demand_agency": "충청남도교육청기록원",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-16T10:00:00+09:00",
+      "deadline_text": "2026-07-16 10:00",
+      "budget": "181818182",
+      "method": "제한경쟁",
+      "region_limit": "충청남도",
+      "industry_limit": "실내건축공사업,기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608386&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (181,818,182원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609592-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609592",
+      "order": "000",
+      "name": "26년도 KISA 기관성과 향상을 위한 성과관리 방안 연구",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "성과관리"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "조달청 광주지방조달청",
+      "demand_agency": "한국인터넷진흥원",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-16T10:00:00+09:00",
+      "deadline_text": "2026-07-16 10:00",
+      "budget": "136363636",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609592&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['성과관리', '연구']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (136,363,636원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01603969-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01603969",
+      "order": "000",
+      "name": "타워크레인 조종 경력자 양성교육",
+      "category": "역량강화/교육",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [],
+      "status": "active",
+      "agency": "조달청",
+      "demand_agency": "국토교통부",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-22T10:00:00+09:00",
+      "deadline_text": "2026-07-22 10:00",
+      "budget": "309090909",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "학술.연구용역",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01603969&bidPbancOrd=000",
+      "needs_detail": true,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "적합",
+        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
+        "score": 6,
+        "reasons": [
+          "용역 유형 적합: ['교육']",
+          "역량강화/교육 분류",
+          "교수법인 적합 업종",
+          "예산 적정 (309,090,909원)"
+        ]
+      },
+      "detail_priority": 96,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01605089-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01605089",
+      "order": "000",
+      "name": "강릉의료원 복합병동 증축사업 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "강원개발공사",
+      "demand_agency": "강원개발공사",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-06T10:00:00+09:00",
+      "deadline_text": "2026-07-06 10:00",
+      "budget": "90896364",
+      "method": "수의계약",
+      "region_limit": "강원특별자치도",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01605089&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607903-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607903",
+      "order": "000",
+      "name": "내촌 공공하수처리시설 증설사업 소방공사 감리용역(PQ통과업체 지명경쟁)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "소방공사"
+      ],
+      "status": "active",
+      "agency": "경기도 포천시 건설교통국",
+      "demand_agency": "경기도 포천시 건설교통국",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-06T10:00:00+09:00",
+      "deadline_text": "2026-07-06 10:00",
+      "budget": "29509091",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "전문소방공사감리업,일반소방공사감리업(전기),일반소방공사감리업(기계)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607903&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608184-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608184",
+      "order": "000",
+      "name": "부산자동차마이스터고등학교 등 2교(영도제일중) 공간재구조화공사  건설재해예방 기술지도용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "부산광역시교육청 부산광역시서부교육지원청",
+      "demand_agency": "부산광역시교육청 부산광역시서부교육지원청",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-06T10:00:00+09:00",
+      "deadline_text": "2026-07-06 10:00",
+      "budget": "2064545",
+      "method": "수의계약",
+      "region_limit": "부산광역시",
+      "industry_limit": "건설재해예방 전문지도기관",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608184&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609152-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609152",
+      "order": "000",
+      "name": "석운로 120번길 일원 배수관로 설치공사 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "경기도 성남시",
+      "demand_agency": "경기도 성남시",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-06T10:00:00+09:00",
+      "deadline_text": "2026-07-06 10:00",
+      "budget": "22900000",
+      "method": "수의계약",
+      "region_limit": "경기도",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609152&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01605443-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01605443",
+      "order": "000",
+      "name": "가칭 약수고등학교 설립 전기공사 감리용역(계속비)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "전기공사"
+      ],
+      "status": "active",
+      "agency": "울산광역시교육청",
+      "demand_agency": "울산광역시교육청",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-07T10:00:00+09:00",
+      "deadline_text": "2026-07-07 10:00",
+      "budget": "194020000",
+      "method": "제한경쟁",
+      "region_limit": "울산광역시",
+      "industry_limit": "감리업(종합감리),감리업(전문감리)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01605443&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610003-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610003",
+      "order": "000",
+      "name": "광휘고 포장 개선공사 건설폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경기도교육청 경기도광명교육지원청",
+      "demand_agency": "경기도교육청 경기도광명교육지원청",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T10:00:00+09:00",
+      "deadline_text": "2026-07-07 10:00",
+      "budget": "34282728",
+      "method": "수의계약",
+      "region_limit": "경기도 안양시,경기도 시흥시,경기도 광명시,경기도 부천시",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610003&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611113-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611113",
+      "order": "000",
+      "name": "대한민국 국제물주간(KIWW) 2026 홍보부스 설치 및 운영",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "설치"
+      ],
+      "status": "active",
+      "agency": "한국환경공단",
+      "demand_agency": "한국환경공단",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T10:00:00+09:00",
+      "deadline_text": "2026-07-07 10:00",
+      "budget": "72727273",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "산업디자인전문회사(환경디자인분야),기타자유업(행사대행업),기타자유업(행사대행업),산업디자인전문회사(종합디자인분야)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611113&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['설치']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607930-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607930",
+      "order": "000",
+      "name": "연제구 청소년문화의 집 건립공사 건설폐기물처리용역(폐콘크리트 등)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "부산광역시 연제구",
+      "demand_agency": "부산광역시 연제구",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-07T10:00:00+09:00",
+      "deadline_text": "2026-07-07 10:00",
+      "budget": "59370000",
+      "method": "수의계약",
+      "region_limit": "부산광역시",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607930&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612097-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612097",
+      "order": "000",
+      "name": "처리~우만간(지방도345호) 도로확포장공사 GIS DB 구축용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "경기도 여주시",
+      "demand_agency": "경기도 여주시",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T10:00:00+09:00",
+      "deadline_text": "2026-07-07 10:00",
+      "budget": "80418182",
+      "method": "수의계약",
+      "region_limit": "경기도 여주시",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612097&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610946-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610946",
+      "order": "000",
+      "name": "금리 마을만들기사업 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "충청북도 영동군",
+      "demand_agency": "충청북도 영동군",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T12:00:00+09:00",
+      "deadline_text": "2026-07-07 12:00",
+      "budget": "23160909",
+      "method": "수의계약",
+      "region_limit": "충청북도 옥천군,충청북도 영동군",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610946&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611746-001",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611746",
+      "order": "001",
+      "name": "한석지구 취약지역 생활여건 개조사업 폐기물 처리용역",
+      "category": "",
+      "matched_terms": [
+        "생활여건",
+        "취약지역"
+      ],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "충청북도 영동군",
+      "demand_agency": "충청북도 영동군",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-07T12:00:00+09:00",
+      "deadline_text": "2026-07-07 12:00",
+      "budget": "52340000",
+      "method": "수의계약",
+      "region_limit": "충청북도",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611746&bidPbancOrd=001",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611814-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611814",
+      "order": "000",
+      "name": "군포로 일원 도로정비공사 건설폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경기도 군포시",
+      "demand_agency": "경기도 군포시",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T14:00:00+09:00",
+      "deadline_text": "2026-07-07 14:00",
+      "budget": "29532727",
+      "method": "수의계약",
+      "region_limit": "경기도 군포시",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611814&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611764-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611764",
+      "order": "000",
+      "name": "당정초 등 3개소 어린이보호구역 정비공사 폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경기도 군포시",
+      "demand_agency": "경기도 군포시",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-07T14:00:00+09:00",
+      "deadline_text": "2026-07-07 14:00",
+      "budget": "26907273",
+      "method": "수의계약",
+      "region_limit": "경기도 군포시",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611764&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608553-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608553",
+      "order": "000",
+      "name": "안면도지방정원 저수 습지원 조성공사 실시설계 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "충청남도 산림자원연구소",
+      "demand_agency": "충청남도 산림자원연구소",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-07T14:00:00+09:00",
+      "deadline_text": "2026-07-07 14:00",
+      "budget": "50400000",
+      "method": "수의계약",
+      "region_limit": "충청남도",
+      "industry_limit": "산림기술용역업(종합),산림기술용역업(녹지조경)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608553&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609078-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609078",
+      "order": "000",
+      "name": "구미 보세창고 부속건축물(사무동) 해체공사 건설폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "한국산업단지공단",
+      "demand_agency": "한국산업단지공단",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-07T15:00:00+09:00",
+      "deadline_text": "2026-07-07 15:00",
+      "budget": "43647075",
+      "method": "수의계약",
+      "region_limit": "경상북도",
+      "industry_limit": "폐기물종합처분업,폐기물종합재활용업(지정폐기물외 폐기물),폐기물중간재활용업(지정폐기물외 폐기물),폐기물중간처분업(지정폐기물외 폐기물-소각전문),건설폐기물 중간처리업,건설폐기물 중간처리업,건설폐기물 중간처리업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609078&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613268-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613268",
+      "order": "000",
+      "name": "[긴급]부산한별학교 통학버스(동승보호자 포함)임차용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "부산광역시교육청 부산한별학교",
+      "demand_agency": "부산광역시교육청 부산한별학교",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "77563955",
+      "method": "수의계약",
+      "region_limit": "부산광역시",
+      "industry_limit": "여객자동차운수사업(구역여객자동차운송사업-전세버스)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613268&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613386-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613386",
+      "order": "000",
+      "name": "가산동 535-146 일원 외 1구간 사각형거 보수공사 건설폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물",
+        "보수공사"
+      ],
+      "status": "active",
+      "agency": "서울특별시 금천구",
+      "demand_agency": "서울특별시 금천구",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "20390000",
+      "method": "수의계약",
+      "region_limit": "서울특별시",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613386&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614660-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614660",
+      "order": "000",
+      "name": "건태들 배수개선사업 폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상남도 합천군",
+      "demand_agency": "경상남도 합천군",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "21281818",
+      "method": "수의계약",
+      "region_limit": "경상남도 합천군",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614660&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609189-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609189",
+      "order": "000",
+      "name": "국도4호선 칠곡 왜관 공단3거리 등 5개소 교통사고잦은곳 개선공사 건설폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "demand_agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "90200000",
+      "method": "수의계약",
+      "region_limit": "대구광역시,경상북도",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609189&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609232-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609232",
+      "order": "000",
+      "name": "국도5호선 군위 효령 고곡지구 등 21개소 낙석산사태 정비공사 건설폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "demand_agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "42536364",
+      "method": "수의계약",
+      "region_limit": "대구광역시,경상북도",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609232&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609158-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609158",
+      "order": "000",
+      "name": "국도5호선 의성 의성 원당지구 보도설치공사 건설폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "demand_agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "55981818",
+      "method": "수의계약",
+      "region_limit": "경상북도",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609158&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612741-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612741",
+      "order": "000",
+      "name": "군산고용복지플러스센터 업무지원 공용차량 장기임차",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "고용노동부 광주지방고용노동청 군산지청",
+      "demand_agency": "고용노동부 광주지방고용노동청 군산지청",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "29781818",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612741&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611409-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611409",
+      "order": "000",
+      "name": "다사중학교 외 3교(금포초, 서재초, 북동중) 햇빛이음학교 태양광 발전장치 설치 전기공사 설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "전기공사",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "대구광역시교육청 대구광역시달성교육지원청",
+      "demand_agency": "대구광역시교육청 대구광역시달성교육지원청",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "23180736",
+      "method": "수의계약",
+      "region_limit": "대구광역시",
+      "industry_limit": "설계업(종합설계),설계업(전문설계1종)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611409&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612173-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612173",
+      "order": "000",
+      "name": "대저1동 체육공원로(신덕삼거리~신대저교차로) 일원 침수해소공사(1차) 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "부산광역시 강서구",
+      "demand_agency": "부산광역시 강서구",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "24036364",
+      "method": "수의계약",
+      "region_limit": "부산광역시",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612173&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613087-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613087",
+      "order": "000",
+      "name": "동춘 지하차도 외 3개소 집수정 및 배수로 준설공사 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "인천광역시 종합건설본부",
+      "demand_agency": "인천광역시 종합건설본부",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "143338182",
+      "method": "제한경쟁",
+      "region_limit": "인천광역시",
+      "industry_limit": "폐기물수집·운반업(사업장비배출시설계폐기물),폐기물종합재활용업(지정폐기물외 폐기물),폐기물종합재활용업(지정폐기물외 폐기물),폐기물최종재활용업(지정폐기물외 폐기물),폐기물최종재활용업(지정폐기물외 폐기물),폐기물중간재활용업(지정폐기물외 폐기물),폐기물중간재활용업(지정폐기물외 폐기물),폐기물수집·운반업(사업장비배출시설계폐기물),폐기물수집·운반업(사업장비배출시설계폐기물)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613087&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614669-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614669",
+      "order": "000",
+      "name": "목곡마을 취입보 및 용수로 재해복구사업 폐기물 처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상남도 합천군",
+      "demand_agency": "경상남도 합천군",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "20454545",
+      "method": "제한경쟁",
+      "region_limit": "경상남도",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614669&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01606900-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01606900",
+      "order": "000",
+      "name": "업무용차량 임차",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "근로복지공단 인천병원",
+      "demand_agency": "근로복지공단 인천병원",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "116564364",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "여객자동차운수사업(자동차대여사업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01606900&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614574-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614574",
+      "order": "000",
+      "name": "연양동 배수설비 설치공사 폐기물처리용역(입찰대행)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "경기도 여주시",
+      "demand_agency": "경기도 여주시",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "48559091",
+      "method": "수의계약",
+      "region_limit": "경기도 여주시",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614574&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607197-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607197",
+      "order": "000",
+      "name": "한국체육대학교 오륜관 외1동(차량지원실) 지붕교체 및 기타공사 설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "한국체육대학교",
+      "demand_agency": "한국체육대학교",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-08T10:00:00+09:00",
+      "deadline_text": "2026-07-08 10:00",
+      "budget": "79737273",
+      "method": "수의계약",
+      "region_limit": "서울특별시",
+      "industry_limit": "건축사사무소",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607197&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614102-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614102",
+      "order": "000",
+      "name": "외동 급수구역 공급체계 개선사업(2단계) 폐기물운반 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상북도 경주시 맑은물사업본부",
+      "demand_agency": "경상북도 경주시 맑은물사업본부",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:30:00+09:00",
+      "deadline_text": "2026-07-08 10:30",
+      "budget": "10545455",
+      "method": "수의계약",
+      "region_limit": "경상북도 경주시",
+      "industry_limit": "건설폐기물 수집·운반업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614102&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614072-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614072",
+      "order": "000",
+      "name": "외동 급수구역 공급체계 개선사업(2단계) 폐기물처리 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상북도 경주시 맑은물사업본부",
+      "demand_agency": "경상북도 경주시 맑은물사업본부",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T10:30:00+09:00",
+      "deadline_text": "2026-07-08 10:30",
+      "budget": "22509091",
+      "method": "수의계약",
+      "region_limit": "경상북도 경주시",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614072&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614497-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614497",
+      "order": "000",
+      "name": "2026년 한강 준설공사 재해예방 기술지도 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "서울특별시 미래한강본부",
+      "demand_agency": "서울특별시 미래한강본부",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-08T15:00:00+09:00",
+      "deadline_text": "2026-07-08 15:00",
+      "budget": "8600000",
+      "method": "수의계약",
+      "region_limit": "서울특별시",
+      "industry_limit": "건설재해예방 전문지도기관",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614497&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615862-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615862",
+      "order": "000",
+      "name": "건축공사 안전점검 수행기관 지정 공고(부곡동 226-21번지 외 3필지)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "건축공사"
+      ],
+      "status": "active",
+      "agency": "부산광역시 금정구",
+      "demand_agency": "부산광역시 금정구",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-08T18:00:00+09:00",
+      "deadline_text": "2026-07-08 18:00",
+      "budget": "3400000",
+      "method": "지명경쟁",
+      "region_limit": "",
+      "industry_limit": "안전진단전문기관(건축분야),안전진단전문기관(종합분야)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615862&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615255-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615255",
+      "order": "000",
+      "name": "2026년 경상남도 공용차량 임차 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "경상남도",
+      "demand_agency": "경상남도",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "79090909",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "여객자동차운수사업(자동차대여사업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615255&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615416-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615416",
+      "order": "000",
+      "name": "2026년 폭염 대응 살수차 임차 용역(1구간)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "대구광역시 달성군",
+      "demand_agency": "대구광역시 달성군",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "75272727",
+      "method": "수의계약",
+      "region_limit": "대구광역시",
+      "industry_limit": "화물자동차운송사업(일반)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615416&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615429-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615429",
+      "order": "000",
+      "name": "2026년 폭염 대응 살수차 임차 용역(2구간)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "대구광역시 달성군",
+      "demand_agency": "대구광역시 달성군",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "75272727",
+      "method": "수의계약",
+      "region_limit": "대구광역시",
+      "industry_limit": "화물자동차운송사업(일반)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615429&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610221-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610221",
+      "order": "000",
+      "name": "[가격입찰] 경상북도 농업자원관리원 건립공사 건설사업관리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "경상북도",
+      "demand_agency": "경상북도",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "2539909091",
+      "method": "지명경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610221&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610487-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610487",
+      "order": "000",
+      "name": "[가격입찰] 주실령터널 건설공사 건설사업관리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "경상북도",
+      "demand_agency": "경상북도",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "3516363636",
+      "method": "지명경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610487&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610298-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610298",
+      "order": "000",
+      "name": "[입찰공고] 제주영지학교 교실 증축공사 건설폐기물 처리 용역(계속비)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "제주특별자치도교육청",
+      "demand_agency": "제주특별자치도교육청",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "196797273",
+      "method": "제한경쟁",
+      "region_limit": "제주특별자치도",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610298&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611776-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611776",
+      "order": "000",
+      "name": "국도30호선 성주 선남 성원 위험도로 개선공사 건설폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "demand_agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "126272727",
+      "method": "제한경쟁",
+      "region_limit": "경상북도",
+      "industry_limit": "건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611776&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614836-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614836",
+      "order": "000",
+      "name": "국도3호선 청리터널 등 4개소 제연설비 보강공사 실시설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "demand_agency": "국토교통부 부산지방국토관리청 대구국토관리사무소",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "209000000",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614836&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615699-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615699",
+      "order": "000",
+      "name": "복주초등학교 외벽개선 및 기타공사 설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "경상북도교육청 경상북도안동교육지원청",
+      "demand_agency": "경상북도교육청 경상북도안동교육지원청",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "34992727",
+      "method": "수의계약",
+      "region_limit": "경상북도 안동시",
+      "industry_limit": "건축사사무소",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615699&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01610723-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01610723",
+      "order": "000",
+      "name": "의료폐기물위탁처리용역단가계약",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상남도마산의료원",
+      "demand_agency": "경상남도마산의료원",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "226873637",
+      "method": "제한경쟁",
+      "region_limit": "경상남도",
+      "industry_limit": "폐기물중간처분업(의료폐기물),폐기물수집·운반업(의료폐기물)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01610723&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612476-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612476",
+      "order": "000",
+      "name": "전주용흥초 외 5교(전주남중, 전주고, 생명과학고, 제일고, 전주여고) 햇빛이음학교 태양광 설치 전기공사 설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "전기공사",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "전북특별자치도교육청 전북특별자치도전주교육지원청",
+      "demand_agency": "전북특별자치도교육청 전북특별자치도전주교육지원청",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "26845455",
+      "method": "수의계약",
+      "region_limit": "전북특별자치도",
+      "industry_limit": "설계업(종합설계),설계업(전문설계1종)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612476&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615111-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615111",
+      "order": "000",
+      "name": "후포시장 아케이드 설치공사 실시설계용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "설치"
+      ],
+      "status": "active",
+      "agency": "경상북도 울진군",
+      "demand_agency": "경상북도 울진군",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-09T10:00:00+09:00",
+      "deadline_text": "2026-07-09 10:00",
+      "budget": "55818181",
+      "method": "수의계약",
+      "region_limit": "경상북도 울진군",
+      "industry_limit": "건축사사무소",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615111&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01601927-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01601927",
+      "order": "000",
+      "name": "교통신호시스템 시설개선 공사 감리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "인천국제공항공사",
+      "demand_agency": "인천국제공항공사",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-09T14:00:00+09:00",
+      "deadline_text": "2026-07-09 14:00",
+      "budget": "149917276",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "감리업(종합감리),감리업(전문감리)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01601927&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611259-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611259",
+      "order": "000",
+      "name": "시민체육광장 축구장 및 육상트랙 개선사업 가연성폐기물(폐합성수지) 처리 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경기도 군포시",
+      "demand_agency": "경기도 군포시",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-09T14:00:00+09:00",
+      "deadline_text": "2026-07-09 14:00",
+      "budget": "136510000",
+      "method": "제한경쟁",
+      "region_limit": "경기도",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611259&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01616688-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01616688",
+      "order": "000",
+      "name": "2026년 OTT특화 콘텐츠 제작지원(IP확보형) 사업 드라마 (너의 그라운드) 제작 야구경기장 임차 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "스튜디오에스 주식회사",
+      "demand_agency": "스튜디오에스 주식회사",
+      "notice_date": "2026-07-04",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "120000000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01616688&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613826-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613826",
+      "order": "000",
+      "name": "2026년 강남지사 열수송시설 유지보수공사 공공측량 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "보수공사"
+      ],
+      "status": "active",
+      "agency": "한국지역난방공사 강남지사",
+      "demand_agency": "한국지역난방공사 강남지사",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "40874000",
+      "method": "제한경쟁",
+      "region_limit": "서울특별시",
+      "industry_limit": "측량업(측지측량업),측량업(기타-지하시설물측량업),측량업(기타-지하시설물측량업),측량업(기타-수치지도제작업),측량업(기타-수치지도제작업),측량업(기타-공공측량업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613826&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01606158-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01606158",
+      "order": "000",
+      "name": "4-2 2026학년도 KNU-대구앵커 워라밸 취업박람회 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "박람회"
+      ],
+      "status": "active",
+      "agency": "경북대학교 산학협력단",
+      "demand_agency": "경북대학교 산학협력단",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "159090909",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업(행사대행업),기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01606158&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['박람회']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607170-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607170",
+      "order": "000",
+      "name": "「2026년 서부내륙권 관광진흥사업 근대문화유산 배움코스」부여 근대역사문화축제 운영 용역[긴급]",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "축제"
+      ],
+      "status": "active",
+      "agency": "재단법인 백제문화재단",
+      "demand_agency": "재단법인 백제문화재단",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "95454545",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607170&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615885-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615885",
+      "order": "000",
+      "name": "용역 소액수의 견적 제출안내 공고[지1026호선 산청 선들재2지구 굴곡도로 개량공사 폐기물처리용역]",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상남도 서부도로관리사업소",
+      "demand_agency": "경상남도 서부도로관리사업소",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "33709090",
+      "method": "수의계약",
+      "region_limit": "경상남도",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615885&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614667-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614667",
+      "order": "000",
+      "name": "전자산업 안전보건센터 인테리어 전기 공사 감리 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "전기공사"
+      ],
+      "status": "active",
+      "agency": "한국산업안전보건공단",
+      "demand_agency": "한국산업안전보건공단",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "171511818",
+      "method": "제한경쟁",
+      "region_limit": "경기도",
+      "industry_limit": "감리업(종합감리),감리업(전문감리)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614667&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01612871-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01612871",
+      "order": "000",
+      "name": "주진불빛공원 조성사업 폐기물처리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "폐기물"
+      ],
+      "status": "active",
+      "agency": "경상남도 양산시",
+      "demand_agency": "경상남도 양산시",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-10T10:00:00+09:00",
+      "deadline_text": "2026-07-10 10:00",
+      "budget": "110686364",
+      "method": "제한경쟁",
+      "region_limit": "경상남도",
+      "industry_limit": "건설폐기물 중간처리업,건설폐기물 수집·운반업,건설폐기물 중간처리업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01612871&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['폐기물']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607991-001",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607991",
+      "order": "001",
+      "name": "2026 소상공인 상생협업 교육 장비 임차 및 AI 실습지원 용역",
+      "category": "",
+      "matched_terms": [
+        "교육"
+      ],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "사단법인 한국마케팅진흥원",
+      "demand_agency": "사단법인 한국마케팅진흥원",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-10T11:00:00+09:00",
+      "deadline_text": "",
+      "budget": "97020000",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607991&bidPbancOrd=001",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01605325-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01605325",
+      "order": "000",
+      "name": "2026년 강릉 ITS 세계총회 국토교통부 ITS 홍보관 디자인 및 설치 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "설치"
+      ],
+      "status": "active",
+      "agency": "한국지능형교통체계협회",
+      "demand_agency": "한국지능형교통체계협회",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-10T17:00:00+09:00",
+      "deadline_text": "",
+      "budget": "118181818",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "실내건축공사업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01605325&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['설치']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01605890-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01605890",
+      "order": "000",
+      "name": "2026년 남양농협 벼 병해충 무인공동방제 임차용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "남양농업협동조합",
+      "demand_agency": "남양농업협동조합",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-10T17:00:00+09:00",
+      "deadline_text": "",
+      "budget": "227272727",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "초경량비행장치사용사업",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01605890&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01601104-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01601104",
+      "order": "000",
+      "name": "건축공사 안전점검 수행기관 지정 공고(모라동 651-3번지 외 1필지)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "건축공사"
+      ],
+      "status": "active",
+      "agency": "부산광역시 사상구",
+      "demand_agency": "부산광역시 사상구",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-10T17:00:00+09:00",
+      "deadline_text": "2026-07-10 17:00",
+      "budget": "12517000",
+      "method": "지명경쟁",
+      "region_limit": "",
+      "industry_limit": "안전진단전문기관(건축분야),안전진단전문기관(종합분야)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01601104&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615510-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615510",
+      "order": "000",
+      "name": "건축공사 안전점검 수행기관 지정 공고(부곡동 672-2번지 외 4필지)",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사",
+        "건축공사"
+      ],
+      "status": "active",
+      "agency": "부산광역시 금정구",
+      "demand_agency": "부산광역시 금정구",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-10T18:00:00+09:00",
+      "deadline_text": "2026-07-10 18:00",
+      "budget": "12000000",
+      "method": "지명경쟁",
+      "region_limit": "",
+      "industry_limit": "안전진단전문기관(건축분야),안전진단전문기관(종합분야)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615510&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611910-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611910",
+      "order": "000",
+      "name": "2026년 스포츠클럽 종합정보시스템 운영 및 클라우드 임차",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "대한체육회",
+      "demand_agency": "대한체육회",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-14T10:00:00+09:00",
+      "deadline_text": "2026-07-14 10:00",
+      "budget": "1090909091",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611910&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611237-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611237",
+      "order": "000",
+      "name": "(재공고)2026년 하반기 금융보안원 해외 컨퍼런스 참석 행사 대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "행사대행"
+      ],
+      "status": "active",
+      "agency": "사단법인 금융보안원",
+      "demand_agency": "사단법인 금융보안원",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-14T14:00:00+09:00",
+      "deadline_text": "",
+      "budget": "0",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611237&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['행사대행']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613341-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613341",
+      "order": "000",
+      "name": "(협상)2026년 용인시 반려동물 문화축제 행사대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "행사대행",
+        "축제"
+      ],
+      "status": "active",
+      "agency": "경기도 용인시",
+      "demand_agency": "경기도 용인시",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-14T17:00:00+09:00",
+      "deadline_text": "2026-07-14 17:00",
+      "budget": "51818181",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613341&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제', '행사대행']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615688-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615688",
+      "order": "000",
+      "name": "제47회 생거진천 문화축제 방송홍보 및 축하공연 행사대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "행사대행",
+        "축제"
+      ],
+      "status": "active",
+      "agency": "재단법인생거진천문화재단",
+      "demand_agency": "재단법인생거진천문화재단",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-07-14T17:00:00+09:00",
+      "deadline_text": "2026-07-14 17:00",
+      "budget": "163636364",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615688&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제', '행사대행']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01616701-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01616701",
+      "order": "000",
+      "name": "2026년 OTT특화 콘텐츠 제작지원(IP확보형) 사업 드라마 (너의 그라운드) 제작 소품차량 및 특수차량 임차 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "스튜디오에스 주식회사",
+      "demand_agency": "스튜디오에스 주식회사",
+      "notice_date": "2026-07-04",
+      "deadline": "2026-07-15T10:00:00+09:00",
+      "deadline_text": "2026-07-15 10:00",
+      "budget": "240000000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01616701&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01616692-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01616692",
+      "order": "000",
+      "name": "2026년 OTT특화 콘텐츠 제작지원(IP확보형) 사업 드라마 (너의 그라운드) 제작 스탭버스 및 분장차 임차 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "임차"
+      ],
+      "status": "active",
+      "agency": "스튜디오에스 주식회사",
+      "demand_agency": "스튜디오에스 주식회사",
+      "notice_date": "2026-07-04",
+      "deadline": "2026-07-15T10:00:00+09:00",
+      "deadline_text": "2026-07-15 10:00",
+      "budget": "123200000",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업종",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01616692&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['임차']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609072-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609072",
+      "order": "000",
+      "name": "2026년 대전수학축전 행사 대행 용역사업",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "행사대행"
+      ],
+      "status": "active",
+      "agency": "조달청 대전지방조달청",
+      "demand_agency": "대전광역시교육청 대전교육정보원",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-16T10:00:00+09:00",
+      "deadline_text": "2026-07-16 10:00",
+      "budget": "110727273",
+      "method": "제한경쟁",
+      "region_limit": "대전광역시",
+      "industry_limit": "실내건축공사업,기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609072&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['행사대행']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611674-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611674",
+      "order": "000",
+      "name": "전자산업 안전보건센터 인테리어 공사 건설사업관리(감독권한대행) 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "한국산업안전보건공단",
+      "demand_agency": "한국산업안전보건공단",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-21T12:00:00+09:00",
+      "deadline_text": "2026-07-21 12:00",
+      "budget": "404770000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "건설엔지니어링업(설계,사업관리-건설사업관리)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611674&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01608145-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01608145",
+      "order": "000",
+      "name": "2026 신갈오거리 도시재생 거리축제 운영 대행 용역",
+      "category": "",
+      "matched_terms": [
+        "도시재생"
+      ],
+      "excluded_terms": [
+        "축제"
+      ],
+      "status": "active",
+      "agency": "재단법인 용인문화재단",
+      "demand_agency": "재단법인 용인문화재단",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-21T17:00:00+09:00",
+      "deadline_text": "2026-07-21 17:00",
+      "budget": "170772727",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01608145&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01609732-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01609732",
+      "order": "000",
+      "name": "2026 여주오곡나루축제 운영대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "축제"
+      ],
+      "status": "active",
+      "agency": "재단법인여주세종문화관광재단",
+      "demand_agency": "재단법인여주세종문화관광재단",
+      "notice_date": "2026-06-30",
+      "deadline": "2026-07-21T18:00:00+09:00",
+      "deadline_text": "",
+      "budget": "400000000",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01609732&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611165-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611165",
+      "order": "000",
+      "name": "2026 동작구민화합체육대회 행사대행 운영 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "행사대행"
+      ],
+      "status": "active",
+      "agency": "서울특별시 동작구체육회",
+      "demand_agency": "서울특별시 동작구체육회",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-22T17:00:00+09:00",
+      "deadline_text": "2026-07-22 17:00",
+      "budget": "99100000",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611165&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['행사대행']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01611437-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01611437",
+      "order": "000",
+      "name": "제7회 김해의생명축제 행사운영 대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "축제"
+      ],
+      "status": "active",
+      "agency": "김해의생명산업진흥원",
+      "demand_agency": "김해의생명산업진흥원",
+      "notice_date": "2026-07-01",
+      "deadline": "2026-07-22T17:00:00+09:00",
+      "deadline_text": "2026-07-22 17:00",
+      "budget": "270545455",
+      "method": "제한경쟁",
+      "region_limit": "경상남도",
+      "industry_limit": "기타자유업(행사대행업)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01611437&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607684-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607684",
+      "order": "000",
+      "name": "[PQ후 가격입찰]도림천제2지류 기계설비, 합류부 구조물 설치 타당성조사 및 기본계획 수립 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "설치"
+      ],
+      "status": "active",
+      "agency": "서울특별시 관악구",
+      "demand_agency": "서울특별시 관악구",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-07-23T14:00:00+09:00",
+      "deadline_text": "2026-07-23 14:00",
+      "budget": "245454545",
+      "method": "제한경쟁",
+      "region_limit": "서울특별시",
+      "industry_limit": "기술사사무소(교통),기술사사무소(구조),기술사사무소(도로,공항),엔지니어링사업(상하수도),엔지니어링사업(수자원개발),엔지니어링사업(구조),엔지니어링사업(교통),엔지니어링사업(도로, 공항),기술사사무소(상하수도),기술사사무소(수자원개발)",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607684&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['설치']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01613810-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01613810",
+      "order": "000",
+      "name": "2026 진주시 10월축제 불꽃놀이·드론라이트쇼 연출 대행 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "축제"
+      ],
+      "status": "active",
+      "agency": "진주문화관광재단",
+      "demand_agency": "진주문화관광재단",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-07-23T16:00:00+09:00",
+      "deadline_text": "2026-07-23 16:00",
+      "budget": "390909091",
+      "method": "제한경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01613810&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "제외 키워드 포함: ['축제']",
+        "score": -8,
+        "reasons": [
+          "제외 키워드 매칭"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01607072-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01607072",
+      "order": "000",
+      "name": "수서역세권 및 위례지구 근린공원 조성공사 감독권한대행 등 건설사업관리용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "서울주택도시개발공사",
+      "demand_agency": "서울주택도시개발공사",
+      "notice_date": "2026-06-29",
+      "deadline": "2026-08-03T12:00:00+09:00",
+      "deadline_text": "2026-08-03 12:00",
+      "budget": "1846481000",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01607072&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01615857-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01615857",
+      "order": "000",
+      "name": "잠실 스포츠·MICE 복합공간 조성 민간투자사업 전기분야 설계·공사감리 용역",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "서울특별시",
+      "demand_agency": "서울특별시",
+      "notice_date": "2026-07-03",
+      "deadline": "2026-08-20T12:00:00+09:00",
+      "deadline_text": "2026-08-20 12:00",
+      "budget": "5230572727",
+      "method": "일반경쟁",
+      "region_limit": "",
+      "industry_limit": "",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01615857&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
+    },
+    {
+      "uid": "R26BK01614175-000",
+      "source": "입찰공고",
+      "source_system": "data.go.kr:PubDataOpnStdService",
+      "bid_no": "R26BK01614175",
+      "order": "000",
+      "name": "합강2유치원 신축공사 설계 제안공모",
+      "category": "",
+      "matched_terms": [],
+      "excluded_terms": [
+        "공사"
+      ],
+      "status": "active",
+      "agency": "세종특별자치시교육청",
+      "demand_agency": "세종특별자치시교육청",
+      "notice_date": "2026-07-02",
+      "deadline": "2026-09-10T16:00:00+09:00",
+      "deadline_text": "",
+      "budget": "442440000",
+      "method": "수의계약",
+      "region_limit": "",
+      "industry_limit": "건축사사무소",
+      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01614175&bidPbancOrd=000",
+      "needs_detail": false,
+      "auto_judge": {
+        "level": "A",
+        "judgment": "부적합",
+        "explanation": "공사/구매/물품 유형 — 대상 아님",
+        "score": -10,
+        "reasons": [
+          "공사/구매/물품 키워드 발견"
+        ]
+      },
+      "detail_priority": 0,
+      "ai_review_status": "not_needed"
     }
   ],
-  "dashboard_updated_at": "2026-07-06T02:01:42+09:00",
+  "dashboard_updated_at": "2026-07-06T08:27:33+09:00",
   "eligibility_filter": {
-    "mode": "mac_fallback_direct_public_items",
+    "mode": "mj_linux_v4_std",
     "criteria": [
       "active only",
-      "auto_judge == 적합",
-      "region limit empty/경기도/수원/전국",
-      "exclude design, architect-office, asbestos, construction-management style work"
-    ],
-    "original_ready_items": 32,
-    "kept_ready_items": 2,
-    "removed_ready_items": 30,
-    "previous_dashboard_generated_at": "2026-07-05 02:01:32 KST"
+      "auto_judge == A"
+    ]
   }
 }
