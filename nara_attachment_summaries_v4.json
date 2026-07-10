@@ -1,6 +1,6 @@
 {
   "schema_version": "nara_attachment_summaries_v4.4.0",
-  "generated_at": "2026-07-10 02:02:19",
+  "generated_at": "2026-07-11 02:01:03",
   "total": 0,
   "template": [
     "사업 개요",
@@ -11,12 +11,12 @@
   ],
   "summaries": {},
   "generated_from": "/Users/dori/.hermes/profiles/jobdori/data/nara_jangteo/output/nara_pre_dashboard_v4_mac_latest.json",
-  "source_generated_at": "2026-07-10 02:02:19 KST",
+  "source_generated_at": "2026-07-11 02:01:03 KST",
   "summary_method": "reuse_existing_plus_mac_fallback_metadata_placeholders",
   "notes": "MJ 리눅스 없이 맥 fallback 경로로 갱신. 기존 첨부요약은 재사용하고 신규 공고는 메타데이터 기반 확인 필요 요약으로 표시.",
   "reused_existing_summaries": 0,
   "metadata_placeholders": 0,
-  "filtered_from_total": 16,
+  "filtered_from_total": 0,
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -25,9 +25,9 @@
       "region limit empty/경기도/수원/전국",
       "exclude design, architect-office, asbestos, construction-management style work"
     ],
-    "original_ready_items": 16,
+    "original_ready_items": 0,
     "kept_ready_items": 0,
-    "removed_ready_items": 16,
-    "previous_dashboard_generated_at": "2026-07-09 02:02:38 KST"
+    "removed_ready_items": 0,
+    "previous_dashboard_generated_at": "2026-07-10 02:02:19 KST"
   }
 }
