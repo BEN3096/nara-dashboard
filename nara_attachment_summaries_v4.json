@@ -1,7 +1,7 @@
 {
   "schema_version": "nara_attachment_summaries_v4.4.0",
-  "generated_at": "2026-07-11 12:15:00",
-  "total": 2,
+  "generated_at": "2026-07-12 02:01:18",
+  "total": 0,
   "template": [
     "사업 개요",
     "과업 범위",
@@ -9,29 +9,14 @@
     "제출·평가",
     "주의할 점"
   ],
-  "summaries": {
-    "R26BK01554790": {
-      "사업 개요": "도시재생사업 성과관리 모니터링 및 기록화 용역(협상에 의한 계약)",
-      "과업 범위": "도시재생",
-      "참가 자격": "학술.연구용역,엔지니어링사업(도시계획),기술사사무소(도시계획)",
-      "제출·평가": "2026-06-15T16:00:00+09:00",
-      "주의할 점": "공고명 기준 도시재생 사업 용역 관련 키워드와 용역 유형이 일치합니다. 과업지시서/참가자격 확인이 필요합니다."
-    },
-    "R26DD20776489": {
-      "사업 개요": "도시재생사업 성과관리 모니터링 및 기록화 용역",
-      "과업 범위": "도시재생",
-      "참가 자격": "일반경쟁",
-      "제출·평가": "",
-      "주의할 점": "발주계획 단계 자료입니다. 실제 입찰공고 전환 여부를 추적해야 합니다."
-    }
-  },
+  "summaries": {},
   "generated_from": "/Users/dori/.hermes/profiles/jobdori/data/nara_jangteo/output/nara_pre_dashboard_v4_mac_latest.json",
-  "source_generated_at": "2026-07-11 02:01:03 KST",
+  "source_generated_at": "2026-07-12 02:01:18 KST",
   "summary_method": "reuse_existing_plus_mac_fallback_metadata_placeholders",
-  "notes": "경기도만 반영한 요약본입니다.",
+  "notes": "MJ 리눅스 없이 맥 fallback 경로로 갱신. 기존 첨부요약은 재사용하고 신규 공고는 메타데이터 기반 확인 필요 요약으로 표시.",
   "reused_existing_summaries": 0,
   "metadata_placeholders": 0,
-  "filtered_from_total": 2,
+  "filtered_from_total": 16,
   "eligibility_filter": {
     "mode": "mac_fallback_direct_public_items",
     "criteria": [
@@ -40,9 +25,9 @@
       "region limit empty/경기도/수원/전국",
       "exclude design, architect-office, asbestos, construction-management style work"
     ],
-    "original_ready_items": 0,
+    "original_ready_items": 16,
     "kept_ready_items": 0,
-    "removed_ready_items": 0,
-    "previous_dashboard_generated_at": "2026-07-10 02:02:19 KST"
+    "removed_ready_items": 16,
+    "previous_dashboard_generated_at": "2026-06-02 11:57:46 KST"
   }
 }

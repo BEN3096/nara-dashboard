@@ -1,222 +1,43 @@
 {
   "schema_version": "nara-pre-dashboard-v4",
-  "generated_at": "2026-06-02 11:57:46 KST",
+  "generated_at": "2026-07-12 02:01:18 KST",
   "dashboard_updated": true,
   "source_files": {
-    "filtered": "nara_filtered_v4_full.json",
-    "attachment_extract": "nara_attachment_extract_v4_full.json",
-    "mode": "actual_bids_only_gyeonggi_related"
+    "raw": "/Users/dori/.hermes/profiles/jobdori/work/nara_raw_v4_mac_latest.json",
+    "filtered": "/Users/dori/.hermes/profiles/jobdori/data/nara_jangteo/output/nara_filtered_v4_mac_latest.json",
+    "attachment_summaries": "/Users/dori/nara-dashboard/nara_attachment_summaries_v4.json",
+    "mode": "mac_fallback_no_mj_linux"
   },
   "summary": {
-    "total_judged_bids": 3,
-    "active_candidates": 3,
-    "attachment_queue": 316,
-    "order_plans": 0,
-    "likely_eligible": 3,
+    "total_judged_bids": 111,
+    "active_candidates": 0,
+    "attachment_queue": 0,
+    "order_plans": 1,
+    "likely_eligible": 0,
     "conditional": 0,
-    "review_budget": 49573549834,
-    "attachment_processed": 316,
-    "attachment_with_downloads": 313,
-    "attachment_errors": 3,
-    "documents_extracted": 1037,
-    "documents_extract_ok": 1014,
-    "documents_needs_review": 23,
-    "ready_for_dashboard": 3
+    "review_budget": 0,
+    "attachment_processed": 0,
+    "attachment_with_downloads": 0,
+    "attachment_errors": 0,
+    "documents_extracted": 0,
+    "documents_extract_ok": 0,
+    "documents_needs_review": 0,
+    "ready_for_dashboard": 0
   },
-  "attachment_errors": [
-    {
-      "uid": "R26BK01554364-000",
-      "bid_no": "R26BK01554364",
-      "name": "2026년 오픈소스 개발자 역량강화 용역",
-      "error": "no_attachment_rows_found"
-    },
-    {
-      "uid": "R26BK01552855-001",
-      "bid_no": "R26BK01552855",
-      "name": "NRC 국가 망 보안체계(N2SF) 도입을 위한 ISP(컨설팅) 사업",
-      "error": "no_attachment_rows_found"
-    },
-    {
-      "uid": "R26BK01556203-000",
-      "bid_no": "R26BK01556203",
-      "name": "2026 서울외국어고등학교 1학년 일본오사카 소규모테마형교육여행 위탁용역 수의시담",
-      "error": "no_attachment_rows_found"
-    }
-  ],
-  "ready_items": [
-    {
-      "uid": "R26BK01545744-000",
-      "source": "입찰공고",
-      "source_system": "data.go.kr:PubDataOpnStdService",
-      "bid_no": "R26BK01545744",
-      "order": "000",
-      "name": "부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고)",
-      "category": "농촌/생활거점",
-      "matched_terms": [
-        "농촌중심지"
-      ],
-      "excluded_terms": [],
-      "status": "active",
-      "agency": "한국농어촌공사 경기지역본부",
-      "demand_agency": "한국농어촌공사 경기지역본부",
-      "notice_date": "2026-05-28",
-      "deadline": "2026-06-08T10:00:00+09:00",
-      "deadline_text": "2026-06-08 10:00",
-      "budget": "300000000",
-      "method": "일반경쟁",
-      "region_limit": "",
-      "industry_limit": "학술.연구용역,건축사사무소",
-      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01545744&bidPbancOrd=000",
-      "needs_detail": true,
-      "auto_judge": {
-        "level": "A",
-        "judgment": "적합",
-        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
-        "score": 16,
-        "reasons": [
-          "도시재생 핵심: ['농촌중심지']",
-          "용역 유형 적합: ['계획수립', '기본계획']",
-          "농촌/생활거점 분류",
-          "적합 발주기관",
-          "교수법인 적합 업종",
-          "예산 적정 (300,000,000원)"
-        ]
-      },
-      "detail_priority": 106,
-      "ai_review_status": "not_needed",
-      "attachment_status": {
-        "page_files": 4,
-        "zip_downloaded": 1,
-        "documents_extracted": 4,
-        "documents_extract_ok": 4,
-        "documents_needs_review": 0,
-        "text_chars": 45166,
-        "error": null,
-        "sample_documents": [
-          "00_붙임1. 입찰공고문 및 제안참가신청서(부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고))_2026-69호.hwp",
-          "01_붙임1. 입찰공고문 및 제안참가신청서(부발읍 농촌중심지활성화사업 기본계획 수립 용역(재공고))_2026-69호.pdf",
-          "02_[붙임3] 과업지시서(부발읍).hwp",
-          "03_[붙임4] 제안요청서(부발읍).hwp"
-        ],
-        "download_dir": "C:\\Users\\user\\nara_v4_attachments\\R26BK01545744-000"
-      }
-    },
-    {
-      "uid": "R26BK01541737-000",
-      "source": "입찰공고",
-      "source_system": "data.go.kr:PubDataOpnStdService",
-      "bid_no": "R26BK01541737",
-      "order": "000",
-      "name": "양감면 기초생활거점조성사업 기본계획 수립 용역",
-      "category": "농촌/생활거점",
-      "matched_terms": [
-        "기초생활거점"
-      ],
-      "excluded_terms": [],
-      "status": "active",
-      "agency": "한국농어촌공사 경기지역본부",
-      "demand_agency": "한국농어촌공사 경기지역본부",
-      "notice_date": "2026-05-26",
-      "deadline": "2026-06-16T10:00:00+09:00",
-      "deadline_text": "2026-06-16 10:00",
-      "budget": "205000000",
-      "method": "일반경쟁",
-      "region_limit": "",
-      "industry_limit": "학술.연구용역,건축사사무소",
-      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01541737&bidPbancOrd=000",
-      "needs_detail": true,
-      "auto_judge": {
-        "level": "A",
-        "judgment": "적합",
-        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
-        "score": 16,
-        "reasons": [
-          "도시재생 핵심: ['기초생활거점']",
-          "용역 유형 적합: ['계획수립', '기본계획']",
-          "농촌/생활거점 분류",
-          "적합 발주기관",
-          "교수법인 적합 업종",
-          "예산 적정 (205,000,000원)"
-        ]
-      },
-      "detail_priority": 106,
-      "ai_review_status": "not_needed",
-      "attachment_status": {
-        "page_files": 4,
-        "zip_downloaded": 1,
-        "documents_extracted": 4,
-        "documents_extract_ok": 4,
-        "documents_needs_review": 0,
-        "text_chars": 45518,
-        "error": null,
-        "sample_documents": [
-          "00_붙임1. 입찰공고문 및 제안참가신청서(양감면 기초생활거점조성사업 기본계획 수립 용역)_2026-67호.hwp",
-          "01_붙임2. 입찰공고문 및 제안참가신청서(양감면 기초생활거점조성사업 기본계획 수립 용역)_2026-67호.pdf",
-          "02_붙임3. 과업지시서(양감면)_최종.hwp",
-          "03_붙임4. 제안요청서(양감면)_최종.hwp"
-        ],
-        "download_dir": "C:\\Users\\user\\nara_v4_attachments\\R26BK01541737-000"
-      }
-    },
-    {
-      "uid": "R26BK01554790-000",
-      "source": "입찰공고",
-      "source_system": "data.go.kr:PubDataOpnStdService",
-      "bid_no": "R26BK01554790",
-      "order": "000",
-      "name": "도시재생사업 성과관리 모니터링 및 기록화 용역(협상에 의한 계약)",
-      "category": "도시재생",
-      "matched_terms": [
-        "도시재생",
-        "도시재생사업",
-        "모니터링",
-        "성과관리"
-      ],
-      "excluded_terms": [],
-      "status": "active",
-      "agency": "경기도 가평군",
-      "demand_agency": "경기도 가평군",
-      "notice_date": "2026-06-01",
-      "deadline": "2026-06-15T16:00:00+09:00",
-      "deadline_text": "",
-      "budget": "135410000",
-      "method": "일반경쟁",
-      "region_limit": "",
-      "industry_limit": "학술.연구용역,엔지니어링사업(도시계획),기술사사무소(도시계획)",
-      "url": "https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01554790&bidPbancOrd=000",
-      "needs_detail": true,
-      "auto_judge": {
-        "level": "A",
-        "judgment": "적합",
-        "explanation": "메타데이터 기준 명확히 조건 부합 — 첨부파일 없이 확정 가능",
-        "score": 15,
-        "reasons": [
-          "도시재생 핵심: ['도시재생사업', '도시재생']",
-          "용역 유형 적합: ['모니터링', '성과관리']",
-          "도시재생 분류",
-          "교수법인 적합 업종",
-          "예산 적정 (135,410,000원)"
-        ]
-      },
-      "detail_priority": 105,
-      "ai_review_status": "not_needed",
-      "attachment_status": {
-        "page_files": 4,
-        "zip_downloaded": 1,
-        "documents_extracted": 4,
-        "documents_extract_ok": 4,
-        "documents_needs_review": 0,
-        "text_chars": 43253,
-        "error": null,
-        "sample_documents": [
-          "00_공고문(도시재생사업 성과관리 모니터링 및 기록화 용역).hwpx",
-          "01_과업지시서(가평군 도시재생사업 성과관리 모니터링 및 기록화 용역).hwpx",
-          "02_제안요청서(가평군 도시재생사업 성과관리 모니터링 및 기록화 용역).hwpx",
-          "03_공고문(도시재생사업 성과관리 모니터링 및 기록화 용역).pdf"
-        ],
-        "download_dir": "C:\\Users\\user\\nara_v4_attachments\\R26BK01554790-000"
-      }
-    }
-  ],
-  "eligibility_filter": "gyeonggi + research + related 빈집/인구/도시재생"
+  "attachment_errors": [],
+  "ready_items": [],
+  "dashboard_updated_at": "2026-07-12T02:01:18+09:00",
+  "eligibility_filter": {
+    "mode": "mac_fallback_direct_public_items",
+    "criteria": [
+      "active only",
+      "auto_judge == 적합",
+      "region limit empty/경기도/수원/전국",
+      "exclude design, architect-office, asbestos, construction-management style work"
+    ],
+    "original_ready_items": 16,
+    "kept_ready_items": 0,
+    "removed_ready_items": 16,
+    "previous_dashboard_generated_at": "2026-06-02 11:57:46 KST"
+  }
 }
