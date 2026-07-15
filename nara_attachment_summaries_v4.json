@@ -1,6 +1,6 @@
 {
   "schema_version": "nara_attachment_summaries_v4.4.0",
-  "generated_at": "2026-07-15 08:38:55 KST",
+  "generated_at": "2026-07-15 10:14:12 KST",
   "total": 0,
   "template": [
     "사업 개요",
@@ -11,11 +11,11 @@
   ],
   "summaries": {},
   "generated_from": "/work/mj/nara/output/nara_filtered_v4.json",
-  "source_generated_at": "2026-07-15 08:38:55 KST",
-  "summary_method": "metadata_only_no_attachment_summaries",
-  "notes": "MJ Linux v4 data refreshed. Attachment summaries were not regenerated in this run.",
+  "source_generated_at": "2026-07-15 10:14:12 KST",
+  "summary_method": "strict_filter_no_matching_items",
+  "notes": "Strict Gyeonggi urban regeneration/vacant-house/population-policy research-service filter returned no matching active bids.",
   "reused_existing_summaries": 0,
   "metadata_placeholders": 0,
-  "filtered_from_total": 111,
-  "eligibility_filter": "active 적합/조건부"
+  "filtered_from_total": 109,
+  "eligibility_filter": "strict_gyeonggi_urban_vacant_house_population_policy_research"
 }
