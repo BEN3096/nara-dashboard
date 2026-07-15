@@ -6,7 +6,7 @@
     "raw": "/work/mj/nara/raw/nara_raw_v4.json",
     "filtered": "/work/mj/nara/output/nara_filtered_v4.json",
     "attachment_summaries": "nara_attachment_summaries_v4.json",
-    "mode": "mj_linux_v4_strict_gyeonggi_policy_research"
+    "mode": "mj_linux_v4_strict_gyeonggi_policy_research_overview"
   },
   "summary": {
     "total_judged_bids": 109,
@@ -23,19 +23,22 @@
     "documents_extract_ok": 0,
     "documents_needs_review": 0,
     "ready_for_dashboard": 0,
-    "criteria_policy_keyword_matches": 3,
-    "criteria_gyeonggi_matches": 15,
-    "criteria_policy_and_gyeonggi_matches": 0
+    "criteria_policy_keyword_matches": 4,
+    "criteria_gyeonggi_matches": 12,
+    "criteria_policy_and_gyeonggi_matches": 0,
+    "criteria_project_overview_checked": true
   },
   "attachment_errors": [],
   "ready_items": [],
   "dashboard_updated_at": "2026-07-15 10:14:12 KST",
   "eligibility_filter": {
-    "mode": "strict_gyeonggi_urban_vacant_house_population_policy_research",
+    "mode": "strict_gyeonggi_project_overview_policy_research",
     "criteria": [
       "active only",
-      "경기도 또는 경기도 기초지자체 지역성 필요",
-      "도시재생/빈집정책/인구정책 관련 키워드 필요",
+      "첨부파일 제외: 공고명·발주/수요기관·업종·계약방식·예산 등 공고 개요성 필드 기준",
+      "입찰참가 가능지역(prtcptPsblRgnNm)만으로 경기도 사업으로 보지 않음",
+      "사업 대상 또는 발주/수요기관이 경기도/경기도 기초지자체와 직접 관련 필요",
+      "도시재생/빈집정책/인구정책 관련 개요성 내용 필요",
       "연구·학술·정책·실태조사·계획 수립형 용역 필요",
       "공사·감리·폐기물처리·임차·행사운영 등 실행/시설 용역 제외"
     ],
@@ -50,23 +53,32 @@
         "name": "화전2리 취약지역생활여건개조사업 세부설계 용역",
         "agency": "한국농어촌공사 경북지역본부 의성.군위지사",
         "region_limit": "",
-        "reason": "정책 키워드는 있으나 경기도 지역 기준 미충족"
+        "reason": "공고 개요상 정책 관련이나 사업 대상/발주기관이 경기도가 아님"
+      },
+      {
+        "bid_no": "R26BK01623826",
+        "name": "대리1리 취약지역생활여건개조사업 폐기물(폐목재) 처리용역",
+        "agency": "한국농어촌공사 경북지역본부 의성.군위지사",
+        "region_limit": "",
+        "reason": "공고 개요상 정책 관련이나 사업 대상/발주기관이 경기도가 아님"
       },
       {
         "bid_no": "R26BK01631284",
         "name": "도계 도시재생사업(도계콤팩트시티) 도계광업소 본관동 건축물 철거공사 감리용역(건축)",
         "agency": "강원특별자치도 삼척시",
         "region_limit": "",
-        "reason": "정책 키워드는 있으나 경기도 지역 기준 미충족"
+        "reason": "공고 개요상 정책 관련이나 사업 대상/발주기관이 경기도가 아님"
       },
       {
         "bid_no": "R26BK01625200",
         "name": "도계 도시재생사업(도계콤팩트시티) 도계광업소 본관동 건축물 철거공사 폐기물위탁처리용역",
         "agency": "강원특별자치도 삼척시",
         "region_limit": "강원특별자치도",
-        "reason": "정책 키워드는 있으나 경기도 지역 기준 미충족"
+        "reason": "공고 개요상 정책 관련이나 사업 대상/발주기관이 경기도가 아님"
       }
-    ]
+    ],
+    "gyeonggi_project_overview_matches": 12,
+    "policy_and_gyeonggi_project_overview_matches": 0
   },
   "source_scan": {
     "scanned": 1000,
